@@ -1,0 +1,3045 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena Athletix Championship - Platform Maklumat Rasmi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDK (Compat Version for Vanilla JS) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f3fa',
+                            100: '#dde4f2',
+                            200: '#bfcce6',
+                            300: '#92a9d4',
+                            400: '#5f80bf',
+                            500: '#3d5ea3',
+                            600: '#2d4985',
+                            700: '#253c6e',
+                            800: '#1b294a',
+                            900: '#0f172a',
+                            950: '#030712',
+                        },
+                        platinum: {
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glow-button {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        /* Hide scrollbar for admin nav */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-white font-sans antialiased selection:bg-white selection:text-navy-950">
+
+    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 bg-navy-950/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo Kejohanan -->
+                <div class="flex items-center space-x-3">
+                    <a href="#utama" class="flex items-center space-x-3 group">
+                        <div class="bg-white text-navy-950 p-2 transform rotate-45 flex items-center justify-center transition-transform duration-300 group-hover:rotate-90">
+                            <i class="fa-solid fa-bolt text-sm transform -rotate-45 group-hover:-rotate-90 transition-transform duration-300"></i>
+                        </div>
+                        <span class="font-display font-black text-sm sm:text-base md:text-lg tracking-widest text-white uppercase">
+                            ARENA <span class="text-platinum-300 font-light">ATHLETIX</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigasi Desktop -->
+                <nav class="hidden xl:flex items-center space-x-3 lg:space-x-4">
+                    <a href="#utama" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-white hover:text-platinum-300 transition-colors duration-200 py-2">Utama</a>
+                    <a href="#jadual" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Jadual</a>
+                    <a href="#peserta" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Senarai Peserta</a>
+                    <a href="#keputusan" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Kedudukan Pingat</a>
+                    <a href="#pemenang" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Keputusan Rasmi</a>
+                    <a href="#anugerah" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Anugerah</a>
+                    <a href="#media" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Info & Media</a>
+                </nav>
+
+                <!-- Panel Pentadbir CTA Button (Desktop) -->
+                <div class="hidden xl:flex items-center">
+                    <a href="#pentadbir" class="px-4 py-2.5 border border-white/20 text-white hover:bg-white hover:text-navy-950 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 rounded-none">
+                        Panel Pentadbir <i class="fa-solid fa-user-shield ml-1.5"></i>
+                    </a>
+                </div>
+
+                <!-- Butang Menu Mobil -->
+                <div class="xl:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-white hover:text-platinum-300 focus:outline-none p-3 flex items-center justify-center min-h-[48px] min-w-[48px]" aria-label="Buka Menu">
+                        <i class="fa-solid fa-bars-staggered text-2xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Drawer Mobil -->
+        <div class="hidden xl:hidden bg-navy-900/98 backdrop-blur-lg border-t border-white/5 transition-all duration-300" id="mobileMenu">
+            <div class="px-4 pt-3 pb-6 space-y-2">
+                <a href="#utama" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-white/5 border-b border-white/5">Utama</a>
+                <a href="#jadual" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Jadual</a>
+                <a href="#peserta" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Senarai Peserta</a>
+                <a href="#keputusan" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Kedudukan Pingat</a>
+                <a href="#pemenang" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Keputusan Pemenang</a>
+                <a href="#anugerah" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Anugerah</a>
+                <a href="#media" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Info & Media</a>
+                <div class="pt-4">
+                    <a href="#pentadbir" onclick="toggleMobileMenu()" class="block text-center w-full px-4 py-3.5 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-widest">
+                        Panel Pentadbir <i class="fa-solid fa-user-shield ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="utama" class="relative pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950 overflow-hidden flex flex-col justify-start items-center min-h-screen">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute top-10 left-10 w-48 h-48 sm:w-80 sm:h-80 bg-white rounded-full filter blur-[100px] sm:blur-[150px] animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-20 w-60 h-60 sm:w-96 sm:h-96 bg-white rounded-full filter blur-[120px] sm:blur-[180px] animate-pulse-slow"></div>
+            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 30px 30px;"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 w-full flex flex-col items-center">
+            <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-none mb-4 sm:mb-6">
+                <span class="h-2 w-2 bg-white rounded-full animate-ping"></span>
+                <span class="text-[9px] sm:text-[10px] font-semibold text-platinum-100 tracking-[0.25em] sm:tracking-[0.3em] uppercase">SELAMAT DATANG KE PLATFORM RASMI KEJOHANAN</span>
+            </div>
+
+            <h1 class="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none mb-3 sm:mb-5 uppercase">
+                ARENA <span class="text-stroke font-extrabold">ATHLETIX</span><br>
+                <span class="text-white">CHAMPIONSHIP</span>
+            </h1>
+
+            <p class="max-w-xl sm:max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-platinum-300 mb-6 sm:mb-8 font-medium tracking-wider uppercase leading-relaxed px-2">
+                Hub Informasi Elit Berpusat. Keputusan Rasmi Kejohanan, Jadual Acara Terkini, dan Kedudukan Pingat Kejohanan Dikumpul dalam Satu Platform Berprestij Tinggi.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto px-4 w-full">
+                <a href="#jadual" class="w-full px-6 py-3 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-[0.2em] hover:bg-platinum-100 transition-all duration-300 flex items-center justify-center min-h-[48px]">
+                    <i class="fa-regular fa-calendar-days mr-2.5"></i> Lihat Jadual & Acara
+                </a>
+                <a href="#keputusan" class="w-full px-6 py-3 bg-transparent border border-white text-white font-display font-extrabold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-navy-950 transition-all duration-300 flex items-center justify-center min-h-[48px]">
+                    <i class="fa-solid fa-trophy mr-2.5"></i> Semak Kedudukan Pingat
+                </a>
+                <a href="#peserta" class="w-full px-6 py-3 bg-transparent border border-white text-white font-display font-extrabold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-navy-950 transition-all duration-300 flex items-center justify-center min-h-[48px]">
+                    <i class="fa-solid fa-users mr-2.5"></i> Lihat Senarai Peserta
+                </a>
+                <a href="#pemenang" class="w-full px-6 py-3 bg-transparent border border-white text-white font-display font-extrabold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-navy-950 transition-all duration-300 flex items-center justify-center min-h-[48px]">
+                    <i class="fa-solid fa-medal mr-2.5"></i> Semak Keputusan Rasmi
+                </a>
+            </div>
+
+            <div id="heroDashboardCardsContainer" class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mt-8 sm:mt-12 px-4 w-full">
+                <!-- Dijana secara dinamik oleh JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="jadual" class="py-16 sm:py-24 bg-navy-900 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div class="max-w-xl">
+                    <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Takwim Kejohanan</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 uppercase">Jadual Kejohanan Terkini</h2>
+                    <p class="text-xs sm:text-sm text-platinum-300 mt-2">Pilih tarikh atau hari kejohanan untuk mendapatkan maklumat terkini dengan tepat.</p>
+                </div>
+                
+                <div id="dayFilters" class="flex flex-wrap gap-2 mt-6 md:mt-0 overflow-x-auto pb-2 scrollbar-none">
+                    <!-- Dijana secara dinamik oleh JS -->
+                </div>
+            </div>
+
+            <div id="publicScheduleContainer" class="border border-white/10 glass-card overflow-hidden">
+                <!-- Dijana secara dinamik oleh JS -->
+            </div>
+
+            <div id="noScheduleMessage" class="hidden border border-white/10 bg-navy-950/40 p-12 text-center mt-6">
+                <i class="fa-regular fa-calendar-xmark text-3xl text-platinum-400 mb-3 block"></i>
+                <p class="text-sm font-bold uppercase tracking-wider text-white">Tiada Acara Dijadualkan</p>
+                <p class="text-xs text-platinum-400 mt-1">Tiada sebarang acara direkodkan bagi tarikh kejohanan yang dipilih.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="peserta" class="py-16 sm:py-24 bg-navy-950 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                <div class="max-w-xl">
+                    <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Profil Atlet & Pasukan</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 uppercase">Senarai Peserta</h2>
+                    <p class="text-xs sm:text-sm text-platinum-300 mt-2">Pilih acara, no acara, dan kategori kejohanan untuk melihat senarai peserta yang bertanding</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Panel Kontrol (4 Lajur) -->
+                <div class="lg:col-span-4 space-y-6">
+                    <div class="border border-white/10 bg-navy-900/60 p-5 rounded-none space-y-2">
+                        <label class="text-[10px] uppercase tracking-wider text-platinum-400 font-bold block"><i class="fa-solid fa-list-check mr-1.5"></i> Pilihan Acara</label>
+                        <select id="eventSelect" onchange="onEventChanged()" class="w-full bg-navy-950 border border-white/10 py-3 px-4 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+
+                    <div class="border border-white/10 bg-navy-900/60 p-5 rounded-none space-y-3">
+                        <label class="text-[10px] uppercase tracking-wider text-platinum-400 font-bold block"><i class="fa-solid fa-rotate mr-1.5"></i> Pilihan Pusingan</label>
+                        <div class="flex flex-col space-y-2" id="roundButtonsGroup">
+                            <button onclick="setRound('saringan_1')" id="btn-round-saringan_1" class="w-full py-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 bg-white text-navy-950 min-h-[44px]">Saringan 1</button>
+                            <button onclick="setRound('saringan_2')" id="btn-round-saringan_2" class="w-full py-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 bg-navy-800 text-white hover:bg-white/10 min-h-[44px]">Saringan 2</button>
+                            <button onclick="setRound('akhir')" id="btn-round-akhir" class="w-full py-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 bg-navy-800 text-white hover:bg-white/10 min-h-[44px]">Akhir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Papan Senarai Peserta (8 Lajur) -->
+                <div class="lg:col-span-8 space-y-4">
+                    <h3 id="currentRoundLabel" class="text-xs font-bold uppercase tracking-widest text-white"></h3>
+                    <div class="border border-white/10 glass-card overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-navy-950 border-b border-white/10 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-platinum-200">
+                                        <th class="py-4 px-6 text-center w-20">Lorong</th>
+                                        <th class="py-4 px-6" id="th-nama">Nama Peserta</th>
+                                        <th class="py-4 px-6">Pasukan</th>
+                                        <th class="py-4 px-6 text-center w-28" id="th-bib">No. Bib</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-white/5 text-xs uppercase tracking-wider" id="startListTableBody">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="noAthletesTableMessage" class="hidden border border-white/10 bg-navy-900/40 p-12 text-center">
+                        <i class="fa-solid fa-user-slash text-3xl text-platinum-400 mb-3 block"></i>
+                        <p class="text-sm font-bold uppercase tracking-wider text-white">Tiada Peserta Ditemui</p>
+                        <p class="text-xs text-platinum-400 mt-1">Kombinasi peringkat atau acara ini belum dimulakan atau tiada pendaftaran bagi pusingan ini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="keputusan" class="py-16 sm:py-24 bg-navy-900 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10">
+                <div class="max-w-xl">
+                    <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Pungutan Pingat Keseluruhan</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 uppercase">Kedudukan Pingat Rasmi</h2>
+                    <p class="text-xs sm:text-sm text-platinum-300 mt-2">Kemaskini secara langsung kedudukan pingat rasmi mengikut pasukan yang bertanding</p>
+                </div>
+                
+                <div class="mt-6 lg:mt-0 w-full sm:max-w-xs relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-platinum-400">
+                        <i class="fa-solid fa-filter text-xs"></i>
+                    </div>
+                    <input type="text" id="tallySearch" onkeyup="searchTally()" placeholder="Cari nama pasukan..." class="w-full bg-navy-950 border border-white/10 py-3 pl-10 pr-4 text-xs font-medium uppercase tracking-wider text-white placeholder-platinum-500 focus:outline-none focus:border-white focus:ring-0 transition-colors min-h-[48px]">
+                </div>
+            </div>
+
+            <div class="block md:hidden text-right mb-2 text-[9px] uppercase tracking-wider text-platinum-400">
+                <i class="fa-solid fa-arrows-left-right mr-1 animate-pulse"></i> Seret mendatar untuk melihat data
+            </div>
+
+            <div class="border border-white/10 glass-card overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-navy-950 border-b border-white/10 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-platinum-200">
+                                <th class="py-4 px-6 text-center w-20">Ked</th>
+                                <th class="py-4 px-6">Pasukan</th>
+                                <th class="py-4 px-6 text-center w-28">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <i class="fa-solid fa-medal text-yellow-500"></i>
+                                        <span>Emas</span>
+                                    </div>
+                                </th>
+                                <th class="py-4 px-6 text-center w-28">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <i class="fa-solid fa-medal text-slate-300"></i>
+                                        <span>Perak</span>
+                                    </div>
+                                </th>
+                                <th class="py-4 px-6 text-center w-28">
+                                    <div class="flex items-center justify-center space-x-1.5">
+                                        <i class="fa-solid fa-medal text-amber-700"></i>
+                                        <span>Gangsa</span>
+                                    </div>
+                                </th>
+                                <th class="py-4 px-6 text-center w-32 bg-white/5">Jumlah Pingat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-xs uppercase tracking-wider" id="medalTable">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pemenang" class="py-16 sm:py-24 bg-navy-950 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                <div class="max-w-xl">
+                    <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Podium Kegemilangan</span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 uppercase">Keputusan Rasmi</h2>
+                    <p class="text-xs sm:text-sm text-platinum-300 mt-2">Senarai pemenang rasmi bagi setiap kategori yang telah dipertandingkan.</p>
+                </div>
+                
+                <!-- 3 Controls: Dropdown Acara, Dropdown Kategori, Butang Cari -->
+                <div class="mt-6 lg:mt-0 w-full lg:w-auto flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center">
+                    <!-- Butang 1: Acara Dropdown -->
+                    <div class="w-full sm:w-52">
+                        <select id="winnerEventSelect" class="w-full bg-navy-900 border border-white/10 py-3 px-3 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
+                        </select>
+                    </div>
+
+                    <!-- Butang 2: Kategori Dropdown -->
+                    <div class="w-full sm:w-44">
+                        <select id="winnerCategorySelect" class="w-full bg-navy-900 border border-white/10 py-3 px-3 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
+                            <option value="ALL">-- SEMUA KATEGORI --</option>
+                            <option value="LELAKI">LELAKI</option>
+                            <option value="PEREMPUAN">PEREMPUAN</option>
+                        </select>
+                    </div>
+
+                    <!-- Butang 3: Cari -->
+                    <button onclick="filterWinnersBySearch()" id="btnSearchWinners" class="w-full sm:w-auto px-6 py-3 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-widest hover:bg-platinum-100 transition-all duration-300 flex items-center justify-center min-h-[48px]">
+                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Cari
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Winners Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="winnersGrid">
+                <!-- Dijana secara dinamik oleh JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="anugerah" class="py-16 sm:py-24 bg-navy-950 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Arena Kegemilangan</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 uppercase">Anugerah Ikon Kejohanan</h2>
+                <div class="w-16 h-1 bg-white mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-white/10 p-6 sm:p-8 glass-card text-center hover:border-white transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center text-white mx-auto mb-6 transform group-hover:rotate-6 transition-all duration-300">
+                            <i class="fa-solid fa-trophy text-2xl text-yellow-500"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base sm:text-lg uppercase tracking-wider text-white mb-4">Olahragawan Terbaik</h3>
+                        
+                        <div class="bg-white/5 border border-white/5 p-4 mb-4 text-left rounded-none">
+                            <p id="olahragawanNama" class="text-xs font-bold text-white uppercase tracking-wider mb-1">Dalam Proses</p>
+                            <p class="text-[10px] text-platinum-400 uppercase tracking-widest leading-relaxed">Pasukan: <span id="olahragawanPasukan" class="text-white font-semibold">Dalam Proses</span></p>
+                            <p class="text-[10px] text-platinum-400 uppercase tracking-widest leading-relaxed mb-2.5">No Bib: <span id="olahragawanBib" class="text-white font-semibold">Dalam Proses</span></p>
+                            <div class="flex flex-col space-y-1 text-[9px] font-bold uppercase tracking-wider text-platinum-200 border-t border-white/5 pt-2">
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-yellow-500 mr-1.5"></i> Emas: <span id="olahragawanEmas">0</span></span>
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-slate-300 mr-1.5"></i> Perak: <span id="olahragawanPerak">0</span></span>
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-amber-700 mr-1.5"></i> Gangsa: <span id="olahragawanGangsa">0</span></span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-platinum-300 leading-relaxed text-left">
+                            Syabas dan tahniah atas kejayaan yang telah dicapai dalam Kejohanan olahraga pada tahun ini.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 p-6 sm:p-8 glass-card text-center hover:border-white transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center text-white mx-auto mb-6 transform group-hover:rotate-6 transition-all duration-300">
+                            <i class="fa-solid fa-trophy text-2xl text-yellow-400"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base sm:text-lg uppercase tracking-wider text-white mb-4">Olahragawati Terbaik</h3>
+                        
+                        <div class="bg-white/5 border border-white/5 p-4 mb-4 text-left rounded-none">
+                            <p id="olahragawatiNama" class="text-xs font-bold text-white uppercase tracking-wider mb-1">Dalam Proses</p>
+                            <p class="text-[10px] text-platinum-400 uppercase tracking-widest leading-relaxed">Pasukan: <span id="olahragawatiPasukan" class="text-white font-semibold">Dalam Proses</span></p>
+                            <p class="text-[10px] text-platinum-400 uppercase tracking-widest leading-relaxed mb-2.5">No Bib: <span id="olahragawatiBib" class="text-white font-semibold">Dalam Proses</span></p>
+                            <div class="flex flex-col space-y-1 text-[9px] font-bold uppercase tracking-wider text-platinum-200 border-t border-white/5 pt-2">
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-yellow-500 mr-1.5"></i> Emas: <span id="olahragawatiEmas">0</span></span>
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-slate-300 mr-1.5"></i> Perak: <span id="olahragawatiPerak">0</span></span>
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-amber-700 mr-1.5"></i> Gangsa: <span id="olahragawatiGangsa">0</span></span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-platinum-300 leading-relaxed text-left">
+                            Syabas dan tahniah atas kejayaan yang telah dicapai dalam Kejohanan Olahraga pada tahun ini.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-white/10 p-6 sm:p-8 glass-card text-center hover:border-white transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center text-white mx-auto mb-6 transform group-hover:rotate-6 transition-all duration-300">
+                            <i class="fa-solid fa-star text-2xl text-yellow-300"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-base sm:text-lg uppercase tracking-wider text-white mb-4">Juara Keseluruhan</h3>
+                        
+                        <div class="bg-white/5 border border-white/5 p-4 mb-4 text-left rounded-none">
+                            <p id="juaraNamaPasukan" class="text-xs font-bold text-white uppercase tracking-wider mb-1">Dalam Proses</p>
+                            <p class="text-[10px] text-platinum-400 uppercase tracking-widest leading-relaxed">Kategori: <span class="text-white font-semibold">Pasukan Terbaik</span></p>
+                            <p class="text-[10px] text-platinum-400 uppercase tracking-widest leading-relaxed mb-2.5">Pencapaian: <span class="text-white font-semibold">Terbanyak Emas</span></p>
+                            <div class="flex flex-col space-y-1 text-[9px] font-bold uppercase tracking-wider text-platinum-200 border-t border-white/5 pt-2">
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-yellow-500 mr-1.5"></i> Emas: <span id="juaraEmas">0</span></span>
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-slate-300 mr-1.5"></i> Perak: <span id="juaraPerak">0</span></span>
+                                <span class="flex items-center"><i class="fa-solid fa-medal text-amber-700 mr-1.5"></i> Gangsa: <span id="juaraGangsa">0</span></span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-platinum-300 leading-relaxed text-left">
+                            Syabas dan tahniah kepada seluruh kontinjen atas kejayaan yang telah dicapai dalam Kejohanan Olahraga pada tahun ini.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="media" class="py-16 sm:py-24 bg-navy-900 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs block">HEBAHAN RASMI KEJOHANAN</span>
+                        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white uppercase leading-tight">
+                            INFO & MEDIA
+                        </h2>
+                    </div>
+                    
+                    <div id="publicAnnouncementContainer" class="border border-white/10 bg-navy-950 p-5 rounded-none space-y-2.5 relative overflow-hidden">
+                        <!-- Dijana secara dinamik oleh JS -->
+                    </div>
+
+                    <div class="space-y-3 pt-4 border-t border-white/10">
+                        <div class="flex items-center justify-between p-4 bg-navy-950 border border-white/5 hover:border-white/20 transition-all group">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-regular fa-file-pdf text-red-500 text-lg"></i>
+                                <span class="text-xs font-bold uppercase tracking-wider text-white">Buku Rasmi Peraturan Kejohanan (PDF)</span>
+                            </div>
+                            <a id="publicPdfLink" href="#" target="_blank" class="p-2 text-platinum-400 hover:text-white transition-colors" title="Muat Turun"><i class="fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-white/10 bg-navy-950/60 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 group min-h-[180px]">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white transform group-hover:rotate-6 transition-all">
+                                    <i class="fa-regular fa-images text-lg"></i>
+                                </div>
+                                <span class="text-[9px] font-mono text-platinum-400 uppercase tracking-widest">GALERI MULTIMEDIA</span>
+                            </div>
+                            <h3 class="font-display font-extrabold text-sm text-white uppercase tracking-wider mb-2">Pautan Galeri Foto</h3>
+                            <p class="text-[11px] text-platinum-300 leading-relaxed">
+                                Akses album foto rasmi, liputan perlawanan harian, dan detik-detik podium kontinjen yang dirakam lensa kamera.
+                            </p>
+                        </div>
+                        <a id="publicGalleryLink" href="#" target="_blank" class="inline-flex items-center text-[10px] font-bold text-white uppercase tracking-widest hover:underline mt-4">
+                            LIHAT GALERI <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+
+                    <div class="border border-white/10 bg-navy-950/60 p-6 flex flex-col justify-between hover:border-white transition-all duration-300 group min-h-[180px]">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white transform group-hover:-rotate-6 transition-all">
+                                    <i class="fa-regular fa-comment-dots text-lg"></i>
+                                </div>
+                                <span class="text-[9px] font-mono text-platinum-400 uppercase tracking-widest">HUBUNGI URUS SETIA</span>
+                            </div>
+                            <h3 class="font-display font-extrabold text-sm text-white uppercase tracking-wider mb-2">Borang Maklum Balas</h3>
+                            <p class="text-[11px] text-platinum-300 leading-relaxed">
+                                Mempunyai sebarang cadangan, aduan, atau pertanyaan? Hantar maklum balas terus kepada urusetia kejohanan.
+                            </p>
+                        </div>
+                        <a id="publicFeedbackLink" href="#" target="_blank" class="inline-flex items-center text-[10px] font-bold text-white uppercase tracking-widest hover:underline mt-4">
+                            HANTAR MAKLUM BALAS <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pentadbir" class="py-16 sm:py-24 bg-navy-950 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Sistem Kawalan Urus Setia</span>
+                <h2 class="font-display font-extrabold text-3xl text-white mt-1 uppercase">Panel Pentadbir</h2>
+                <p class="text-platinum-300 text-xs sm:text-sm mt-2">Pusat kawalan rasmi urus setia. Log masuk untuk mengurus dan menyunting maklumat kejohanan.</p>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="border border-white/10 glass-card p-6 flex flex-col justify-between max-w-md w-full">
+                    <div>
+                        <h3 class="font-display font-bold text-xs uppercase tracking-wider text-white mb-4 border-b border-white/5 pb-2">
+                            <i class="fa-solid fa-shield-halved mr-2 text-platinum-400"></i> Log Masuk Urus Setia
+                        </h3>
+                        <p class="text-[11px] text-platinum-300 leading-relaxed mb-4">
+                            Akses panel kawalan terpusat untuk menguruskan semua data kejohanan. Sila pastikan sambungan anda selamat.
+                        </p>
+                    </div>
+                    
+                    <div id="loginFormContainer" class="space-y-3">
+                        <div class="bg-navy-900 border border-white/10 p-3 space-y-2">
+                            <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block">ID Pengguna</label>
+                            <input type="text" id="adminUsername" placeholder="ID Urus Setia" class="w-full bg-navy-950 border border-white/10 py-2 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                        </div>
+                        <div class="bg-navy-900 border border-white/10 p-3 space-y-2">
+                            <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block">Kata Laluan</label>
+                            <input type="password" id="adminPasswordInput" placeholder="Masukkan kata laluan..." class="w-full bg-navy-950 border border-white/10 py-2 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white" onkeydown="if(event.key==='Enter') verifyAdminPassword()">
+                        </div>
+                        <p id="passwordFeedback" class="hidden text-[9px] font-bold uppercase tracking-widest"></p>
+                        
+                        <button onclick="verifyAdminPassword()" class="w-full py-3 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest flex items-center justify-center transition-all duration-300 min-h-[44px]">
+                            Log Masuk <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="adminPanelModal" class="fixed inset-0 z-50 hidden bg-navy-950/95 backdrop-blur-md overflow-hidden flex flex-col">
+        <!-- Header Modal Panel Pentadbir -->
+        <div class="flex items-center justify-between border-b border-white/10 p-4 sm:p-6 bg-navy-900 shadow-md z-10 shrink-0">
+            <div class="flex items-center space-x-4">
+                <div class="p-2.5 bg-white/10 border border-white/20 text-white rounded">
+                    <i class="fa-solid fa-user-shield text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-extrabold text-sm sm:text-lg text-white uppercase tracking-wider">PANEL KAWALAN URUS SETIA</h3>
+                    <p class="text-[9px] sm:text-[10px] text-green-400 font-mono tracking-widest uppercase flex items-center mt-1">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse mr-1.5"></span> Sesi Aktif
+                    </p>
+                </div>
+            </div>
+            <button onclick="closeAdminPanel()" class="px-4 py-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 border border-red-500/20 font-bold text-[10px] uppercase tracking-wider transition-colors flex items-center">
+                <i class="fa-solid fa-power-off mr-2"></i> Log Keluar
+            </button>
+        </div>
+
+        <!-- Layout Utama Panel: Sidebar Navigasi + Konten -->
+        <div class="flex flex-1 overflow-hidden flex-col md:flex-row">
+            <!-- Sidebar Navigasi -->
+            <div class="w-full md:w-64 border-r border-white/10 bg-navy-950/50 flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto shrink-0 hide-scroll border-b md:border-b-0 p-2 sm:p-4 gap-2">
+                <button onclick="switchAdminTab('tab-utama')" class="admin-tab-btn active flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-utama">
+                    <i class="fa-solid fa-house w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Utama</span>
+                </button>
+                <button onclick="switchAdminTab('tab-jadual')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-jadual">
+                    <i class="fa-regular fa-calendar-days w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Jadual</span>
+                </button>
+                <button onclick="switchAdminTab('tab-peserta')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-peserta">
+                    <i class="fa-solid fa-users w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Senarai Peserta</span>
+                </button>
+                <button onclick="switchAdminTab('tab-pingat')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-pingat">
+                    <i class="fa-solid fa-ranking-star w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Kedudukan Pingat</span>
+                </button>
+                <button onclick="switchAdminTab('tab-pemenang')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-pemenang">
+                    <i class="fa-solid fa-medal w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Keputusan Rasmi</span>
+                </button>
+                <button onclick="switchAdminTab('tab-anugerah')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-anugerah">
+                    <i class="fa-solid fa-trophy w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Anugerah</span>
+                </button>
+                <button onclick="switchAdminTab('tab-media')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-media">
+                    <i class="fa-solid fa-bullhorn w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Info & Media</span>
+                </button>
+                <div class="h-px bg-white/10 my-2 hidden md:block"></div>
+                <button onclick="switchAdminTab('tab-tetapan')" class="admin-tab-btn flex items-center p-3 text-left w-auto md:w-full min-w-[120px] transition-all duration-200 hover:bg-white/5 border border-transparent whitespace-nowrap" data-target="tab-tetapan">
+                    <i class="fa-solid fa-gear w-5 text-center mr-2 md:mr-3 text-platinum-400"></i>
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Tetapan Sistem</span>
+                </button>
+            </div>
+
+            <!-- Kawasan Konten Utama Panel -->
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-navy-950/30">
+                
+                <!-- Tab 1: Utama -->
+                <div id="tab-utama" class="admin-tab-content block space-y-6">
+                    <div class="bg-navy-900 border border-white/10 p-6 space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+                            <div>
+                                <h3 class="font-display text-sm font-bold text-white uppercase"><i class="fa-solid fa-sliders text-yellow-500 mr-2"></i>Pengurusan Dashboard Utama</h3>
+                                <p class="text-[10px] text-platinum-400 mt-0.5">Pengurusan maklumat yang dipaparkan pada bahagian halaman utama.</p>
+                            </div>
+                            <button onclick="addNewDashCard()" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-[10px] uppercase tracking-wider transition-colors self-start sm:self-auto flex items-center">
+                                <i class="fa-solid fa-plus mr-1.5"></i> Tambah Kad
+                            </button>
+                        </div>
+
+                        <div id="adminDashCardsList" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Jadual -->
+                <div id="tab-jadual" class="admin-tab-content hidden space-y-6">
+                    <div class="border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Pengurusan Jadual Acara</h2>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-calendar-plus text-yellow-500 mr-2"></i> Borang Pengurusan Jadual Acara
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. Tarikh</label>
+                                <input type="date" id="adminScheduleDate" value="2026-09-20" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. No. Acara</label>
+                                <input type="text" id="adminScheduleNo" placeholder="Contoh: 101" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Acara</label>
+                                <input type="text" id="adminScheduleName" placeholder="Contoh: 100M" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">4. Kategori</label>
+                                <select id="adminScheduleCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
+                                    <option value="Lelaki">Lelaki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">5. Pusingan</label>
+                                <select id="adminScheduleRound" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
+                                    <option value="Saringan 1">Saringan 1</option>
+                                    <option value="Saringan 2">Saringan 2</option>
+                                    <option value="Akhir">Akhir</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex justify-end gap-2" id="adminScheduleBtnContainer">
+                            <button id="btnCancelScheduleEdit" onclick="cancelScheduleEdit()" class="hidden px-4 py-2.5 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center min-h-[40px]">
+                                <i class="fa-solid fa-xmark mr-2"></i> Batal
+                            </button>
+                            <button id="btnAddSchedule" onclick="addScheduleEntry()" class="px-5 py-2.5 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center min-h-[40px]">
+                                <i class="fa-solid fa-plus mr-2" id="btnScheduleIcon"></i> <span id="btnScheduleText">Tambah Acara Ke Jadual</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-3">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-table-list text-platinum-400 mr-2"></i> Jadual Data Pengurusan Acara
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
+                                        <th class="p-3 w-28">Tarikh</th>
+                                        <th class="p-3 w-28">No. Acara</th>
+                                        <th class="p-3">Acara</th>
+                                        <th class="p-3 w-28">Kategori</th>
+                                        <th class="p-3 w-32">Pusingan</th>
+                                        <th class="p-3 w-24 text-right">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminScheduleTableBody" class="divide-y divide-white/5 font-medium">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Senarai Peserta -->
+                <div id="tab-peserta" class="admin-tab-content hidden space-y-6">
+                    <div class="border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Pengurusan Data Peserta</h2>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-file-csv text-green-400 mr-2"></i> Tetapan Maklumat dan Data Peserta
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. No. Acara</label>
+                                <input type="text" id="adminParticipantNo" placeholder="Contoh: 101" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Acara</label>
+                                <input type="text" id="adminParticipantName" placeholder="Contoh: 80M TAHUN 1" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Kategori</label>
+                                <select id="adminParticipantCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
+                                    <option value="Lelaki">Lelaki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="lg:col-span-3">
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
+                                    4. Pautan Google Sheet Individu 
+                                </label>
+                                <input type="text" id="adminParticipantGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div class="lg:col-span-3">
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
+                                    5. Pautan Google Sheet Kumpulan 
+                                </label>
+                                <input type="text" id="adminParticipantGsKumpulan" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                        </div>
+                        <div class="pt-2 flex justify-end">
+                            <button onclick="saveParticipantEventConfig()" class="px-5 py-2.5 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center min-h-[40px]">
+                                <i class="fa-solid fa-floppy-disk mr-2"></i> Simpan Maklumat/Data Peserta
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-3">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-table-list text-platinum-400 mr-2"></i> Senarai Tetapan Maklumat/ data Peserta
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
+                                        <th class="p-3">No. Acara</th>
+                                        <th class="p-3">Acara</th>
+                                        <th class="p-3">Kategori</th>
+                                        <th class="p-3">Sheet Ind</th>
+                                        <th class="p-3">Sheet Kum</th>
+                                        <th class="p-3 text-right">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminParticipantConfigTableBody" class="divide-y divide-white/5 font-medium">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Kedudukan Pingat -->
+                <div id="tab-pingat" class="admin-tab-content hidden space-y-6">
+                    <div class="border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-2xl text-white uppercase tracking-wider">KEMAS KINI PUNGUTAN PINGAT</h2>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-6 space-y-4">
+                        <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-1 flex items-center">
+                            <i class="fa-solid fa-file-csv text-yellow-500 mr-2"></i> Pautan Synchronisasi Kedudukan Pingat (CSV / Edit)
+                        </h3>
+                        <p class="text-[11px] text-platinum-400">Sokongan automatik pautan URL Edit Google Sheet atau pautan CSV terbitan (Publish to Web).</p>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <div>
+                                <label class="text-[10px] font-bold uppercase tracking-widest text-platinum-400 block mb-1">Pautan URL Google Sheet (.csv atau /edit)</label>
+                                <input type="text" id="adminPingatSheetUrl" placeholder="Tampal Pautan Edit (https://docs.google.com/spreadsheets/d/.../edit#gid=0) ATAU Pautan CSV" class="w-full bg-navy-950 border border-white/10 py-2.5 px-4 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap justify-end gap-3 pt-2 border-t border-white/5">
+                            <button onclick="clearPingatConfig()" class="px-4 py-2 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 font-bold text-[10px] uppercase tracking-wider transition-colors flex items-center">
+                                <i class="fa-solid fa-trash mr-1.5"></i> Hapus Pautan
+                            </button>
+                            <button onclick="syncPingatFromGoogleSheet()" class="px-4 py-2 bg-blue-600/30 text-blue-300 hover:bg-blue-600/50 border border-blue-500/40 font-bold text-[10px] uppercase tracking-wider transition-colors flex items-center">
+                                <i class="fa-solid fa-rotate mr-1.5"></i> Muat &amp; Sinkroni Pautan
+                            </button>
+                            <button onclick="savePingatConfig()" class="px-5 py-2 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center">
+                                <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Pautan
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-3">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-table-list text-platinum-400 mr-2"></i> Senarai Tetapan Kedudukan Pingat
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
+                                        <th class="p-3 w-48">Sumber Data</th>
+                                        <th class="p-3">Pautan URL Google Sheet</th>
+                                        <th class="p-3 text-right w-36">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminPingatConfigTableBody" class="divide-y divide-white/5 font-medium">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Keputusan Rasmi -->
+                <div id="tab-pemenang" class="admin-tab-content hidden space-y-6">
+                    <div class="border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Pengurusan Data Keputusan Rasmi Pemenang</h2>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-trophy text-yellow-500 mr-2"></i> Borang Tetapan Keputusan Rasmi Pemenang
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. No. Acara</label>
+                                <input type="text" id="adminWinnerNo" placeholder="Contoh: 101" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Acara</label>
+                                <input type="text" id="adminWinnerName" placeholder="Contoh: 80M TAHUN 1 LELAKI" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Kategori</label>
+                                <select id="adminWinnerCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
+                                    <option value="Lelaki">Lelaki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="lg:col-span-3">
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
+                                    4. Pautan Google Sheet Individu <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B & C: Nama | Lajur D: Pasukan | Lajur E: No Bib | Lajur F: Catatan Masa)</span>
+                                </label>
+                                <input type="text" id="adminWinnerGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                            <div class="lg:col-span-3">
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
+                                    5. Pautan Google Sheet Kumpulan <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B, C, D & E: Pasukan | Lajur F: Catatan Masa)</span>
+                                </label>
+                                <input type="text" id="adminWinnerGsKumpulan" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                        </div>
+                        <div class="pt-2 flex justify-end">
+                            <button onclick="saveWinnerEventConfig()" class="px-5 py-2.5 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center min-h-[40px]">
+                                <i class="fa-solid fa-floppy-disk mr-2"></i> Simpan Tetapan Keputusan Rasmi
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-3">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-table-list text-platinum-400 mr-2"></i> Senarai Tetapan Keputusan Rasmi Pemenang
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
+                                        <th class="p-3">No. Acara</th>
+                                        <th class="p-3">Acara</th>
+                                        <th class="p-3">Kategori</th>
+                                        <th class="p-3">Sheet Ind</th>
+                                        <th class="p-3">Sheet Kum</th>
+                                        <th class="p-3 text-right">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminWinnerConfigTableBody" class="divide-y divide-white/5 font-medium">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 6: Anugerah -->
+                <div id="tab-anugerah" class="admin-tab-content hidden space-y-6">
+                    <div class="border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Pengurusan Anugerah Khas</h2>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-4 flex items-center space-x-3">
+                        <div class="p-2.5 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 shrink-0">
+                            <i class="fa-solid fa-star text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs text-white uppercase tracking-wider">Juara Keseluruhan</h4>
+                            <p class="text-[10px] text-platinum-300 leading-relaxed">
+                                Dikemaskini secara automatik menerusi data juara pertama daripada Kedudukan Pingat Rasmi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2 flex items-center">
+                            <i class="fa-solid fa-trophy text-yellow-500 mr-2"></i> 1. OLAHRAGAWAN TERBAIK
+                        </h3>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
+                                    Pautan Google Sheet Olahragawan <span class="text-platinum-500 font-normal lowercase">(Nama, Pasukan, No Bib, Emas, Perak, Gangsa)</span>
+                                </label>
+                                <input type="text" id="adminOlahragawanGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2 flex items-center">
+                            <i class="fa-solid fa-trophy text-yellow-400 mr-2"></i> 2. OLAHRAGAWATI TERBAIK
+                        </h3>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
+                                    Pautan Google Sheet Olahragawati <span class="text-platinum-500 font-normal lowercase">(Nama, Pasukan, No Bib, Emas, Perak, Gangsa)</span>
+                                </label>
+                                <input type="text" id="adminOlahragawatiGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end pt-2">
+                        <button onclick="saveAnugerahConfig()" class="px-5 py-2.5 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center min-h-[40px]">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i> Simpan Tetapan Anugerah
+                        </button>
+                    </div>
+
+                    <div class="bg-navy-900 border border-white/10 p-5 space-y-3">
+                        <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-table-list text-platinum-400 mr-2"></i> Senarai Tetapan Pautan Data Anugerah
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
+                                        <th class="p-3 w-48">Kategori Anugerah</th>
+                                        <th class="p-3">Pautan Google Sheet</th>
+                                        <th class="p-3 text-right w-36">Tindakan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminAnugerahConfigTableBody" class="divide-y divide-white/5 font-medium">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 7: Info & Media -->
+                <div id="tab-media" class="admin-tab-content hidden space-y-6">
+                    <div class="border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Pengurusan Hebahan & Pautan Media</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                            <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2 flex items-center">
+                                <i class="fa-solid fa-bullhorn text-yellow-500 mr-2"></i> Pengurusan Hebahan Semasa
+                            </h3>
+
+                            <div class="space-y-3 bg-navy-950/60 p-4 border border-white/5">
+                                <div>
+                                    <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Kategori Hebahan</label>
+                                    <input type="text" id="adminAnnouncementCategory" placeholder="Contoh: KESELAMATAN" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white uppercase focus:outline-none focus:border-white">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Tajuk Hebahan</label>
+                                    <input type="text" id="adminAnnouncementTitle" placeholder="Contoh: PERINGATAN CUACA PANAS" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white uppercase focus:outline-none focus:border-white">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Mesej Hebahan</label>
+                                    <textarea id="adminAnnouncementMessage" rows="2" placeholder="Contoh: Pastikan semua atlet minum air secukupnya." class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white"></textarea>
+                                </div>
+                                <div class="flex justify-end gap-2 pt-1">
+                                    <button id="btnCancelAnnouncementEdit" onclick="cancelAnnouncementEdit()" class="hidden px-3 py-1.5 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 text-[10px] font-bold uppercase transition-colors">
+                                        Batal
+                                    </button>
+                                    <button onclick="saveAnnouncement()" class="px-4 py-2 bg-white text-navy-950 hover:bg-platinum-100 font-bold text-[10px] uppercase tracking-wider transition-colors flex items-center">
+                                        <i class="fa-solid fa-floppy-disk mr-1.5"></i> <span id="btnAnnouncementText">Simpan Hebahan</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3" id="adminActiveAnnouncementCards">
+                                <!-- Populated dynamically via JS -->
+                            </div>
+                        </div>
+
+                        <div class="bg-navy-900 border border-white/10 p-5 space-y-4">
+                            <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2 flex items-center">
+                                <i class="fa-solid fa-link text-blue-400 mr-2"></i> Tetapan Pautan Real-Time
+                            </h3>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-[10px] text-platinum-400 uppercase tracking-widest font-bold block mb-1">1. Pautan Buku Peraturan (PDF)</label>
+                                    <input type="text" id="adminRealtimePdfUrl" placeholder="https://example.com/buku-peraturan.pdf" class="w-full bg-navy-950 border border-white/20 text-xs py-2 px-3 text-white focus:outline-none focus:border-white">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] text-platinum-400 uppercase tracking-widest font-bold block mb-1">2. Pautan Galeri Foto Lensa</label>
+                                    <input type="text" id="adminRealtimeGalleryUrl" placeholder="https://photos.google.com/..." class="w-full bg-navy-950 border border-white/20 text-xs py-2 px-3 text-white focus:outline-none focus:border-white">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] text-platinum-400 uppercase tracking-widest font-bold block mb-1">3. Borang Maklum Balas</label>
+                                    <input type="text" id="adminRealtimeFeedbackUrl" placeholder="https://forms.google.com/..." class="w-full bg-navy-950 border border-white/20 text-xs py-2 px-3 text-white focus:outline-none focus:border-white">
+                                </div>
+
+                                <div class="flex justify-end pt-2">
+                                    <button onclick="saveRealtimeLinks()" class="px-5 py-2.5 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center min-h-[40px]">
+                                        <i class="fa-solid fa-floppy-disk mr-2"></i> Simpan Pautan
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-white/10">
+                                <h4 class="text-[10px] font-bold text-platinum-300 uppercase tracking-wider mb-3">Senarai Tetapan Real-Time</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left text-xs border-collapse">
+                                        <thead>
+                                            <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
+                                                <th class="p-2.5 w-36">Item Pautan</th>
+                                                <th class="p-2.5">Pautan URL</th>
+                                                <th class="p-2.5 text-right w-32">Tindakan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="adminRealtimeConfigTableBody" class="divide-y divide-white/5 font-medium">
+                                            <!-- Populated dynamically via JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 8: Tetapan Sistem -->
+                <div id="tab-tetapan" class="admin-tab-content hidden space-y-6">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-6">
+                        <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Tetapan Sistem</h2>
+                    </div>
+                </div> 
+
+            </div>
+        </div>
+    </div>
+
+    <div id="adminGoogleSheetModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-navy-950/90 backdrop-blur-md p-4 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-navy-900 border border-white/20 p-6 sm:p-8 shadow-2xl space-y-6 my-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 bg-green-500/10 border border-green-500/20 text-green-400">
+                        <i class="fa-solid fa-file-csv text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-extrabold text-base sm:text-lg text-white uppercase tracking-wider">PANEL URUS SETIA: INTEGRASI GOOGLE SHEETS</h3>
+                        <p class="text-[10px] text-platinum-400 uppercase tracking-widest">Pautan Data Live Google Sheets Kejohanan</p>
+                    </div>
+                </div>
+                <button onclick="closeGoogleSheetsSyncModal()" class="text-platinum-400 hover:text-white p-2 text-xl focus:outline-none">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="bg-navy-950 border border-white/10 p-4 text-xs text-platinum-300 space-y-1">
+                <p class="font-bold text-white uppercase tracking-wider mb-1"><i class="fa-solid fa-circle-info text-blue-400 mr-1.5"></i> Arahan Urus Setia:</p>
+                <p class="text-[11px] leading-relaxed">1. Anda boleh terus menyalin <strong>pautan URL dari bar alamat pelayar Google Sheets</strong> (format <code class="text-white">/edit#gid=0</code>) ATAU pautan <strong>Publish to Web (CSV)</strong>.</p>
+                <p class="text-[11px] leading-relaxed">2. Sistem akan menukar dan mengekstrak data CSV secara automatik daripada kedua-dua format pautan tersebut.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
+                        <span><i class="fa-solid fa-users text-blue-400 mr-1.5"></i> 1. Senarai Peserta</span>
+                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
+                    </label>
+                    <input type="text" id="sheetUrlPeserta" placeholder="https://docs.google.com/spreadsheets/d/.../edit#gid=0" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                </div>
+
+                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
+                        <span><i class="fa-solid fa-trophy text-yellow-500 mr-1.5"></i> 2. Kedudukan Rasmi (Pingat)</span>
+                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
+                    </label>
+                    <input type="text" id="sheetUrlPingat" placeholder="https://docs.google.com/spreadsheets/d/.../edit#gid=0" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                </div>
+
+                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
+                        <span><i class="fa-solid fa-medal text-amber-500 mr-1.5"></i> 3. Keputusan Rasmi Pemenang</span>
+                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
+                    </label>
+                    <input type="text" id="sheetUrlPemenang" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                </div>
+
+                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
+                        <span><i class="fa-solid fa-star text-yellow-400 mr-1.5"></i> 4. Anugerah Kejohanan</span>
+                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
+                    </label>
+                    <input type="text" id="sheetUrlAnugerah" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                </div>
+
+                <div class="border border-white/10 p-4 bg-navy-950/60 md:col-span-2 space-y-2">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
+                        <span><i class="fa-solid fa-bullhorn text-red-400 mr-1.5"></i> 5. Info & Media</span>
+                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
+                    </label>
+                    <input type="text" id="sheetUrlMedia" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                </div>
+            </div>
+
+            <div id="adminSyncLog" class="hidden p-3 bg-navy-950 border border-white/10 text-[10px] font-mono text-green-400 space-y-1 max-h-32 overflow-y-auto">
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-white/10">
+                <button onclick="closeGoogleSheetsSyncModal()" class="w-full sm:w-auto px-6 py-3 border border-white/20 text-white font-display font-extrabold text-xs uppercase tracking-wider hover:bg-white/10 transition-colors">
+                    Batal / Tutup
+                </button>
+                <button onclick="syncAllGoogleSheets()" class="w-full sm:w-auto px-6 py-3 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-wider hover:bg-platinum-100 transition-colors flex items-center justify-center">
+                    <i class="fa-solid fa-rotate mr-2"></i> Kemaskini &amp; Sinkroni Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-navy-950 text-white pt-16 pb-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-white text-navy-950 p-2 transform rotate-45 flex items-center justify-center">
+                            <i class="fa-solid fa-bolt text-sm transform -rotate-45"></i>
+                        </div>
+                        <span class="font-display font-black text-lg tracking-widest text-white">ARENA ATHLETIX</span>
+                    </div>
+                    <p class="text-platinum-400 text-xs leading-relaxed max-w-sm">
+                        Hub Informasi maklumat bersepadu Kejohanan Sukan. Dibina untuk menyampaikan maklumat kejohanan secara tepat serta merasai suasana Kejohanan Sukan yang sebenar.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-display font-bold text-xs text-white uppercase tracking-widest border-l-2 border-white pl-3">Navigasi Pantas</h4>
+                    <ul class="space-y-2 text-xs uppercase tracking-wider">
+                        <li><a href="#utama" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Utama</a></li>
+                        <li><a href="#jadual" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Jadual</a></li>
+                        <li><a href="#peserta" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Senarai Peserta</a></li>
+                        <li><a href="#keputusan" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Kedudukan Pingat</a></li>
+                        <li><a href="#pemenang" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Keputusan Rasmi</a></li>
+                        <li><a href="#anugerah" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Anugerah Kejohanan</a></li>
+                        <li><a href="#media" class="text-platinum-400 hover:text-white transition-all py-1 inline-block">Info & Media</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-display font-bold text-xs text-white uppercase tracking-widest border-l-2 border-white pl-3">Hubungi Kami</h4>
+                    <ul class="space-y-3 text-xs text-platinum-400">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot text-white text-sm mt-0.5"></i>
+                            <span>eL_mioZ Organiser</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-white text-sm"></i>
+                            <span>admin@eLmioZ_organiser.com</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-white text-sm"></i>
+                            <span>01953xxxxx</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 mt-8 text-center text-[9px] sm:text-[10px] uppercase tracking-wider text-platinum-400">
+                <p>Hak Cipta Terpelihara @ 2026 eL_mioZ Organiser Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Konfigurasi Firebase Firestore Anda
+        const firebaseConfig = {
+            apiKey: "AIzaSyBIqqk2dQrCdAX63Vkfk9UTng1d-c2vJ4M",
+            authDomain: "arena-athletix-championship.firebaseapp.com",
+            databaseURL: "https://arena-athletix-championship-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "arena-athletix-championship",
+            storageBucket: "arena-athletix-championship.firebasestorage.app",
+            messagingSenderId: "523568864694",
+            appId: "1:523568864694:web:0ab856fa25288ca65a7517",
+            measurementId: "G-N7PJ62E3H9"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        // Pembolehubah Global
+        let heroCardsData = [];
+        let scheduleData = [];
+        let participantConfigsData = [];
+        let winnerConfigsData = [];
+        let defaultMedalTally = [];
+        let medalTallyData = [];
+        let announcementsData = [];
+        let realtimeLinksData = {
+            pdfUrl: "https://example.com/buku-peraturan.pdf",
+            galleryUrl: "https://photos.google.com/...",
+            feedbackUrl: "https://forms.google.com/..."
+        };
+        let appSettings = {};
+
+        let fetchedAthletesCache = {};
+        let fetchedWinnersCache = {};
+        let selectedScheduleDate = "";
+        let selectedEventId = "";
+        let selectedRound = "saringan_1";
+        let editingScheduleIndex = -1;
+        let editingAnnouncementIndex = -1;
+
+        // --- INTI FIREBASE FIRESTORE LISTENERS ---
+
+        // 1. Hero Cards Firestore Sync
+        db.collection("heroCards").onSnapshot(snapshot => {
+            if (snapshot.empty) {
+                // Seed initial cards data into Firestore if collection is empty
+                const defaultCards = [
+                    { id: "1", label: "Tarikh Kejohanan", value: "27 September 2026", subtext: "Disahkan", icon: "fa-calendar-days" },
+                    { id: "2", label: "Lokasi Utama", value: "Kompleks Sukan Labuan", subtext: "WP Labuan", icon: "fa-location-dot" },
+                    { id: "3", label: "Bilangan Atlet", value: "578 Orang", subtext: "Atlet Berdaftar", icon: "fa-users" },
+                    { id: "4", label: "Status Kemas Kini", value: "Data Semasa (Live)", subtext: "Jaminan Sinkronisasi", icon: "fa-tower-broadcast" }
+                ];
+                defaultCards.forEach(card => db.collection("heroCards").doc(card.id).set(card));
+                return;
+            }
+            heroCardsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            renderHeroCards();
+            renderAdminDashCardsEditor();
+        });
+
+        // 2. Schedule Firestore Sync
+        db.collection("schedule").onSnapshot(snapshot => {
+            scheduleData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+            renderAdminScheduleTable();
+            renderScheduleFilters();
+            renderPublicScheduleCards();
+        });
+
+        // 3. Participant Configs Firestore Sync
+        db.collection("participantConfigs").onSnapshot(snapshot => {
+            participantConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+            renderParticipantConfigTable();
+            populateEventDropdown();
+            onEventChanged();
+        });
+
+        // 4. Winner Configs Firestore Sync
+        db.collection("winnerConfigs").onSnapshot(snapshot => {
+            winnerConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+            renderWinnerConfigTable();
+            updateWinnersList();
+        });
+
+        // 5. Announcements Firestore Sync
+        db.collection("announcements").onSnapshot(snapshot => {
+            announcementsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+            renderAnnouncements();
+        });
+
+        // 6. Settings / Config Firestore Sync
+        db.collection("settings").doc("config").onSnapshot(doc => {
+            if (doc.exists) {
+                appSettings = doc.data() || {};
+                
+                if (appSettings.realtimeLinksData) {
+                    realtimeLinksData = appSettings.realtimeLinksData;
+                }
+                if (appSettings.medalTallyData) {
+                    medalTallyData = appSettings.medalTallyData;
+                }
+                
+                const pingatInput = document.getElementById("adminPingatSheetUrl");
+                if (pingatInput && appSettings.sheetUrlPingat !== undefined) {
+                    pingatInput.value = appSettings.sheetUrlPingat;
+                }
+
+                const oInput = document.getElementById("adminOlahragawanGsIndividu");
+                if (oInput && appSettings.olahragawanGsIndividu !== undefined) {
+                    oInput.value = appSettings.olahragawanGsIndividu;
+                }
+                const wInput = document.getElementById("adminOlahragawatiGsIndividu");
+                if (wInput && appSettings.olahragawatiGsIndividu !== undefined) {
+                    wInput.value = appSettings.olahragawatiGsIndividu;
+                }
+
+                renderPingatConfigTable();
+                renderRealtimeLinks();
+                renderAnugerahConfigTable();
+                loadMedalTally();
+                loadAnugerahData();
+            }
+        });
+
+        function normalizeGoogleSheetUrl(url) {
+            if (!url || typeof url !== 'string') return '';
+            let cleanUrl = url.trim();
+            if (!cleanUrl) return '';
+
+            if (cleanUrl.includes('output=csv') || cleanUrl.includes('format=csv')) {
+                return cleanUrl;
+            }
+
+            const sheetIdMatch = cleanUrl.match(/\/d\/([a-zA-Z0-9-_]+)/);
+            if (sheetIdMatch && sheetIdMatch[1]) {
+                const sheetId = sheetIdMatch[1];
+                let gid = '0';
+                
+                const gidMatch = cleanUrl.match(/gid=([0-9]+)/);
+                if (gidMatch && gidMatch[1]) {
+                    gid = gidMatch[1];
+                }
+                
+                return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+            }
+
+            return cleanUrl;
+        }
+
+        function formatDateMalay(dateStr) {
+            if (!dateStr) return "";
+            const parts = dateStr.split("-");
+            if (parts.length !== 3) return dateStr;
+            const year = parts[0];
+            const monthIndex = parseInt(parts[1], 10) - 1;
+            const day = parseInt(parts[2], 10);
+            const months = ["JAN", "FEB", "MAC", "APR", "MEI", "JUN", "JUL", "OGOS", "SEP", "OKT", "NOV", "DIS"];
+            return `${day} ${months[monthIndex] || parts[1]} ${year}`;
+        }
+
+        function renderScheduleFilters() {
+            const container = document.getElementById("dayFilters");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const uniqueDates = [...new Set(scheduleData.map(item => item.date))].sort();
+            if (uniqueDates.length === 0) return;
+
+            if (!selectedScheduleDate || !uniqueDates.includes(selectedScheduleDate)) {
+                selectedScheduleDate = uniqueDates[0];
+            }
+
+            uniqueDates.forEach((date, index) => {
+                const btn = document.createElement("button");
+                const formattedDate = formatDateMalay(date);
+                const isSelected = date === selectedScheduleDate;
+                
+                btn.className = `px-5 py-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 min-h-[48px] ${
+                    isSelected ? 'bg-white text-navy-950 active-tab' : 'bg-navy-800 text-white hover:bg-white/10'
+                }`;
+                btn.textContent = `Hari ${index + 1} (${formattedDate.split(' ').slice(0, 2).join(' ')})`;
+                btn.onclick = () => filterScheduleByDate(date);
+                container.appendChild(btn);
+            });
+        }
+
+        function renderPublicScheduleCards() {
+            const container = document.getElementById("publicScheduleContainer");
+            const emptyMsg = document.getElementById("noScheduleMessage");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const filtered = scheduleData.filter(item => item.date === selectedScheduleDate);
+
+            if (filtered.length === 0) {
+                container.classList.add("hidden");
+                if (emptyMsg) emptyMsg.classList.remove("hidden");
+                return;
+            }
+
+            container.classList.remove("hidden");
+            if (emptyMsg) emptyMsg.classList.add("hidden");
+
+            const dateMalay = formatDateMalay(selectedScheduleDate);
+
+            let tableRowsHTML = "";
+            filtered.forEach(item => {
+                const catColorClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
+                const roundBadgeClass = item.round === "Akhir" 
+                    ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" 
+                    : "bg-white/10 text-platinum-200 border-white/20";
+
+                tableRowsHTML += `
+                    <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
+                        <td class="py-4 px-6 text-center font-mono font-bold text-sm text-white">#${item.eventNo}</td>
+                        <td class="py-4 px-6 font-display font-bold text-white uppercase">${item.name}</td>
+                        <td class="py-4 px-6 text-center font-bold ${catColorClass}">${item.category}</td>
+                        <td class="py-4 px-6 text-center">
+                            <span class="px-2.5 py-1 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round}</span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="bg-navy-950 p-4 border-b border-white/10 flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-platinum-300 flex items-center">
+                        <i class="fa-regular fa-calendar-days text-yellow-500 mr-2"></i> Acara Dijadualkan
+                    </span>
+                    <span class="text-xs font-mono font-bold text-white bg-white/10 px-3 py-1.5 border border-white/10 uppercase tracking-widest">
+                        ${dateMalay}
+                    </span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-navy-950/80 border-b border-white/10 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-platinum-200">
+                                <th class="py-4 px-6 text-center w-28">No. Acara</th>
+                                <th class="py-4 px-6">Acara</th>
+                                <th class="py-4 px-6 text-center w-32">Kategori</th>
+                                <th class="py-4 px-6 text-center w-36">Pusingan</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-xs uppercase tracking-wider">
+                            ${tableRowsHTML}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function filterScheduleByDate(dateStr) {
+            selectedScheduleDate = dateStr;
+            renderScheduleFilters();
+            renderPublicScheduleCards();
+        }
+
+        function renderAdminScheduleTable() {
+            const tbody = document.getElementById("adminScheduleTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            scheduleData.forEach((item, index) => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
+
+                const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
+                const roundBadgeClass = item.round === "Akhir" 
+                    ? "bg-yellow-500/20 border-yellow-500/30 text-yellow-400" 
+                    : "bg-white/10 border-white/20 text-platinum-200";
+
+                tr.innerHTML = `
+                    <td class="p-3 font-mono text-platinum-300">${item.date}</td>
+                    <td class="p-3 font-mono font-bold text-white">#${item.eventNo}</td>
+                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
+                    <td class="p-3 ${catClass} font-bold">${item.category}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round}</span></td>
+                    <td class="p-3 text-right space-x-2">
+                        <button onclick="editScheduleEntry(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Sunting"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteScheduleEntry(${index})" class="text-red-400 hover:text-red-300 p-1" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editScheduleEntry(index) {
+            const item = scheduleData[index];
+            if (!item) return;
+
+            editingScheduleIndex = index;
+
+            document.getElementById("adminScheduleDate").value = item.date;
+            document.getElementById("adminScheduleNo").value = item.eventNo;
+            document.getElementById("adminScheduleName").value = item.name;
+            document.getElementById("adminScheduleCategory").value = item.category;
+            document.getElementById("adminScheduleRound").value = item.round;
+
+            const btnText = document.getElementById("btnScheduleText");
+            const cancelBtn = document.getElementById("btnCancelScheduleEdit");
+            const btnIcon = document.getElementById("btnScheduleIcon");
+
+            if (btnText) btnText.textContent = "Kemaskini Acara";
+            if (cancelBtn) cancelBtn.classList.remove("hidden");
+            if (btnIcon) btnIcon.className = "fa-solid fa-floppy-disk mr-2";
+        }
+
+        function cancelScheduleEdit() {
+            editingScheduleIndex = -1;
+
+            document.getElementById("adminScheduleNo").value = "";
+            document.getElementById("adminScheduleName").value = "";
+
+            const btnText = document.getElementById("btnScheduleText");
+            const cancelBtn = document.getElementById("btnCancelScheduleEdit");
+            const btnIcon = document.getElementById("btnScheduleIcon");
+
+            if (btnText) btnText.textContent = "Tambah Acara Ke Jadual";
+            if (cancelBtn) cancelBtn.classList.add("hidden");
+            if (btnIcon) btnIcon.className = "fa-solid fa-plus mr-2";
+        }
+
+        async function addScheduleEntry() {
+            const dateVal = document.getElementById("adminScheduleDate").value || "2026-09-20";
+            const noVal = document.getElementById("adminScheduleNo").value.trim();
+            const nameVal = document.getElementById("adminScheduleName").value.trim();
+            const catVal = document.getElementById("adminScheduleCategory").value;
+            const roundVal = document.getElementById("adminScheduleRound").value;
+
+            if (!noVal || !nameVal) return;
+
+            const payload = {
+                date: dateVal,
+                eventNo: noVal.replace('#', ''),
+                name: nameVal.toUpperCase(),
+                category: catVal,
+                round: roundVal
+            };
+
+            if (editingScheduleIndex >= 0 && editingScheduleIndex < scheduleData.length) {
+                const docId = scheduleData[editingScheduleIndex].docId;
+                if (docId) {
+                    await db.collection("schedule").doc(docId).set(payload, { merge: true });
+                }
+            } else {
+                await db.collection("schedule").add(payload);
+            }
+
+            cancelScheduleEdit();
+            selectedScheduleDate = dateVal;
+        }
+
+        async function deleteScheduleEntry(index) {
+            const item = scheduleData[index];
+            if (item && item.docId) {
+                await db.collection("schedule").doc(item.docId).delete();
+            }
+
+            if (editingScheduleIndex === index) {
+                cancelScheduleEdit();
+            } else if (editingScheduleIndex > index) {
+                editingScheduleIndex--;
+            }
+        }
+
+        function renderHeroCards() {
+            const container = document.getElementById("heroDashboardCardsContainer");
+            if (!container) return;
+            container.innerHTML = "";
+            heroCardsData.forEach(card => {
+                const cardEl = document.createElement("div");
+                cardEl.className = "border border-white/10 bg-navy-900/60 backdrop-blur-md p-4 text-left hover:border-white transition-all duration-300 flex flex-col justify-between min-h-[90px]";
+                cardEl.innerHTML = `
+                    <div>
+                        <span class="text-platinum-400 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest block mb-1">${card.label}</span>
+                        <h4 class="font-display font-extrabold text-xs sm:text-sm text-white uppercase leading-tight">${card.value}</h4>
+                    </div>
+                    <span class="text-[9px] text-green-400 uppercase tracking-widest font-mono font-bold mt-2 flex items-center">
+                        <i class="fa-solid ${card.icon || 'fa-circle-info'} mr-1.5"></i> ${card.subtext}
+                    </span>
+                `;
+                container.appendChild(cardEl);
+            });
+        }
+
+        function renderAdminDashCardsEditor() {
+            const listContainer = document.getElementById("adminDashCardsList");
+            if (!listContainer) return;
+            listContainer.innerHTML = "";
+
+            heroCardsData.forEach((card, index) => {
+                const cardEditor = document.createElement("div");
+                cardEditor.className = "bg-navy-950 border border-white/10 p-4 space-y-3 relative";
+                cardEditor.innerHTML = `
+                    <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                        <span class="text-[10px] font-bold text-yellow-500 uppercase tracking-widest"><i class="fa-solid fa-square-poll-vertical mr-1.5"></i> Kad ${index + 1}</span>
+                        <button onclick="deleteDashCard(${index})" class="text-red-400 hover:text-red-300 text-[10px] font-bold uppercase px-2 py-1 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 transition-colors flex items-center" title="Buang Kad">
+                            <i class="fa-solid fa-trash mr-1"></i> Buang
+                        </button>
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Tajuk / Label Kad</label>
+                        <input type="text" id="dashLabel_${index}" value="${card.label}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Nilai Utama</label>
+                        <input type="text" id="dashVal_${index}" value="${card.value}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Teks Status / Sub-Teks</label>
+                        <input type="text" id="dashSub_${index}" value="${card.subtext}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
+                    </div>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="saveDashCard(${index})" class="w-full sm:w-auto px-4 py-2 bg-white text-navy-950 hover:bg-platinum-100 font-bold text-[10px] uppercase tracking-widest transition-colors flex items-center justify-center">
+                            <i class="fa-solid fa-floppy-disk mr-1.5"></i> Simpan Kad
+                        </button>
+                    </div>
+                `;
+                listContainer.appendChild(cardEditor);
+            });
+        }
+
+        async function saveDashCard(index) {
+            const label = document.getElementById(`dashLabel_${index}`).value.trim();
+            const value = document.getElementById(`dashVal_${index}`).value.trim();
+            const subtext = document.getElementById(`dashSub_${index}`).value.trim();
+
+            if (heroCardsData[index]) {
+                const card = heroCardsData[index];
+                const docId = String(card.id || index + 1);
+                await db.collection("heroCards").doc(docId).set({
+                    id: docId,
+                    label,
+                    value,
+                    subtext,
+                    icon: card.icon || "fa-circle-info"
+                }, { merge: true });
+            }
+        }
+
+        async function deleteDashCard(index) {
+            if (heroCardsData[index]) {
+                const docId = String(heroCardsData[index].id);
+                await db.collection("heroCards").doc(docId).delete();
+            }
+        }
+
+        async function addNewDashCard() {
+            const newDocRef = db.collection("heroCards").doc();
+            await newDocRef.set({
+                id: newDocRef.id,
+                label: "Tajuk Kad Baru",
+                value: "Nilai Kad",
+                subtext: "Status",
+                icon: "fa-circle-info"
+            });
+        }
+
+        function renderParticipantConfigTable() {
+            const tbody = document.getElementById("adminParticipantConfigTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            participantConfigsData.forEach((item, index) => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
+                
+                const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
+                
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-white">#${item.eventNo}</td>
+                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
+                    <td class="p-3 ${catClass} font-bold">${item.category}</td>
+                    <td class="p-3 truncate max-w-[120px]">${item.gsIndividu || "-"}</td>
+                    <td class="p-3 truncate max-w-[120px]">${item.gsKumpulan || "-"}</td>
+                    <td class="p-3 text-right space-x-2">
+                        <button onclick="editParticipantConfig(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteParticipantConfig(${index})" class="text-red-400 hover:text-red-300 p-1" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editParticipantConfig(index) {
+            const config = participantConfigsData[index];
+            if (!config) return;
+            document.getElementById("adminParticipantNo").value = config.eventNo;
+            document.getElementById("adminParticipantName").value = config.name;
+            document.getElementById("adminParticipantCategory").value = config.category;
+            document.getElementById("adminParticipantGsIndividu").value = config.gsIndividu || "";
+            document.getElementById("adminParticipantGsKumpulan").value = config.gsKumpulan || "";
+        }
+
+        async function saveParticipantEventConfig() {
+            const noVal = document.getElementById("adminParticipantNo").value.trim();
+            const nameVal = document.getElementById("adminParticipantName").value.trim();
+            const catVal = document.getElementById("adminParticipantCategory").value;
+            const indVal = document.getElementById("adminParticipantGsIndividu").value.trim();
+            const kumVal = document.getElementById("adminParticipantGsKumpulan").value.trim();
+
+            if (!noVal || !nameVal) return;
+
+            const eventNo = noVal.replace('#', '');
+            const payload = {
+                id: eventNo,
+                eventNo: eventNo,
+                name: nameVal.toUpperCase(),
+                category: catVal,
+                gsIndividu: indVal,
+                gsKumpulan: kumVal
+            };
+
+            await db.collection("participantConfigs").doc(eventNo).set(payload, { merge: true });
+
+            document.getElementById("adminParticipantNo").value = "";
+            document.getElementById("adminParticipantName").value = "";
+            document.getElementById("adminParticipantGsIndividu").value = "";
+            document.getElementById("adminParticipantGsKumpulan").value = "";
+        }
+
+        async function deleteParticipantConfig(index) {
+            const item = participantConfigsData[index];
+            if (item) {
+                const docId = item.docId || item.eventNo;
+                await db.collection("participantConfigs").doc(docId).delete();
+            }
+        }
+
+        function renderWinnerConfigTable() {
+            const tbody = document.getElementById("adminWinnerConfigTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            winnerConfigsData.forEach((item, index) => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
+                
+                const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
+                
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-white">#${item.eventNo}</td>
+                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
+                    <td class="p-3 ${catClass} font-bold">${item.category}</td>
+                    <td class="p-3 truncate max-w-[120px]">${item.gsIndividu || "-"}</td>
+                    <td class="p-3 truncate max-w-[120px]">${item.gsKumpulan || "-"}</td>
+                    <td class="p-3 text-right space-x-2">
+                        <button onclick="editWinnerConfig(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteWinnerConfig(${index})" class="text-red-400 hover:text-red-300 p-1" title="Hapus"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editWinnerConfig(index) {
+            const config = winnerConfigsData[index];
+            if (!config) return;
+            document.getElementById("adminWinnerNo").value = config.eventNo;
+            document.getElementById("adminWinnerName").value = config.name;
+            document.getElementById("adminWinnerCategory").value = config.category;
+            document.getElementById("adminWinnerGsIndividu").value = config.gsIndividu || "";
+            document.getElementById("adminWinnerGsKumpulan").value = config.gsKumpulan || "";
+        }
+
+        async function saveWinnerEventConfig() {
+            const noVal = document.getElementById("adminWinnerNo").value.trim();
+            const nameVal = document.getElementById("adminWinnerName").value.trim();
+            const catVal = document.getElementById("adminWinnerCategory").value;
+            const indVal = document.getElementById("adminWinnerGsIndividu").value.trim();
+            const kumVal = document.getElementById("adminWinnerGsKumpulan").value.trim();
+
+            if (!noVal || !nameVal) return;
+
+            const eventNo = noVal.replace('#', '');
+            const payload = {
+                id: eventNo,
+                eventNo: eventNo,
+                name: nameVal.toUpperCase(),
+                category: catVal,
+                gsIndividu: indVal,
+                gsKumpulan: kumVal
+            };
+
+            await db.collection("winnerConfigs").doc(eventNo).set(payload, { merge: true });
+
+            document.getElementById("adminWinnerNo").value = "";
+            document.getElementById("adminWinnerName").value = "";
+            document.getElementById("adminWinnerGsIndividu").value = "";
+            document.getElementById("adminWinnerGsKumpulan").value = "";
+        }
+
+        async function deleteWinnerConfig(index) {
+            const item = winnerConfigsData[index];
+            if (item) {
+                const docId = item.docId || item.eventNo;
+                await db.collection("winnerConfigs").doc(docId).delete();
+            }
+        }
+
+        function getTeamBadgeStyle(teamName) {
+            const name = (teamName || "").toUpperCase();
+            if (name.includes("HELANG")) return "bg-green-500/10 text-green-400 border-green-500/20";
+            if (name.includes("GARUDA")) return "bg-red-500/10 text-red-400 border-red-500/20";
+            if (name.includes("RAJAWALI")) return "bg-blue-500/10 text-blue-400 border-blue-500/20";
+            if (name.includes("KENYALANG")) return "bg-yellow-500/10 text-yellow-400 border-yellow-500/20";
+            return "bg-white/10 text-platinum-200 border-white/20";
+        }
+
+        async function loadMedalTally() {
+            const rawUrl = appSettings.sheetUrlPingat || "";
+            const url = normalizeGoogleSheetUrl(rawUrl);
+
+            if (url && url.trim() !== "") {
+                try {
+                    const response = await fetch(url);
+                    const data = await response.text();
+                    const rows = parseCSVText(data);
+                    
+                    if (rows && rows.length > 0) {
+                        const parsedData = rows.map(r => ({
+                            team: (r[0] || "").toUpperCase().trim(),
+                            emas: parseInt(r[1]) || 0,
+                            perak: parseInt(r[2]) || 0,
+                            gangsa: parseInt(r[3]) || 0
+                        })).filter(item => item.team !== "");
+
+                        if (parsedData.length > 0) {
+                            medalTallyData = parsedData;
+                            await db.collection("settings").doc("config").set({ medalTallyData }, { merge: true });
+                        }
+                    }
+                } catch (err) {
+                    console.error("Gagal memuat data pingat dari Google Sheet:", err);
+                }
+            }
+
+            renderPublicMedalTable();
+            renderPingatConfigTable();
+        }
+
+        function renderPublicMedalTable() {
+            const tableBody = document.getElementById("medalTable");
+            if (!tableBody) return;
+
+            const sortedData = [...medalTallyData].sort((a, b) => {
+                if ((b.emas || 0) !== (a.emas || 0)) return (b.emas || 0) - (a.emas || 0);
+                if ((b.perak || 0) !== (a.perak || 0)) return (b.perak || 0) - (a.perak || 0);
+                if ((b.gangsa || 0) !== (a.gangsa || 0)) return (b.gangsa || 0) - (a.gangsa || 0);
+                return a.team.localeCompare(b.team);
+            });
+
+            if (sortedData.length > 0) {
+                updateOverallChampionAward(sortedData[0]);
+            }
+
+            tableBody.innerHTML = "";
+
+            if (sortedData.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="py-8 text-center text-platinum-400">
+                            <i class="fa-solid fa-trophy text-2xl mb-2 block"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider">Tiada Rekod Pingat Ditemui</span>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            sortedData.forEach((item, index) => {
+                const total = (item.emas || 0) + (item.perak || 0) + (item.gangsa || 0);
+                const tr = document.createElement("tr");
+                tr.className = "table-row-item hover:bg-white/5 transition-colors";
+                const badgeStyle = getTeamBadgeStyle(item.team);
+
+                tr.innerHTML = `
+                    <td class="py-4 px-6 text-center font-display font-black text-sm text-white">${index + 1}</td>
+                    <td class="py-4 px-6 font-display font-bold text-white">
+                        <span class="inline-block px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest rounded ${badgeStyle}">
+                            ${item.team}
+                        </span>
+                    </td>
+                    <td class="py-4 px-6 text-center font-mono font-bold text-sm text-white">${item.emas || 0}</td>
+                    <td class="py-4 px-6 text-center font-mono font-bold text-sm text-platinum-300">${item.perak || 0}</td>
+                    <td class="py-4 px-6 text-center font-mono font-bold text-sm text-platinum-300">${item.gangsa || 0}</td>
+                    <td class="py-4 px-6 text-center font-mono font-black text-sm bg-white/5 text-white">${total}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function updateOverallChampionAward(topTeam) {
+            if (!topTeam) return;
+            const teamNameEl = document.getElementById("juaraNamaPasukan");
+            const emasEl = document.getElementById("juaraEmas");
+            const perakEl = document.getElementById("juaraPerak");
+            const gangsaEl = document.getElementById("juaraGangsa");
+
+            if (teamNameEl) teamNameEl.textContent = topTeam.team;
+            if (emasEl) emasEl.textContent = topTeam.emas || 0;
+            if (perakEl) perakEl.textContent = topTeam.perak || 0;
+            if (gangsaEl) gangsaEl.textContent = topTeam.gangsa || 0;
+        }
+
+        function renderPingatConfigTable() {
+            const tbody = document.getElementById("adminPingatConfigTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            const url = appSettings.sheetUrlPingat || "";
+            const tr = document.createElement("tr");
+            tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
+
+            tr.innerHTML = `
+                <td class="p-3 font-bold text-white uppercase">Kedudukan Pingat Rasmi</td>
+                <td class="p-3 truncate max-w-[280px] font-mono text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
+                <td class="p-3 text-right space-x-1.5">
+                    <button onclick="editPingatConfig()" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
+                        <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
+                    </button>
+                    <button onclick="savePingatConfig()" class="px-2 py-1 bg-white/10 text-white hover:bg-white/20 border border-white/20 text-[10px] font-bold uppercase rounded transition-colors" title="Simpan">
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> Simpan
+                    </button>
+                    <button onclick="clearPingatConfig()" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Hapus Pautan">
+                        <i class="fa-solid fa-trash mr-1"></i> Hapus
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function editPingatConfig() {
+            const input = document.getElementById("adminPingatSheetUrl");
+            if (input) {
+                input.focus();
+                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        async function savePingatConfig() {
+            const url = document.getElementById("adminPingatSheetUrl").value.trim();
+            await db.collection("settings").doc("config").set({ sheetUrlPingat: url }, { merge: true });
+            logAdminMsg("Pautan Kedudukan Pingat telah disimpan.");
+            await loadMedalTally();
+        }
+
+        async function clearPingatConfig() {
+            document.getElementById("adminPingatSheetUrl").value = "";
+            await db.collection("settings").doc("config").set({ sheetUrlPingat: "" }, { merge: true });
+            logAdminMsg("Pautan Kedudukan Pingat telah dihapus.");
+            await loadMedalTally();
+        }
+
+        async function syncPingatFromGoogleSheet() {
+            await savePingatConfig();
+            await loadMedalTally();
+            logAdminMsg("Kedudukan Pingat berjaya dikemaskini dari Google Sheet CSV.");
+        }
+
+        function searchTally() {
+            const input = document.getElementById("tallySearch").value.toUpperCase();
+            const rows = document.querySelectorAll("#medalTable .table-row-item");
+
+            rows.forEach(row => {
+                const teamTd = row.querySelector("td:nth-child(2)");
+                if (teamTd) {
+                    const text = teamTd.textContent || teamTd.innerText;
+                    if (text.toUpperCase().indexOf(input) > -1) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        function renderAnnouncements() {
+            const activeCardsContainer = document.getElementById("adminActiveAnnouncementCards");
+            const publicContainer = document.getElementById("publicAnnouncementContainer");
+
+            if (activeCardsContainer) activeCardsContainer.innerHTML = "";
+            if (publicContainer) publicContainer.innerHTML = "";
+
+            if (announcementsData.length === 0) {
+                if (activeCardsContainer) {
+                    activeCardsContainer.innerHTML = `<p class="text-xs text-platinum-400 py-3 italic">Tiada hebahan aktif.</p>`;
+                }
+                if (publicContainer) {
+                    publicContainer.innerHTML = `
+                        <div class="flex items-center space-x-2">
+                            <span class="h-2 w-2 bg-gray-500 rounded-full"></span>
+                            <span class="text-[10px] font-bold text-platinum-400 uppercase tracking-widest">HEBAHAN</span>
+                        </div>
+                        <h4 class="font-display font-black text-xs text-white uppercase tracking-wider">TIADA HEBAHAN AKTIF</h4>
+                        <p class="text-xs text-platinum-300 leading-relaxed">Tiada sebarang pengumuman rasmi dikeluarkan pada masa ini.</p>
+                    `;
+                }
+                return;
+            }
+
+            announcementsData.forEach((item, index) => {
+                if (activeCardsContainer) {
+                    const card = document.createElement("div");
+                    card.className = "bg-navy-950 border border-white/20 p-3.5 relative rounded-none space-y-1";
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-[9px] rounded uppercase font-bold inline-block">${item.category}</span>
+                            <div class="flex space-x-2">
+                                <button onclick="editAnnouncement(${index})" class="text-blue-400 hover:text-white p-1" title="Sunting"><i class="fa-solid fa-pen-to-square text-xs"></i></button>
+                                <button onclick="deleteAnnouncement(${index})" class="text-red-400 hover:text-white p-1" title="Hapus"><i class="fa-solid fa-trash text-xs"></i></button>
+                            </div>
+                        </div>
+                        <p class="text-xs font-bold text-white uppercase">${item.title}</p>
+                        <p class="text-[10px] text-platinum-400 leading-relaxed">${item.message}</p>
+                    `;
+                    activeCardsContainer.appendChild(card);
+                }
+            });
+
+            const activeAnnouncement = announcementsData[0];
+            if (publicContainer && activeAnnouncement) {
+                publicContainer.innerHTML = `
+                    <div class="absolute right-0 top-0 h-full w-1 bg-white"></div>
+                    <div class="flex items-center space-x-2">
+                        <span class="h-2 w-2 bg-red-500 rounded-full animate-pulse"></span>
+                        <span class="text-[10px] font-bold text-platinum-400 uppercase tracking-widest">Hebahan & Pengumuman Terkini</span>
+                    </div>
+                    <h4 class="font-display font-black text-xs text-white uppercase tracking-wider flex items-center">
+                        <i class="fa-solid fa-circle-exclamation text-yellow-500 mr-1.5"></i> ${activeAnnouncement.category}
+                    </h4>
+                    <p class="text-xs font-bold text-white uppercase mt-1">${activeAnnouncement.title}</p>
+                    <p class="text-xs text-platinum-300 leading-relaxed mt-0.5">${activeAnnouncement.message}</p>
+                `;
+            }
+        }
+
+        async function saveAnnouncement() {
+            const cat = document.getElementById("adminAnnouncementCategory").value.trim().toUpperCase() || "KESELAMATAN";
+            const title = document.getElementById("adminAnnouncementTitle").value.trim().toUpperCase();
+            const msg = document.getElementById("adminAnnouncementMessage").value.trim();
+
+            if (!title || !msg) return;
+
+            const payload = {
+                category: cat,
+                title: title,
+                message: msg
+            };
+
+            if (editingAnnouncementIndex >= 0 && editingAnnouncementIndex < announcementsData.length) {
+                const docId = announcementsData[editingAnnouncementIndex].docId;
+                if (docId) {
+                    await db.collection("announcements").doc(docId).set(payload, { merge: true });
+                }
+            } else {
+                await db.collection("announcements").add(payload);
+            }
+
+            cancelAnnouncementEdit();
+        }
+
+        function editAnnouncement(index) {
+            const item = announcementsData[index];
+            if (!item) return;
+
+            editingAnnouncementIndex = index;
+            document.getElementById("adminAnnouncementCategory").value = item.category;
+            document.getElementById("adminAnnouncementTitle").value = item.title;
+            document.getElementById("adminAnnouncementMessage").value = item.message;
+
+            const btnText = document.getElementById("btnAnnouncementText");
+            const cancelBtn = document.getElementById("btnCancelAnnouncementEdit");
+
+            if (btnText) btnText.textContent = "Kemaskini Hebahan";
+            if (cancelBtn) cancelBtn.classList.remove("hidden");
+        }
+
+        function cancelAnnouncementEdit() {
+            editingAnnouncementIndex = -1;
+            document.getElementById("adminAnnouncementCategory").value = "";
+            document.getElementById("adminAnnouncementTitle").value = "";
+            document.getElementById("adminAnnouncementMessage").value = "";
+
+            const btnText = document.getElementById("btnAnnouncementText");
+            const cancelBtn = document.getElementById("btnCancelAnnouncementEdit");
+
+            if (btnText) btnText.textContent = "Simpan Hebahan";
+            if (cancelBtn) cancelBtn.classList.add("hidden");
+        }
+
+        async function deleteAnnouncement(index) {
+            const item = announcementsData[index];
+            if (item && item.docId) {
+                await db.collection("announcements").doc(item.docId).delete();
+            }
+
+            if (editingAnnouncementIndex === index) {
+                cancelAnnouncementEdit();
+            } else if (editingAnnouncementIndex > index) {
+                editingAnnouncementIndex--;
+            }
+        }
+
+        function renderRealtimeLinks() {
+            const pdfInput = document.getElementById("adminRealtimePdfUrl");
+            const galleryInput = document.getElementById("adminRealtimeGalleryUrl");
+            const feedbackInput = document.getElementById("adminRealtimeFeedbackUrl");
+
+            if (pdfInput) pdfInput.value = realtimeLinksData.pdfUrl || "";
+            if (galleryInput) galleryInput.value = realtimeLinksData.galleryUrl || "";
+            if (feedbackInput) feedbackInput.value = realtimeLinksData.feedbackUrl || "";
+
+            const publicPdf = document.getElementById("publicPdfLink");
+            const publicGallery = document.getElementById("publicGalleryLink");
+            const publicFeedback = document.getElementById("publicFeedbackLink");
+
+            if (publicPdf) publicPdf.href = realtimeLinksData.pdfUrl || "#";
+            if (publicGallery) publicGallery.href = realtimeLinksData.galleryUrl || "#";
+            if (publicFeedback) publicFeedback.href = realtimeLinksData.feedbackUrl || "#";
+
+            const tbody = document.getElementById("adminRealtimeConfigTableBody");
+            if (!tbody) return;
+
+            const items = [
+                { id: "pdfUrl", name: "Buku Peraturan (PDF)", url: realtimeLinksData.pdfUrl, inputId: "adminRealtimePdfUrl" },
+                { id: "galleryUrl", name: "Galeri Foto Lensa", url: realtimeLinksData.galleryUrl, inputId: "adminRealtimeGalleryUrl" },
+                { id: "feedbackUrl", name: "Borang Maklum Balas", url: realtimeLinksData.feedbackUrl, inputId: "adminRealtimeFeedbackUrl" }
+            ];
+
+            tbody.innerHTML = "";
+            items.forEach(item => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
+                tr.innerHTML = `
+                    <td class="p-2.5 font-bold text-white uppercase">${item.name}</td>
+                    <td class="p-2.5 font-mono text-[11px] text-platinum-300 truncate max-w-[180px]">${item.url || '<span class="text-platinum-500 italic">Kosong</span>'}</td>
+                    <td class="p-2.5 text-right space-x-1">
+                        <button onclick="editRealtimeLink('${item.inputId}')" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
+                            <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
+                        </button>
+                        <button onclick="saveRealtimeLinks()" class="px-2 py-1 bg-white/10 text-white hover:bg-white/20 border border-white/20 text-[10px] font-bold uppercase rounded transition-colors" title="Simpan">
+                            <i class="fa-solid fa-floppy-disk mr-1"></i> Simpan
+                        </button>
+                        <button onclick="clearRealtimeLink('${item.id}', '${item.inputId}')" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Hapus">
+                            <i class="fa-solid fa-trash mr-1"></i> Hapus
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function saveRealtimeLinks() {
+            const pdfVal = document.getElementById("adminRealtimePdfUrl").value.trim();
+            const galleryVal = document.getElementById("adminRealtimeGalleryUrl").value.trim();
+            const feedbackVal = document.getElementById("adminRealtimeFeedbackUrl").value.trim();
+
+            realtimeLinksData = {
+                pdfUrl: pdfVal,
+                galleryUrl: galleryVal,
+                feedbackUrl: feedbackVal
+            };
+
+            await db.collection("settings").doc("config").set({ realtimeLinksData }, { merge: true });
+            logAdminMsg("Pautan Info & Media Real-Time telah dikemaskini.");
+        }
+
+        function editRealtimeLink(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.focus();
+                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        async function clearRealtimeLink(key, inputId) {
+            realtimeLinksData[key] = "";
+            const input = document.getElementById(inputId);
+            if (input) input.value = "";
+            await db.collection("settings").doc("config").set({ realtimeLinksData }, { merge: true });
+            logAdminMsg("Pautan telah dihapus.");
+        }
+
+        async function saveAnugerahConfig() {
+            const olahragawanInd = document.getElementById("adminOlahragawanGsIndividu").value.trim();
+            const olahragawatiInd = document.getElementById("adminOlahragawatiGsIndividu").value.trim();
+
+            await db.collection("settings").doc("config").set({
+                olahragawanGsIndividu: olahragawanInd,
+                olahragawatiGsIndividu: olahragawatiInd
+            }, { merge: true });
+
+            logAdminMsg("Tetapan Pautan Anugerah telah disimpan.");
+        }
+
+        function renderAnugerahConfigTable() {
+            const tbody = document.getElementById("adminAnugerahConfigTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            const items = [
+                { id: "olahragawan", name: "OLAHRAGAWAN TERBAIK", urlKey: "olahragawanGsIndividu", inputId: "adminOlahragawanGsIndividu" },
+                { id: "olahragawati", name: "OLAHRAGAWATI TERBAIK", urlKey: "olahragawatiGsIndividu", inputId: "adminOlahragawatiGsIndividu" }
+            ];
+
+            items.forEach(item => {
+                const url = appSettings[item.urlKey] || "";
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
+
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
+                    <td class="p-3 truncate max-w-[280px] font-mono text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
+                    <td class="p-3 text-right space-x-1.5">
+                        <button onclick="editAnugerahConfig('${item.inputId}')" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
+                            <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
+                        </button>
+                        <button onclick="saveAnugerahConfig()" class="px-2 py-1 bg-white/10 text-white hover:bg-white/20 border border-white/20 text-[10px] font-bold uppercase rounded transition-colors" title="Simpan">
+                            <i class="fa-solid fa-floppy-disk mr-1"></i> Simpan
+                        </button>
+                        <button onclick="deleteAnugerahConfig('${item.urlKey}', '${item.inputId}')" class="px-2 py-1 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Hapus Pautan">
+                            <i class="fa-solid fa-trash mr-1"></i> Hapus
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editAnugerahConfig(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.focus();
+                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        async function deleteAnugerahConfig(urlKey, inputId) {
+            const input = document.getElementById(inputId);
+            if (input) input.value = "";
+            await db.collection("settings").doc("config").set({ [urlKey]: "" }, { merge: true });
+            logAdminMsg("Pautan Anugerah telah dihapus.");
+        }
+
+        async function loadAnugerahData() {
+            const oInd = appSettings.olahragawanGsIndividu || "";
+            const wInd = appSettings.olahragawatiGsIndividu || "";
+
+            if (document.getElementById("adminOlahragawanGsIndividu")) {
+                document.getElementById("adminOlahragawanGsIndividu").value = oInd;
+                document.getElementById("adminOlahragawatiGsIndividu").value = wInd;
+            }
+
+            const targetUrlOlahragawan = normalizeGoogleSheetUrl(oInd);
+            if (targetUrlOlahragawan) {
+                try {
+                    const res = await fetch(targetUrlOlahragawan);
+                    const csvText = await res.text();
+                    const rows = parseCSVText(csvText);
+                    if (rows && rows.length > 0) {
+                        let r = rows[0];
+                        if (isNaN(parseInt(r[3] || r[2])) && rows.length > 1) r = rows[1];
+                        const nama = r[0] || "";
+                        const pasukan = r[1] || "";
+                        const bib = r[2] || "";
+                        const emas = r[3] || 0;
+                        const perak = r[4] || 0;
+                        const gangsa = r[5] || 0;
+
+                        if (nama) document.getElementById("olahragawanNama").textContent = nama.toUpperCase();
+                        if (pasukan) document.getElementById("olahragawanPasukan").textContent = pasukan.toUpperCase();
+                        if (bib) document.getElementById("olahragawanBib").textContent = bib.toUpperCase();
+                        if (emas !== undefined) document.getElementById("olahragawanEmas").textContent = emas;
+                        if (perak !== undefined) document.getElementById("olahragawanPerak").textContent = perak;
+                        if (gangsa !== undefined) document.getElementById("olahragawanGangsa").textContent = gangsa;
+                    }
+                } catch (e) {
+                    console.error("Gagal muat data Olahragawan:", e);
+                }
+            }
+
+            const targetUrlOlahragawati = normalizeGoogleSheetUrl(wInd);
+            if (targetUrlOlahragawati) {
+                try {
+                    const res = await fetch(targetUrlOlahragawati);
+                    const csvText = await res.text();
+                    const rows = parseCSVText(csvText);
+                    if (rows && rows.length > 0) {
+                        let r = rows[0];
+                        if (isNaN(parseInt(r[3] || r[2])) && rows.length > 1) r = rows[1];
+                        const nama = r[0] || "";
+                        const pasukan = r[1] || "";
+                        const bib = r[2] || "";
+                        const emas = r[3] || 0;
+                        const perak = r[4] || 0;
+                        const gangsa = r[5] || 0;
+
+                        if (nama) document.getElementById("olahragawatiNama").textContent = nama.toUpperCase();
+                        if (pasukan) document.getElementById("olahragawatiPasukan").textContent = pasukan.toUpperCase();
+                        if (bib) document.getElementById("olahragawatiBib").textContent = bib.toUpperCase();
+                        if (emas !== undefined) document.getElementById("olahragawatiEmas").textContent = emas;
+                        if (perak !== undefined) document.getElementById("olahragawatiPerak").textContent = perak;
+                        if (gangsa !== undefined) document.getElementById("olahragawatiGangsa").textContent = gangsa;
+                    }
+                } catch (e) {
+                    console.error("Gagal muat data Olahragawati:", e);
+                }
+            }
+        }
+
+        function populateEventDropdown() {
+            const select = document.getElementById("eventSelect");
+            if (!select) return;
+            select.innerHTML = "";
+
+            if (participantConfigsData.length === 0) {
+                const opt = document.createElement("option");
+                opt.value = "";
+                opt.textContent = "Tiada Acara Didaftarkan";
+                select.appendChild(opt);
+                return;
+            }
+
+            participantConfigsData.forEach(ev => {
+                const opt = document.createElement("option");
+                opt.value = ev.eventNo;
+                opt.textContent = `[${ev.eventNo}] ${ev.name} - ${ev.category}`;
+                select.appendChild(opt);
+            });
+
+            if (selectedEventId && participantConfigsData.some(ev => ev.eventNo === selectedEventId)) {
+                select.value = selectedEventId;
+            } else if (participantConfigsData.length > 0) {
+                selectedEventId = participantConfigsData[0].eventNo;
+                select.value = selectedEventId;
+            }
+        }
+
+        function onEventChanged() {
+            const selectEl = document.getElementById("eventSelect");
+            if (!selectEl || !selectEl.value) {
+                renderStartList([]);
+                return;
+            }
+            
+            selectedEventId = selectEl.value;
+            const currentConfig = participantConfigsData.find(ev => ev.eventNo === selectedEventId);
+            
+            if (!currentConfig) return;
+
+            const isRelay = Boolean(currentConfig.gsKumpulan && !currentConfig.gsIndividu);
+            const btnS1 = document.getElementById("btn-round-saringan_1");
+            const btnS2 = document.getElementById("btn-round-saringan_2");
+
+            if (isRelay) {
+                if (btnS1) btnS1.classList.add("hidden");
+                if (btnS2) btnS2.classList.add("hidden");
+                selectedRound = "akhir";
+                setRoundButtonActive("akhir");
+                
+                const thNama = document.getElementById("th-nama");
+                const thBib = document.getElementById("th-bib");
+                if (thNama) thNama.classList.add("hidden");
+                if (thBib) thBib.classList.add("hidden");
+            } else {
+                if (btnS1) btnS1.classList.remove("hidden");
+                if (btnS2) btnS2.classList.remove("hidden");
+                
+                if (selectedRound !== "akhir" && selectedRound !== "saringan_1" && selectedRound !== "saringan_2") {
+                    selectedRound = "saringan_1";
+                }
+                setRoundButtonActive(selectedRound);
+                
+                const thNama = document.getElementById("th-nama");
+                const thBib = document.getElementById("th-bib");
+                if (thNama) thNama.classList.remove("hidden");
+                if (thBib) thBib.classList.remove("hidden");
+            }
+
+            updateStartList();
+        }
+
+        function setRound(roundVal) {
+            selectedRound = roundVal;
+            setRoundButtonActive(roundVal);
+            updateStartList();
+        }
+
+        function setRoundButtonActive(roundVal) {
+            const label = document.getElementById("currentRoundLabel");
+            if (label) label.textContent = "Pusingan: " + roundVal.toUpperCase().replace("_", " ");
+            
+            const rounds = ["saringan_1", "saringan_2", "akhir"];
+            rounds.forEach(r => {
+                const btn = document.getElementById(`btn-round-${r}`);
+                if (!btn) return;
+                if (r === roundVal) {
+                    btn.className = "w-full py-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 bg-white text-navy-950 min-h-[44px]";
+                } else {
+                    btn.className = "w-full py-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all duration-300 bg-navy-800 text-white hover:bg-white/10 min-h-[44px]";
+                }
+            });
+        }
+
+        function parseRoundIndicator(val) {
+            if (!val) return "";
+            const clean = val.toString().trim().toLowerCase();
+            if (clean === "1" || clean.includes("saringan 1") || clean === "saringan_1" || clean === "s1") return "saringan_1";
+            if (clean === "2" || clean.includes("saringan 2") || clean === "saringan_2" || clean === "s2") return "saringan_2";
+            if (clean.includes("akhir") || clean === "final" || clean === "f" || clean === "3") return "akhir";
+            return clean;
+        }
+
+        async function updateStartList() {
+            const currentConfig = participantConfigsData.find(ev => ev.eventNo === selectedEventId);
+            if (!currentConfig) {
+                renderStartList([]);
+                return;
+            }
+
+            const rawTargetUrl = currentConfig.gsIndividu || currentConfig.gsKumpulan;
+            const targetUrl = normalizeGoogleSheetUrl(rawTargetUrl);
+            const isKumpulanSheet = Boolean(!currentConfig.gsIndividu && currentConfig.gsKumpulan);
+
+            if (!targetUrl) {
+                renderStartList([], isKumpulanSheet);
+                return;
+            }
+
+            if (fetchedAthletesCache[targetUrl]) {
+                const filtered = fetchedAthletesCache[targetUrl].filter(ath => ath.round === selectedRound);
+                renderStartList(filtered, isKumpulanSheet);
+                return;
+            }
+
+            try {
+                const res = await fetch(targetUrl);
+                const csvText = await res.text();
+                const rows = parseCSVText(csvText);
+
+                const parsedAthletes = [];
+                if (rows.length > 1) {
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        if (row.length < 2) continue;
+
+                        if (isKumpulanSheet) {
+                            const lane = parseInt(row[0]) || (i);
+                            const team = (row[1] || "") + " " + (row[2] || "") + " " + (row[3] || "") + " " + (row[4] || "");
+                            const roundVal = parseRoundIndicator(row[5] || row[row.length - 1]);
+                            if (team.trim()) {
+                                parsedAthletes.push({
+                                    eventId: selectedEventId,
+                                    round: roundVal || "akhir",
+                                    lane: lane,
+                                    name: "",
+                                    team: team.trim().toUpperCase(),
+                                    bib: ""
+                                });
+                            }
+                        } else {
+                            const lane = parseInt(row[0]) || (i);
+                            const name = (row[1] || "") + " " + (row[2] || "");
+                            const team = row[3] || "";
+                            const bib = row[4] || "";
+                            const roundVal = parseRoundIndicator(row[5] || row[row.length - 1]);
+
+                            if (name.trim() || team.trim()) {
+                                parsedAthletes.push({
+                                    eventId: selectedEventId,
+                                    round: roundVal || "saringan_1",
+                                    lane: lane,
+                                    name: name.trim().toUpperCase(),
+                                    team: team.trim().toUpperCase(),
+                                    bib: bib
+                                });
+                            }
+                        }
+                    }
+                }
+
+                fetchedAthletesCache[targetUrl] = parsedAthletes;
+                const filtered = parsedAthletes.filter(ath => ath.round === selectedRound);
+                renderStartList(filtered, isKumpulanSheet);
+
+            } catch (err) {
+                console.error("Gagal memuat data:", err);
+                renderStartList([], isKumpulanSheet);
+            }
+        }
+
+        function renderStartList(athletes, isRelaySheet = false) {
+            const tbody = document.getElementById("startListTableBody");
+            const emptyMsg = document.getElementById("noAthletesTableMessage");
+            if (!tbody || !emptyMsg) return;
+            
+            tbody.innerHTML = "";
+
+            const currentConfig = participantConfigsData.find(ev => ev.eventNo === selectedEventId);
+            const isRelay = isRelaySheet || (currentConfig && Boolean(currentConfig.gsKumpulan && !currentConfig.gsIndividu));
+
+            if (!athletes || athletes.length === 0) {
+                emptyMsg.classList.remove("hidden");
+            } else {
+                emptyMsg.classList.add("hidden");
+                
+                athletes.forEach(ath => {
+                    const tr = document.createElement("tr");
+                    tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
+
+                    const tdLane = document.createElement("td");
+                    tdLane.className = "py-4 px-6 text-center font-mono font-bold text-sm text-white";
+                    tdLane.textContent = ath.lane;
+                    tr.appendChild(tdLane);
+
+                    if (!isRelay) {
+                        const tdName = document.createElement("td");
+                        tdName.className = "py-4 px-6 font-display font-bold text-white uppercase";
+                        tdName.textContent = ath.name;
+                        tr.appendChild(tdName);
+                    }
+
+                    const tdTeam = document.createElement("td");
+                    tdTeam.className = "py-4 px-6";
+                    
+                    let teamColorClass = "text-white";
+                    let iconColorClass = "text-white";
+
+                    if (ath.team.includes("HELANG")) {
+                        teamColorClass = "text-green-500";
+                        iconColorClass = "text-green-500";
+                    } else if (ath.team.includes("RAJAWALI")) {
+                        teamColorClass = "text-blue-500";
+                        iconColorClass = "text-blue-500";
+                    } else if (ath.team.includes("GARUDA")) {
+                        teamColorClass = "text-red-500";
+                        iconColorClass = "text-red-500";
+                    } else if (ath.team.includes("KENYALANG")) {
+                        teamColorClass = "text-yellow-500";
+                        iconColorClass = "text-yellow-500";
+                    }
+
+                    tdTeam.innerHTML = `
+                        <span class="${teamColorClass} font-bold flex items-center space-x-2">
+                            <i class="fa-solid fa-shield-halved ${iconColorClass}"></i>
+                            <span>${ath.team}</span>
+                        </span>
+                    `;
+                    tr.appendChild(tdTeam);
+
+                    if (!isRelay) {
+                        const tdBib = document.createElement("td");
+                        tdBib.className = "py-4 px-6 text-center font-mono text-platinum-300";
+                        tdBib.textContent = ath.bib;
+                        tr.appendChild(tdBib);
+                    }
+
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        async function updateWinnersList() {
+            const grid = document.getElementById("winnersGrid");
+            if (!grid) return;
+
+            grid.innerHTML = "";
+
+            if (!winnerConfigsData || winnerConfigsData.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center py-12 text-xs font-bold uppercase tracking-wider text-platinum-400">Tiada Acara Keputusan Rasmi Pemenang Didaftarkan</p>`;
+                populateWinnerEventDropdown();
+                return;
+            }
+
+            for (const config of winnerConfigsData) {
+                const isKumpulan = Boolean(!config.gsIndividu && config.gsKumpulan);
+                const rawUrl = config.gsIndividu || config.gsKumpulan;
+                const targetUrl = normalizeGoogleSheetUrl(rawUrl);
+
+                let winnersList = [];
+
+                if (targetUrl) {
+                    if (fetchedWinnersCache[targetUrl]) {
+                        winnersList = fetchedWinnersCache[targetUrl];
+                    } else {
+                        try {
+                            const res = await fetch(targetUrl);
+                            const csvText = await res.text();
+                            const rows = parseCSVText(csvText);
+
+                            if (rows.length > 0) {
+                                let startIndex = 0;
+                                if (isNaN(parseInt(rows[0][0]))) {
+                                    startIndex = 1;
+                                }
+
+                                for (let i = startIndex; i < rows.length; i++) {
+                                    const row = rows[i];
+                                    if (!row || row.length < 2) continue;
+
+                                    const rank = parseInt(row[0]) || (i - startIndex + 1);
+
+                                    if (isKumpulan) {
+                                        const team = [row[1], row[2], row[3], row[4]].filter(Boolean).join(" ").trim().toUpperCase();
+                                        const score = row[5] || row[row.length - 1] || "";
+                                        if (team) {
+                                            winnersList.push({
+                                                rank: rank,
+                                                name: "",
+                                                team: team,
+                                                bib: "",
+                                                score: score
+                                            });
+                                        }
+                                    } else {
+                                        const name = [row[1], row[2]].filter(Boolean).join(" ").trim().toUpperCase();
+                                        const team = (row[3] || "").trim().toUpperCase();
+                                        const bib = (row[4] || "").trim();
+                                        const score = (row[5] || "").trim();
+
+                                        if (name || team) {
+                                            winnersList.push({
+                                                rank: rank,
+                                                name: name,
+                                                team: team,
+                                                bib: bib,
+                                                score: score
+                                            });
+                                        }
+                                    }
+                                }
+                                fetchedWinnersCache[targetUrl] = winnersList;
+                            }
+                        } catch (err) {
+                            console.error("Gagal muat data pemenang:", err);
+                        }
+                    }
+                }
+
+                const cardEl = createWinnerCardElement(config, winnersList);
+                grid.appendChild(cardEl);
+            }
+
+            populateWinnerEventDropdown();
+            filterWinnersBySearch();
+        }
+
+        function createWinnerCardElement(config, winners) {
+            const cardDiv = document.createElement("div");
+            cardDiv.className = "winner-event-card border border-white/10 p-5 bg-navy-900/40 hover:border-white transition-all duration-300 flex flex-col justify-between";
+            cardDiv.setAttribute("data-event-no", config.eventNo);
+            cardDiv.setAttribute("data-event-name", config.name.toUpperCase());
+            cardDiv.setAttribute("data-category", config.category.toUpperCase());
+
+            let winnersRowsHTML = "";
+
+            if (!winners || winners.length === 0) {
+                if (config.eventNo === "101") {
+                    winners = [
+                        { rank: 1, name: "Ali", team: "Harimau Selatan", bib: "1042", score: "11.20s" },
+                        { rank: 2, name: "Abu", team: "Helang Utara", bib: "5021", score: "11.45s" },
+                        { rank: 3, name: "Amar", team: "Kenyalang", bib: "1109", score: "11.58s" }
+                    ];
+                } else if (config.eventNo === "102") {
+                    winners = [
+                        { rank: 1, name: "Ahmad Syah", team: "Harimau Selatan", bib: "3049", score: "10.21s" },
+                        { rank: 2, name: "Khairul", team: "Garuda Tengah", bib: "4012", score: "10.35s" },
+                        { rank: 3, name: "Marcus", team: "Kenyalang", bib: "1104", score: "10.42s" }
+                    ];
+                } else if (config.eventNo === "103") {
+                    winners = [
+                        { rank: 1, name: "Zulfikar Rahman", team: "Helang Utara", bib: "5049", score: "320 Mata" },
+                        { rank: 2, name: "Syamer", team: "Penyu Pantai Timur", bib: "2011", score: "312 Mata" },
+                        { rank: 3, name: "Iskandar", team: "Harimau Selatan", bib: "3015", score: "308 Mata" }
+                    ];
+                }
+            }
+
+            if (!winners || winners.length === 0) {
+                winnersRowsHTML = `<p class="text-xs text-platinum-400 py-6 text-center italic uppercase">Keputusan belum dimuatkan / pautan belum ditetapkan</p>`;
+            } else {
+                winners.sort((a, b) => a.rank - b.rank);
+
+                winners.forEach((w, idx) => {
+                    let badgeClass = "bg-white/10 border-white/20 text-white";
+                    let rankNum = w.rank || (idx + 1);
+
+                    if (rankNum === 1) {
+                        badgeClass = "bg-yellow-500/15 border-yellow-500/30 text-yellow-500";
+                    } else if (rankNum === 2) {
+                        badgeClass = "bg-slate-300/15 border-slate-300/30 text-slate-300";
+                    } else if (rankNum === 3) {
+                        badgeClass = "bg-amber-700/15 border-amber-700/30 text-amber-700";
+                    }
+
+                    const borderClass = idx < winners.length - 1 ? "border-b border-white/5 pb-2" : "";
+
+                    const displayName = w.name ? `<p class="text-xs font-bold text-white uppercase">${w.name}</p>` : "";
+                    const displayTeam = `<p class="text-[9px] text-platinum-400 uppercase">${w.team}</p>`;
+                    const displayBib = w.bib ? `<p class="text-[9px] text-platinum-400 font-mono">Bib: #${w.bib}</p>` : "";
+                    const displayScore = w.score ? `<p class="text-xs font-bold text-white font-mono">${w.score}</p>` : "";
+
+                    winnersRowsHTML += `
+                        <div class="flex items-center justify-between ${borderClass}">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-6 h-6 rounded-full ${badgeClass} border flex items-center justify-center text-[10px] font-black">${rankNum}</div>
+                                <div>
+                                    ${displayName}
+                                    ${displayTeam}
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                ${displayScore}
+                                ${displayBib}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            cardDiv.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-[9px] uppercase tracking-widest font-extrabold px-2.5 py-1 bg-green-500/10 text-green-400">
+                            SELESAI
+                        </span>
+                        <span class="text-[10px] text-platinum-400 font-mono">#${config.eventNo} - ${config.category}</span>
+                    </div>
+                    <h3 class="winner-event-name font-display font-extrabold text-base text-white uppercase mb-4">${config.name}</h3>
+                    
+                    <div class="space-y-3">
+                        ${winnersRowsHTML}
+                    </div>
+                </div>
+            `;
+
+            return cardDiv;
+        }
+
+        function populateWinnerEventDropdown() {
+            const select = document.getElementById("winnerEventSelect");
+            if (!select) return;
+
+            const previousVal = select.value;
+            select.innerHTML = "";
+
+            if (winnerConfigsData && winnerConfigsData.length > 0) {
+                winnerConfigsData.forEach(config => {
+                    const opt = document.createElement("option");
+                    opt.value = config.eventNo;
+                    opt.textContent = `[${config.eventNo}] ${config.name}`;
+                    select.appendChild(opt);
+                });
+
+                if (previousVal && winnerConfigsData.some(config => config.eventNo === previousVal)) {
+                    select.value = previousVal;
+                } else {
+                    select.value = winnerConfigsData[0].eventNo;
+                }
+            }
+        }
+
+        function filterWinnersBySearch() {
+            const eventSelect = document.getElementById("winnerEventSelect");
+            const categorySelect = document.getElementById("winnerCategorySelect");
+            
+            const selectedEventNo = eventSelect ? eventSelect.value.toUpperCase() : "";
+            const selectedCat = categorySelect ? categorySelect.value.toUpperCase() : "ALL";
+
+            const cards = document.querySelectorAll(".winner-event-card");
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardEventNo = (card.getAttribute("data-event-no") || "").toUpperCase();
+                const cardEventName = (card.getAttribute("data-event-name") || "").toUpperCase();
+                const cardCat = (card.getAttribute("data-category") || "").toUpperCase();
+
+                const matchesEvent = (cardEventNo === selectedEventNo) || (cardEventName === selectedEventNo);
+                const matchesCat = (selectedCat === "ALL") || (cardCat === selectedCat);
+
+                if (matchesEvent && matchesCat) {
+                    card.classList.remove("hidden");
+                    card.classList.add("flex");
+                    visibleCount++;
+                } else {
+                    card.classList.remove("flex");
+                    card.classList.add("hidden");
+                }
+            });
+
+            const grid = document.getElementById("winnersGrid");
+            const existingMsg = document.getElementById("no-winner-msg");
+            if (existingMsg) existingMsg.remove();
+
+            if (visibleCount === 0 && cards.length > 0) {
+                const msgDiv = document.createElement("div");
+                msgDiv.id = "no-winner-msg";
+                msgDiv.className = "col-span-full border border-white/10 bg-navy-900/40 p-12 text-center";
+                msgDiv.innerHTML = `
+                    <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-platinum-400">
+                        ( Acara atau Kategori yang dipilih belum disahkan oleh Pengurus teknikal Kejohanan, sekian terima kasih )
+                    </p>
+                `;
+                grid.appendChild(msgDiv);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            const icon = document.getElementById("menuIcon");
+            if (!menu) return;
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                if (icon) {
+                    icon.classList.remove("fa-bars-staggered");
+                    icon.classList.add("fa-xmark");
+                }
+            } else {
+                menu.classList.add("hidden");
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars-staggered");
+                }
+            }
+        }
+
+        function verifyAdminPassword() {
+            const pwdInput = document.getElementById("adminPasswordInput");
+            const usrInput = document.getElementById("adminUsername");
+            const feedback = document.getElementById("passwordFeedback");
+            
+            if (!pwdInput || !usrInput || !feedback) return;
+
+            const username = usrInput.value.trim();
+            const password = pwdInput.value.trim();
+
+            if (username === "" || password === "") {
+                feedback.textContent = "Sila masukkan ID Pengguna dan Kata Laluan!";
+                feedback.className = "text-[9px] font-bold uppercase tracking-widest text-red-400 block mt-1";
+                feedback.classList.remove("hidden");
+            } else if (username === "wba1003" && password === "adminskbk") {
+                feedback.textContent = "Akses disahkan. Memuatkan panel kawalan...";
+                feedback.className = "text-[9px] font-bold uppercase tracking-widest text-green-400 block mt-1";
+                feedback.classList.remove("hidden");
+                
+                setTimeout(() => {
+                    openAdminPanel();
+                    pwdInput.value = "";
+                    usrInput.value = "";
+                    feedback.classList.add("hidden");
+                }, 600);
+            } else {
+                feedback.textContent = "ID Pengguna atau Kata Laluan tidak sah!";
+                feedback.className = "text-[9px] font-bold uppercase tracking-widest text-red-400 block mt-1";
+                feedback.classList.remove("hidden");
+            }
+        }
+
+        function openAdminPanel() {
+            const panel = document.getElementById("adminPanelModal");
+            if (panel) {
+                panel.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeAdminPanel() {
+            const panel = document.getElementById("adminPanelModal");
+            if (panel) {
+                panel.classList.add("hidden");
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        function switchAdminTab(targetId) {
+            const contents = document.querySelectorAll(".admin-tab-content");
+            contents.forEach(content => {
+                content.classList.add("hidden");
+                content.classList.remove("block");
+            });
+
+            const btns = document.querySelectorAll(".admin-tab-btn");
+            btns.forEach(btn => {
+                btn.classList.remove("bg-white/10", "border-white/20");
+                btn.classList.add("border-transparent");
+            });
+
+            const activeContent = document.getElementById(targetId);
+            if (activeContent) {
+                activeContent.classList.remove("hidden");
+                activeContent.classList.add("block");
+            }
+
+            const activeBtn = document.querySelector(`.admin-tab-btn[data-target="${targetId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove("border-transparent");
+                activeBtn.classList.add("bg-white/10", "border-white/20");
+            }
+        }
+
+        function openGoogleSheetsSyncModal() {
+            const modal = document.getElementById("adminGoogleSheetModal");
+            if (!modal) return;
+            
+            document.getElementById("sheetUrlPeserta").value = appSettings.sheetUrlPeserta || "";
+            document.getElementById("sheetUrlPingat").value = appSettings.sheetUrlPingat || "";
+            document.getElementById("sheetUrlPemenang").value = appSettings.sheetUrlPemenang || "";
+            document.getElementById("sheetUrlAnugerah").value = appSettings.sheetUrlAnugerah || "";
+            document.getElementById("sheetUrlMedia").value = appSettings.sheetUrlMedia || "";
+
+            modal.classList.remove("hidden");
+        }
+
+        function closeGoogleSheetsSyncModal() {
+            const modal = document.getElementById("adminGoogleSheetModal");
+            if (modal) modal.classList.add("hidden");
+        }
+
+        function parseCSVText(csvText) {
+            const lines = csvText.split(/\r\n|\n/);
+            const result = [];
+            lines.forEach((line, index) => {
+                if (index === 0 && isNaN(parseInt(line.split(',')[1]))) return;
+                if (line.trim() !== "") {
+                    const row = line.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim());
+                    if (row.length >= 2) result.push(row);
+                }
+            });
+            return result;
+        }
+
+        function logAdminMsg(msg, isError = false) {
+            const logBox = document.getElementById("adminSyncLog");
+            if(!logBox) return;
+            logBox.classList.remove("hidden");
+            const p = document.createElement("p");
+            p.className = isError ? "text-red-400" : "text-green-400";
+            p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            logBox.appendChild(p);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        async function syncAllGoogleSheets() {
+            const urlPeserta = document.getElementById("sheetUrlPeserta").value.trim();
+            const urlPingat = document.getElementById("sheetUrlPingat").value.trim();
+            const urlPemenang = document.getElementById("sheetUrlPemenang").value.trim();
+            const urlAnugerah = document.getElementById("sheetUrlAnugerah").value.trim();
+            const urlMedia = document.getElementById("sheetUrlMedia").value.trim();
+
+            await db.collection("settings").doc("config").set({
+                sheetUrlPeserta: urlPeserta,
+                sheetUrlPingat: urlPingat,
+                sheetUrlPemenang: urlPemenang,
+                sheetUrlAnugerah: urlAnugerah,
+                sheetUrlMedia: urlMedia
+            }, { merge: true });
+
+            const logBox = document.getElementById("adminSyncLog");
+            if(logBox) logBox.innerHTML = "";
+            logAdminMsg("Memulakan proses sinkronisasi pangkalan data...");
+
+            let successCount = 0;
+
+            if (urlPeserta || urlPingat || urlPemenang || urlAnugerah || urlMedia) {
+                logAdminMsg("Tetapan pautan telah disimpan.");
+                successCount = 1;
+            }
+
+            if (urlPingat) {
+                await loadMedalTally();
+                logAdminMsg("Kedudukan Pingat berjaya dikemaskini.");
+            }
+
+            logAdminMsg(`Proses selesai. ${successCount} sumber berjaya dilampirkan.`);
+        }
+
+        function autoRefreshData() {
+            fetchedAthletesCache = {}; 
+            fetchedWinnersCache = {};
+            loadMedalTally();
+            updateStartList();
+            updateWinnersList();
+            loadAnugerahData();
+            renderAnnouncements();
+            renderRealtimeLinks();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHeroCards();
+            renderAdminDashCardsEditor();
+            renderAdminScheduleTable();
+            renderScheduleFilters();
+            renderPublicScheduleCards();
+            renderParticipantConfigTable();
+            renderWinnerConfigTable();
+            renderAnugerahConfigTable();
+            renderAnnouncements();
+            renderRealtimeLinks();
+            populateEventDropdown();
+            onEventChanged();
+            updateWinnersList();
+            loadAnugerahData();
+            loadMedalTally(); 
+
+            // Pemasa Auto Refresh setiap 45 saat
+            setInterval(autoRefreshData, 45000);
+        });
+    </script>
+</body>
+</html>
