@@ -15,6 +15,7 @@
     
     <!-- Firebase SDK (Compat Version for Vanilla JS) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
     <script>
@@ -147,7 +148,7 @@
                 <a href="#jadual" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Jadual</a>
                 <a href="#peserta" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Senarai Peserta</a>
                 <a href="#keputusan" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Kedudukan Pingat</a>
-                <a href="#pemenang" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Keputusan Pemenang</a>
+                <a href="#pemenang" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Keputusan Rasmi</a>
                 <a href="#anugerah" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Anugerah</a>
                 <a href="#media" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Info & Media</a>
                 <div class="pt-4">
@@ -178,7 +179,7 @@
             </h1>
 
             <p class="max-w-xl sm:max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-platinum-300 mb-6 sm:mb-8 font-medium tracking-wider uppercase leading-relaxed px-2">
-                Hub Informasi Elit Berpusat. Keputusan Rasmi Kejohanan, Jadual Acara Terkini, dan Kedudukan Pingat Kejohanan Dikumpul dalam Satu Platform Berprestij Tinggi.
+                Smart Hub digital yang mentransformasikan penyampaian maklumat Kejohanan Olahraga melalui platform yang sistematik, efisien dan interaktif.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto px-4 w-full">
@@ -234,7 +235,7 @@
                 <div class="max-w-xl">
                     <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Profil Atlet & Pasukan</span>
                     <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 uppercase">Senarai Peserta</h2>
-                    <p class="text-xs sm:text-sm text-platinum-300 mt-2">Pilih acara, no acara, dan kategori kejohanan untuk melihat senarai peserta yang bertanding</p>
+                    <p class="text-xs sm:text-sm text-platinum-300 mt-2">Pilih acara dan pusingan kejohanan untuk melihat senarai peserta yang bertanding</p>
                 </div>
             </div>
 
@@ -668,28 +669,21 @@
                         <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
                             <i class="fa-solid fa-calendar-plus text-yellow-500 mr-2"></i> Borang Pengurusan Jadual Acara
                         </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                             <div>
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. Tarikh</label>
                                 <input type="date" id="adminScheduleDate" value="2026-09-20" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white">
                             </div>
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. No. Acara</label>
-                                <input type="text" id="adminScheduleNo" placeholder="Contoh: 101" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                            </div>
-                            <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Acara</label>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Acara</label>
                                 <input type="text" id="adminScheduleName" placeholder="Contoh: 100M" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">4. Kategori</label>
-                                <select id="adminScheduleCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
-                                    <option value="Lelaki">Lelaki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Kategori</label>
+                                <input type="text" id="adminScheduleCategory" placeholder="Contoh: LELAKI / PEREMPUAN" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">5. Pusingan</label>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">4. Pusingan</label>
                                 <select id="adminScheduleRound" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
                                     <option value="Saringan 1">Saringan 1</option>
                                     <option value="Saringan 2">Saringan 2</option>
@@ -716,7 +710,6 @@
                                 <thead>
                                     <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
                                         <th class="p-3 w-28">Tarikh</th>
-                                        <th class="p-3 w-28">No. Acara</th>
                                         <th class="p-3">Acara</th>
                                         <th class="p-3 w-28">Kategori</th>
                                         <th class="p-3 w-32">Pusingan</th>
@@ -741,31 +734,27 @@
                         <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
                             <i class="fa-solid fa-file-csv text-green-400 mr-2"></i> Tetapan Maklumat dan Data Peserta
                         </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. No. Acara</label>
-                                <input type="text" id="adminParticipantNo" placeholder="Contoh: 101" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                            </div>
-                            <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Acara</label>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. Acara</label>
                                 <input type="text" id="adminParticipantName" placeholder="Contoh: 80M TAHUN 1" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Kategori</label>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Kategori</label>
                                 <select id="adminParticipantCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
                                     <option value="Lelaki">Lelaki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
-                            <div class="lg:col-span-3">
+                            <div class="sm:col-span-2">
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
-                                    4. Pautan Google Sheet Individu 
+                                    3. Pautan Google Sheet Individu 
                                 </label>
                                 <input type="text" id="adminParticipantGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
-                            <div class="lg:col-span-3">
+                            <div class="sm:col-span-2">
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
-                                    5. Pautan Google Sheet Kumpulan 
+                                    4. Pautan Google Sheet Kumpulan 
                                 </label>
                                 <input type="text" id="adminParticipantGsKumpulan" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
@@ -785,7 +774,6 @@
                             <table class="w-full text-left text-xs border-collapse">
                                 <thead>
                                     <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
-                                        <th class="p-3">No. Acara</th>
                                         <th class="p-3">Acara</th>
                                         <th class="p-3">Kategori</th>
                                         <th class="p-3">Sheet Ind</th>
@@ -864,31 +852,27 @@
                         <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
                             <i class="fa-solid fa-trophy text-yellow-500 mr-2"></i> Borang Tetapan Keputusan Rasmi Pemenang
                         </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. No. Acara</label>
-                                <input type="text" id="adminWinnerNo" placeholder="Contoh: 101" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                            </div>
-                            <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Acara</label>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. Acara</label>
                                 <input type="text" id="adminWinnerName" placeholder="Contoh: 80M TAHUN 1 LELAKI" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Kategori</label>
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Kategori</label>
                                 <select id="adminWinnerCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
                                     <option value="Lelaki">Lelaki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
-                            <div class="lg:col-span-3">
+                            <div class="sm:col-span-2">
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
-                                    4. Pautan Google Sheet Individu <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B & C: Nama | Lajur D: Pasukan | Lajur E: No Bib | Lajur F: Catatan Masa)</span>
+                                    3. Pautan Google Sheet Individu <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B & C: Nama | Lajur D: Pasukan | Lajur E: No Bib | Lajur F: Catatan Masa)</span>
                                 </label>
                                 <input type="text" id="adminWinnerGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
-                            <div class="lg:col-span-3">
+                            <div class="sm:col-span-2">
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
-                                    5. Pautan Google Sheet Kumpulan <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B, C, D & E: Pasukan | Lajur F: Catatan Masa)</span>
+                                    4. Pautan Google Sheet Kumpulan <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B, C, D & E: Pasukan | Lajur F: Catatan Masa)</span>
                                 </label>
                                 <input type="text" id="adminWinnerGsKumpulan" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
@@ -908,7 +892,6 @@
                             <table class="w-full text-left text-xs border-collapse">
                                 <thead>
                                     <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
-                                        <th class="p-3">No. Acara</th>
                                         <th class="p-3">Acara</th>
                                         <th class="p-3">Kategori</th>
                                         <th class="p-3">Sheet Ind</th>
@@ -1185,7 +1168,7 @@
                         <span class="font-display font-black text-lg tracking-widest text-white">ARENA ATHLETIX</span>
                     </div>
                     <p class="text-platinum-400 text-xs leading-relaxed max-w-sm">
-                        Hub Informasi maklumat bersepadu Kejohanan Sukan. Dibina untuk menyampaikan maklumat kejohanan secara tepat serta merasai suasana Kejohanan Sukan yang sebenar.
+                        Smart Hub Digital - Sistematik - Efisien - Interaktif.
                     </p>
                     <div class="flex space-x-3 pt-2">
                         <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1233,29 +1216,44 @@
     </footer>
 
     <script>
-        // Konfigurasi Firebase Firestore Anda
-        const firebaseConfig = {
-            apiKey: "AIzaSyBIqqk2dQrCdAX63Vkfk9UTng1d-c2vJ4M",
-            authDomain: "arena-athletix-championship.firebaseapp.com",
-            databaseURL: "https://arena-athletix-championship-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "arena-athletix-championship",
-            storageBucket: "arena-athletix-championship.firebasestorage.app",
-            messagingSenderId: "523568864694",
-            appId: "1:523568864694:web:0ab856fa25288ca65a7517",
-            measurementId: "G-N7PJ62E3H9"
-        };
+        const firebaseConfig = typeof __firebase_config !== 'undefined'
+            ? JSON.parse(__firebase_config)
+            : {
+                apiKey: "AIzaSyBIqqk2dQrCdAX63Vkfk9UTng1d-c2vJ4M",
+                authDomain: "arena-athletix-championship.firebaseapp.com",
+                databaseURL: "https://arena-athletix-championship-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "arena-athletix-championship",
+                storageBucket: "arena-athletix-championship.firebasestorage.app",
+                messagingSenderId: "523568864694",
+                appId: "1:523568864694:web:0ab856fa25288ca65a7517",
+                measurementId: "G-N7PJ62E3H9"
+            };
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'athletix-championship';
 
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
+
         const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Helper untuk Firestore Public Collection Path
+        function getCol(collectionName) {
+            return db.collection(`artifacts/${appId}/public/data/${collectionName}`);
+        }
 
         // Pembolehubah Global
         let heroCardsData = [];
         let scheduleData = [];
         let participantConfigsData = [];
         let winnerConfigsData = [];
-        let defaultMedalTally = [];
+        let defaultMedalTally = [
+            { team: "HELANG UTARA", emas: 5, perak: 3, gangsa: 2 },
+            { team: "GARUDA TENGAH", emas: 4, perak: 2, gangsa: 4 },
+            { team: "RAJAWALI", emas: 2, perak: 5, gangsa: 1 },
+            { team: "KENYALANG", emas: 1, perak: 2, gangsa: 3 }
+        ];
         let medalTallyData = [];
         let announcementsData = [];
         let realtimeLinksData = {
@@ -1272,89 +1270,104 @@
         let selectedRound = "saringan_1";
         let editingScheduleIndex = -1;
         let editingAnnouncementIndex = -1;
+        let editingParticipantDocId = null;
+        let editingWinnerDocId = null;
 
-        // --- INTI FIREBASE FIRESTORE LISTENERS ---
-
-        // 1. Hero Cards Firestore Sync
-        db.collection("heroCards").onSnapshot(snapshot => {
-            if (snapshot.empty) {
-                // Seed initial cards data into Firestore if collection is empty
-                const defaultCards = [
-                    { id: "1", label: "Tarikh Kejohanan", value: "27 September 2026", subtext: "Disahkan", icon: "fa-calendar-days" },
-                    { id: "2", label: "Lokasi Utama", value: "Kompleks Sukan Labuan", subtext: "WP Labuan", icon: "fa-location-dot" },
-                    { id: "3", label: "Bilangan Atlet", value: "578 Orang", subtext: "Atlet Berdaftar", icon: "fa-users" },
-                    { id: "4", label: "Status Kemas Kini", value: "Data Semasa (Live)", subtext: "Jaminan Sinkronisasi", icon: "fa-tower-broadcast" }
-                ];
-                defaultCards.forEach(card => db.collection("heroCards").doc(card.id).set(card));
-                return;
+        async function initAuthAndFirestore() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await auth.signInWithCustomToken(__initial_auth_token);
+                } else {
+                    await auth.signInAnonymously();
+                }
+            } catch (err) {
+                console.error("Gagal log masuk Firebase:", err);
             }
-            heroCardsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            renderHeroCards();
-            renderAdminDashCardsEditor();
-        });
 
-        // 2. Schedule Firestore Sync
-        db.collection("schedule").onSnapshot(snapshot => {
-            scheduleData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-            renderAdminScheduleTable();
-            renderScheduleFilters();
-            renderPublicScheduleCards();
-        });
+            setupFirestoreListeners();
+        }
 
-        // 3. Participant Configs Firestore Sync
-        db.collection("participantConfigs").onSnapshot(snapshot => {
-            participantConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-            renderParticipantConfigTable();
-            populateEventDropdown();
-            onEventChanged();
-        });
-
-        // 4. Winner Configs Firestore Sync
-        db.collection("winnerConfigs").onSnapshot(snapshot => {
-            winnerConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-            renderWinnerConfigTable();
-            updateWinnersList();
-        });
-
-        // 5. Announcements Firestore Sync
-        db.collection("announcements").onSnapshot(snapshot => {
-            announcementsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-            renderAnnouncements();
-        });
-
-        // 6. Settings / Config Firestore Sync
-        db.collection("settings").doc("config").onSnapshot(doc => {
-            if (doc.exists) {
-                appSettings = doc.data() || {};
-                
-                if (appSettings.realtimeLinksData) {
-                    realtimeLinksData = appSettings.realtimeLinksData;
+        function setupFirestoreListeners() {
+            // 1. Hero Cards Firestore Sync
+            getCol("heroCards").onSnapshot(snapshot => {
+                if (snapshot.empty) {
+                    const defaultCards = [
+                        { id: "1", label: "Tarikh Kejohanan", value: "27 September 2026", subtext: "Disahkan", icon: "fa-calendar-days" },
+                        { id: "2", label: "Lokasi Utama", value: "Kompleks Sukan Labuan", subtext: "WP Labuan", icon: "fa-location-dot" },
+                        { id: "3", label: "Bilangan Atlet", value: "578 Orang", subtext: "Atlet Berdaftar", icon: "fa-users" },
+                        { id: "4", label: "Status Kemas Kini", value: "Data Semasa (Live)", subtext: "Jaminan Sinkronisasi", icon: "fa-tower-broadcast" }
+                    ];
+                    defaultCards.forEach(card => getCol("heroCards").doc(card.id).set(card).catch(() => {}));
+                    return;
                 }
-                if (appSettings.medalTallyData) {
-                    medalTallyData = appSettings.medalTallyData;
-                }
-                
-                const pingatInput = document.getElementById("adminPingatSheetUrl");
-                if (pingatInput && appSettings.sheetUrlPingat !== undefined) {
-                    pingatInput.value = appSettings.sheetUrlPingat;
-                }
+                heroCardsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderHeroCards();
+                renderAdminDashCardsEditor();
+            }, err => console.error("Firestore heroCards error:", err));
 
-                const oInput = document.getElementById("adminOlahragawanGsIndividu");
-                if (oInput && appSettings.olahragawanGsIndividu !== undefined) {
-                    oInput.value = appSettings.olahragawanGsIndividu;
-                }
-                const wInput = document.getElementById("adminOlahragawatiGsIndividu");
-                if (wInput && appSettings.olahragawatiGsIndividu !== undefined) {
-                    wInput.value = appSettings.olahragawatiGsIndividu;
-                }
+            // 2. Schedule Firestore Sync
+            getCol("schedule").onSnapshot(snapshot => {
+                scheduleData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                renderAdminScheduleTable();
+                renderScheduleFilters();
+                renderPublicScheduleCards();
+            }, err => console.error("Firestore schedule error:", err));
 
-                renderPingatConfigTable();
-                renderRealtimeLinks();
-                renderAnugerahConfigTable();
-                loadMedalTally();
-                loadAnugerahData();
-            }
-        });
+            // 3. Participant Configs Firestore Sync
+            getCol("participantConfigs").onSnapshot(snapshot => {
+                participantConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                renderParticipantConfigTable();
+                populateEventDropdown();
+                onEventChanged();
+            }, err => console.error("Firestore participantConfigs error:", err));
+
+            // 4. Winner Configs Firestore Sync
+            getCol("winnerConfigs").onSnapshot(snapshot => {
+                winnerConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                renderWinnerConfigTable();
+                updateWinnersList();
+            }, err => console.error("Firestore winnerConfigs error:", err));
+
+            // 5. Announcements Firestore Sync
+            getCol("announcements").onSnapshot(snapshot => {
+                announcementsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                renderAnnouncements();
+            }, err => console.error("Firestore announcements error:", err));
+
+            // 6. Settings / Config Firestore Sync
+            getCol("settings").doc("config").onSnapshot(doc => {
+                if (doc.exists) {
+                    appSettings = doc.data() || {};
+                    
+                    if (appSettings.realtimeLinksData) {
+                        realtimeLinksData = appSettings.realtimeLinksData;
+                    }
+                    if (appSettings.medalTallyData) {
+                        medalTallyData = appSettings.medalTallyData;
+                    }
+                    
+                    const pingatInput = document.getElementById("adminPingatSheetUrl");
+                    if (pingatInput && appSettings.sheetUrlPingat !== undefined) {
+                        pingatInput.value = appSettings.sheetUrlPingat;
+                    }
+
+                    const oInput = document.getElementById("adminOlahragawanGsIndividu");
+                    if (oInput && appSettings.olahragawanGsIndividu !== undefined) {
+                        oInput.value = appSettings.olahragawanGsIndividu;
+                    }
+                    const wInput = document.getElementById("adminOlahragawatiGsIndividu");
+                    if (wInput && appSettings.olahragawatiGsIndividu !== undefined) {
+                        wInput.value = appSettings.olahragawatiGsIndividu;
+                    }
+
+                    renderPingatConfigTable();
+                    renderRealtimeLinks();
+                    renderAnugerahConfigTable();
+                    loadMedalTally();
+                    loadAnugerahData();
+                }
+            }, err => console.error("Firestore settings error:", err));
+        }
 
         function normalizeGoogleSheetUrl(url) {
             if (!url || typeof url !== 'string') return '';
@@ -1439,16 +1452,15 @@
 
             let tableRowsHTML = "";
             filtered.forEach(item => {
-                const catColorClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
+                const catColorClass = item.category && item.category.toUpperCase().includes("LELAKI") ? "text-blue-400" : (item.category && item.category.toUpperCase().includes("PEREMPUAN") ? "text-pink-400" : "text-platinum-300");
                 const roundBadgeClass = item.round === "Akhir" 
                     ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" 
                     : "bg-white/10 text-platinum-200 border-white/20";
 
                 tableRowsHTML += `
                     <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                        <td class="py-4 px-6 text-center font-mono font-bold text-sm text-white">#${item.eventNo}</td>
                         <td class="py-4 px-6 font-display font-bold text-white uppercase">${item.name}</td>
-                        <td class="py-4 px-6 text-center font-bold ${catColorClass}">${item.category}</td>
+                        <td class="py-4 px-6 text-center font-bold ${catColorClass}">${item.category || '-'}</td>
                         <td class="py-4 px-6 text-center">
                             <span class="px-2.5 py-1 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round}</span>
                         </td>
@@ -1469,7 +1481,6 @@
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-navy-950/80 border-b border-white/10 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-platinum-200">
-                                <th class="py-4 px-6 text-center w-28">No. Acara</th>
                                 <th class="py-4 px-6">Acara</th>
                                 <th class="py-4 px-6 text-center w-32">Kategori</th>
                                 <th class="py-4 px-6 text-center w-36">Pusingan</th>
@@ -1498,16 +1509,15 @@
                 const tr = document.createElement("tr");
                 tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
 
-                const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
+                const catClass = item.category && item.category.toUpperCase().includes("LELAKI") ? "text-blue-400" : (item.category && item.category.toUpperCase().includes("PEREMPUAN") ? "text-pink-400" : "text-platinum-300");
                 const roundBadgeClass = item.round === "Akhir" 
                     ? "bg-yellow-500/20 border-yellow-500/30 text-yellow-400" 
                     : "bg-white/10 border-white/20 text-platinum-200";
 
                 tr.innerHTML = `
                     <td class="p-3 font-mono text-platinum-300">${item.date}</td>
-                    <td class="p-3 font-mono font-bold text-white">#${item.eventNo}</td>
                     <td class="p-3 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-3 ${catClass} font-bold">${item.category}</td>
+                    <td class="p-3 ${catClass} font-bold">${item.category || '-'}</td>
                     <td class="p-3"><span class="px-2 py-0.5 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round}</span></td>
                     <td class="p-3 text-right space-x-2">
                         <button onclick="editScheduleEntry(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Sunting"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -1525,9 +1535,8 @@
             editingScheduleIndex = index;
 
             document.getElementById("adminScheduleDate").value = item.date;
-            document.getElementById("adminScheduleNo").value = item.eventNo;
             document.getElementById("adminScheduleName").value = item.name;
-            document.getElementById("adminScheduleCategory").value = item.category;
+            document.getElementById("adminScheduleCategory").value = item.category || "";
             document.getElementById("adminScheduleRound").value = item.round;
 
             const btnText = document.getElementById("btnScheduleText");
@@ -1542,8 +1551,8 @@
         function cancelScheduleEdit() {
             editingScheduleIndex = -1;
 
-            document.getElementById("adminScheduleNo").value = "";
             document.getElementById("adminScheduleName").value = "";
+            document.getElementById("adminScheduleCategory").value = "";
 
             const btnText = document.getElementById("btnScheduleText");
             const cancelBtn = document.getElementById("btnCancelScheduleEdit");
@@ -1556,28 +1565,30 @@
 
         async function addScheduleEntry() {
             const dateVal = document.getElementById("adminScheduleDate").value || "2026-09-20";
-            const noVal = document.getElementById("adminScheduleNo").value.trim();
             const nameVal = document.getElementById("adminScheduleName").value.trim();
-            const catVal = document.getElementById("adminScheduleCategory").value;
+            const catVal = document.getElementById("adminScheduleCategory").value.trim();
             const roundVal = document.getElementById("adminScheduleRound").value;
 
-            if (!noVal || !nameVal) return;
+            if (!nameVal) return;
 
             const payload = {
                 date: dateVal,
-                eventNo: noVal.replace('#', ''),
                 name: nameVal.toUpperCase(),
-                category: catVal,
+                category: catVal.toUpperCase(),
                 round: roundVal
             };
 
-            if (editingScheduleIndex >= 0 && editingScheduleIndex < scheduleData.length) {
-                const docId = scheduleData[editingScheduleIndex].docId;
-                if (docId) {
-                    await db.collection("schedule").doc(docId).set(payload, { merge: true });
+            try {
+                if (editingScheduleIndex >= 0 && editingScheduleIndex < scheduleData.length) {
+                    const docId = scheduleData[editingScheduleIndex].docId;
+                    if (docId) {
+                        await getCol("schedule").doc(docId).set(payload, { merge: true });
+                    }
+                } else {
+                    await getCol("schedule").add(payload);
                 }
-            } else {
-                await db.collection("schedule").add(payload);
+            } catch (e) {
+                console.error("Gagal menyimpan jadual ke Firestore:", e);
             }
 
             cancelScheduleEdit();
@@ -1587,7 +1598,11 @@
         async function deleteScheduleEntry(index) {
             const item = scheduleData[index];
             if (item && item.docId) {
-                await db.collection("schedule").doc(item.docId).delete();
+                try {
+                    await getCol("schedule").doc(item.docId).delete();
+                } catch (e) {
+                    console.error("Gagal memadam jadual dari Firestore:", e);
+                }
             }
 
             if (editingScheduleIndex === index) {
@@ -1662,32 +1677,42 @@
             if (heroCardsData[index]) {
                 const card = heroCardsData[index];
                 const docId = String(card.id || index + 1);
-                await db.collection("heroCards").doc(docId).set({
-                    id: docId,
-                    label,
-                    value,
-                    subtext,
-                    icon: card.icon || "fa-circle-info"
-                }, { merge: true });
+                const payload = { id: docId, label, value, subtext, icon: card.icon || "fa-circle-info" };
+
+                try {
+                    await getCol("heroCards").doc(docId).set(payload, { merge: true });
+                } catch (e) {
+                    console.error("Gagal menyimpan kad ke Firestore:", e);
+                }
             }
         }
 
         async function deleteDashCard(index) {
             if (heroCardsData[index]) {
                 const docId = String(heroCardsData[index].id);
-                await db.collection("heroCards").doc(docId).delete();
+                try {
+                    await getCol("heroCards").doc(docId).delete();
+                } catch (e) {
+                    console.error("Gagal memadam kad dari Firestore:", e);
+                }
             }
         }
 
         async function addNewDashCard() {
-            const newDocRef = db.collection("heroCards").doc();
-            await newDocRef.set({
+            const newDocRef = getCol("heroCards").doc();
+            const newCard = {
                 id: newDocRef.id,
                 label: "Tajuk Kad Baru",
                 value: "Nilai Kad",
                 subtext: "Status",
                 icon: "fa-circle-info"
-            });
+            };
+
+            try {
+                await newDocRef.set(newCard);
+            } catch (e) {
+                console.error("Gagal menambah kad ke Firestore:", e);
+            }
         }
 
         function renderParticipantConfigTable() {
@@ -1702,7 +1727,6 @@
                 const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
                 
                 tr.innerHTML = `
-                    <td class="p-3 font-mono font-bold text-white">#${item.eventNo}</td>
                     <td class="p-3 font-bold text-white uppercase">${item.name}</td>
                     <td class="p-3 ${catClass} font-bold">${item.category}</td>
                     <td class="p-3 truncate max-w-[120px]">${item.gsIndividu || "-"}</td>
@@ -1719,35 +1743,39 @@
         function editParticipantConfig(index) {
             const config = participantConfigsData[index];
             if (!config) return;
-            document.getElementById("adminParticipantNo").value = config.eventNo;
-            document.getElementById("adminParticipantName").value = config.name;
-            document.getElementById("adminParticipantCategory").value = config.category;
+            editingParticipantDocId = config.docId;
+            document.getElementById("adminParticipantName").value = config.name || "";
+            document.getElementById("adminParticipantCategory").value = config.category || "Lelaki";
             document.getElementById("adminParticipantGsIndividu").value = config.gsIndividu || "";
             document.getElementById("adminParticipantGsKumpulan").value = config.gsKumpulan || "";
         }
 
         async function saveParticipantEventConfig() {
-            const noVal = document.getElementById("adminParticipantNo").value.trim();
             const nameVal = document.getElementById("adminParticipantName").value.trim();
             const catVal = document.getElementById("adminParticipantCategory").value;
             const indVal = document.getElementById("adminParticipantGsIndividu").value.trim();
             const kumVal = document.getElementById("adminParticipantGsKumpulan").value.trim();
 
-            if (!noVal || !nameVal) return;
+            if (!nameVal) return;
 
-            const eventNo = noVal.replace('#', '');
             const payload = {
-                id: eventNo,
-                eventNo: eventNo,
                 name: nameVal.toUpperCase(),
                 category: catVal,
                 gsIndividu: indVal,
                 gsKumpulan: kumVal
             };
 
-            await db.collection("participantConfigs").doc(eventNo).set(payload, { merge: true });
+            try {
+                if (editingParticipantDocId) {
+                    await getCol("participantConfigs").doc(editingParticipantDocId).set(payload, { merge: true });
+                } else {
+                    await getCol("participantConfigs").add(payload);
+                }
+            } catch (e) {
+                console.error("Gagal menyimpan peserta ke Firestore:", e);
+            }
 
-            document.getElementById("adminParticipantNo").value = "";
+            editingParticipantDocId = null;
             document.getElementById("adminParticipantName").value = "";
             document.getElementById("adminParticipantGsIndividu").value = "";
             document.getElementById("adminParticipantGsKumpulan").value = "";
@@ -1756,8 +1784,12 @@
         async function deleteParticipantConfig(index) {
             const item = participantConfigsData[index];
             if (item) {
-                const docId = item.docId || item.eventNo;
-                await db.collection("participantConfigs").doc(docId).delete();
+                try {
+                    const docId = item.docId;
+                    if (docId) await getCol("participantConfigs").doc(docId).delete();
+                } catch (e) {
+                    console.error("Gagal memadam peserta dari Firestore:", e);
+                }
             }
         }
 
@@ -1773,7 +1805,6 @@
                 const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
                 
                 tr.innerHTML = `
-                    <td class="p-3 font-mono font-bold text-white">#${item.eventNo}</td>
                     <td class="p-3 font-bold text-white uppercase">${item.name}</td>
                     <td class="p-3 ${catClass} font-bold">${item.category}</td>
                     <td class="p-3 truncate max-w-[120px]">${item.gsIndividu || "-"}</td>
@@ -1790,35 +1821,39 @@
         function editWinnerConfig(index) {
             const config = winnerConfigsData[index];
             if (!config) return;
-            document.getElementById("adminWinnerNo").value = config.eventNo;
-            document.getElementById("adminWinnerName").value = config.name;
-            document.getElementById("adminWinnerCategory").value = config.category;
+            editingWinnerDocId = config.docId;
+            document.getElementById("adminWinnerName").value = config.name || "";
+            document.getElementById("adminWinnerCategory").value = config.category || "Lelaki";
             document.getElementById("adminWinnerGsIndividu").value = config.gsIndividu || "";
             document.getElementById("adminWinnerGsKumpulan").value = config.gsKumpulan || "";
         }
 
         async function saveWinnerEventConfig() {
-            const noVal = document.getElementById("adminWinnerNo").value.trim();
             const nameVal = document.getElementById("adminWinnerName").value.trim();
             const catVal = document.getElementById("adminWinnerCategory").value;
             const indVal = document.getElementById("adminWinnerGsIndividu").value.trim();
             const kumVal = document.getElementById("adminWinnerGsKumpulan").value.trim();
 
-            if (!noVal || !nameVal) return;
+            if (!nameVal) return;
 
-            const eventNo = noVal.replace('#', '');
             const payload = {
-                id: eventNo,
-                eventNo: eventNo,
                 name: nameVal.toUpperCase(),
                 category: catVal,
                 gsIndividu: indVal,
                 gsKumpulan: kumVal
             };
 
-            await db.collection("winnerConfigs").doc(eventNo).set(payload, { merge: true });
+            try {
+                if (editingWinnerDocId) {
+                    await getCol("winnerConfigs").doc(editingWinnerDocId).set(payload, { merge: true });
+                } else {
+                    await getCol("winnerConfigs").add(payload);
+                }
+            } catch (e) {
+                console.error("Gagal menyimpan pemenang ke Firestore:", e);
+            }
 
-            document.getElementById("adminWinnerNo").value = "";
+            editingWinnerDocId = null;
             document.getElementById("adminWinnerName").value = "";
             document.getElementById("adminWinnerGsIndividu").value = "";
             document.getElementById("adminWinnerGsKumpulan").value = "";
@@ -1827,8 +1862,12 @@
         async function deleteWinnerConfig(index) {
             const item = winnerConfigsData[index];
             if (item) {
-                const docId = item.docId || item.eventNo;
-                await db.collection("winnerConfigs").doc(docId).delete();
+                try {
+                    const docId = item.docId;
+                    if (docId) await getCol("winnerConfigs").doc(docId).delete();
+                } catch (e) {
+                    console.error("Gagal memadam pemenang dari Firestore:", e);
+                }
             }
         }
 
@@ -1861,7 +1900,7 @@
 
                         if (parsedData.length > 0) {
                             medalTallyData = parsedData;
-                            await db.collection("settings").doc("config").set({ medalTallyData }, { merge: true });
+                            await getCol("settings").doc("config").set({ medalTallyData }, { merge: true });
                         }
                     }
                 } catch (err) {
@@ -1974,14 +2013,28 @@
 
         async function savePingatConfig() {
             const url = document.getElementById("adminPingatSheetUrl").value.trim();
-            await db.collection("settings").doc("config").set({ sheetUrlPingat: url }, { merge: true });
+            appSettings.sheetUrlPingat = url;
+
+            try {
+                await getCol("settings").doc("config").set({ sheetUrlPingat: url }, { merge: true });
+            } catch (e) {
+                console.error("Gagal menyimpan tetapan pingat ke Firestore:", e);
+            }
+
             logAdminMsg("Pautan Kedudukan Pingat telah disimpan.");
             await loadMedalTally();
         }
 
         async function clearPingatConfig() {
             document.getElementById("adminPingatSheetUrl").value = "";
-            await db.collection("settings").doc("config").set({ sheetUrlPingat: "" }, { merge: true });
+            appSettings.sheetUrlPingat = "";
+
+            try {
+                await getCol("settings").doc("config").set({ sheetUrlPingat: "" }, { merge: true });
+            } catch (e) {
+                console.error("Gagal memadam pautan pingat dari Firestore:", e);
+            }
+
             logAdminMsg("Pautan Kedudukan Pingat telah dihapus.");
             await loadMedalTally();
         }
@@ -2082,51 +2135,30 @@
                 message: msg
             };
 
-            if (editingAnnouncementIndex >= 0 && editingAnnouncementIndex < announcementsData.length) {
-                const docId = announcementsData[editingAnnouncementIndex].docId;
-                if (docId) {
-                    await db.collection("announcements").doc(docId).set(payload, { merge: true });
+            try {
+                if (editingAnnouncementIndex >= 0 && editingAnnouncementIndex < announcementsData.length) {
+                    const docId = announcementsData[editingAnnouncementIndex].docId;
+                    if (docId) {
+                        await getCol("announcements").doc(docId).set(payload, { merge: true });
+                    }
+                } else {
+                    await getCol("announcements").add(payload);
                 }
-            } else {
-                await db.collection("announcements").add(payload);
+            } catch (e) {
+                console.error("Gagal menyimpan hebahan ke Firestore:", e);
             }
 
             cancelAnnouncementEdit();
         }
 
-        function editAnnouncement(index) {
-            const item = announcementsData[index];
-            if (!item) return;
-
-            editingAnnouncementIndex = index;
-            document.getElementById("adminAnnouncementCategory").value = item.category;
-            document.getElementById("adminAnnouncementTitle").value = item.title;
-            document.getElementById("adminAnnouncementMessage").value = item.message;
-
-            const btnText = document.getElementById("btnAnnouncementText");
-            const cancelBtn = document.getElementById("btnCancelAnnouncementEdit");
-
-            if (btnText) btnText.textContent = "Kemaskini Hebahan";
-            if (cancelBtn) cancelBtn.classList.remove("hidden");
-        }
-
-        function cancelAnnouncementEdit() {
-            editingAnnouncementIndex = -1;
-            document.getElementById("adminAnnouncementCategory").value = "";
-            document.getElementById("adminAnnouncementTitle").value = "";
-            document.getElementById("adminAnnouncementMessage").value = "";
-
-            const btnText = document.getElementById("btnAnnouncementText");
-            const cancelBtn = document.getElementById("btnCancelAnnouncementEdit");
-
-            if (btnText) btnText.textContent = "Simpan Hebahan";
-            if (cancelBtn) cancelBtn.classList.add("hidden");
-        }
-
         async function deleteAnnouncement(index) {
             const item = announcementsData[index];
             if (item && item.docId) {
-                await db.collection("announcements").doc(item.docId).delete();
+                try {
+                    await getCol("announcements").doc(item.docId).delete();
+                } catch (e) {
+                    console.error("Gagal memadam hebahan dari Firestore:", e);
+                }
             }
 
             if (editingAnnouncementIndex === index) {
@@ -2195,24 +2227,29 @@
                 galleryUrl: galleryVal,
                 feedbackUrl: feedbackVal
             };
+            appSettings.realtimeLinksData = realtimeLinksData;
 
-            await db.collection("settings").doc("config").set({ realtimeLinksData }, { merge: true });
-            logAdminMsg("Pautan Info & Media Real-Time telah dikemaskini.");
-        }
-
-        function editRealtimeLink(inputId) {
-            const input = document.getElementById(inputId);
-            if (input) {
-                input.focus();
-                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            try {
+                await getCol("settings").doc("config").set({ realtimeLinksData }, { merge: true });
+            } catch (e) {
+                console.error("Gagal menyimpan pautan ke Firestore:", e);
             }
+
+            logAdminMsg("Pautan Info & Media Real-Time telah dikemaskini.");
         }
 
         async function clearRealtimeLink(key, inputId) {
             realtimeLinksData[key] = "";
             const input = document.getElementById(inputId);
             if (input) input.value = "";
-            await db.collection("settings").doc("config").set({ realtimeLinksData }, { merge: true });
+            appSettings.realtimeLinksData = realtimeLinksData;
+
+            try {
+                await getCol("settings").doc("config").set({ realtimeLinksData }, { merge: true });
+            } catch (e) {
+                console.error("Gagal memadam pautan dari Firestore:", e);
+            }
+
             logAdminMsg("Pautan telah dihapus.");
         }
 
@@ -2220,10 +2257,17 @@
             const olahragawanInd = document.getElementById("adminOlahragawanGsIndividu").value.trim();
             const olahragawatiInd = document.getElementById("adminOlahragawatiGsIndividu").value.trim();
 
-            await db.collection("settings").doc("config").set({
-                olahragawanGsIndividu: olahragawanInd,
-                olahragawatiGsIndividu: olahragawatiInd
-            }, { merge: true });
+            appSettings.olahragawanGsIndividu = olahragawanInd;
+            appSettings.olahragawatiGsIndividu = olahragawatiInd;
+
+            try {
+                await getCol("settings").doc("config").set({
+                    olahragawanGsIndividu: olahragawanInd,
+                    olahragawatiGsIndividu: olahragawatiInd
+                }, { merge: true });
+            } catch (e) {
+                console.error("Gagal menyimpan anugerah ke Firestore:", e);
+            }
 
             logAdminMsg("Tetapan Pautan Anugerah telah disimpan.");
         }
@@ -2273,7 +2317,11 @@
         async function deleteAnugerahConfig(urlKey, inputId) {
             const input = document.getElementById(inputId);
             if (input) input.value = "";
-            await db.collection("settings").doc("config").set({ [urlKey]: "" }, { merge: true });
+            try {
+                await getCol("settings").doc("config").set({ [urlKey]: "" }, { merge: true });
+            } catch (e) {
+                console.error("Gagal memadam anugerah dari Firestore:", e);
+            }
             logAdminMsg("Pautan Anugerah telah dihapus.");
         }
 
@@ -2358,15 +2406,15 @@
 
             participantConfigsData.forEach(ev => {
                 const opt = document.createElement("option");
-                opt.value = ev.eventNo;
-                opt.textContent = `[${ev.eventNo}] ${ev.name} - ${ev.category}`;
+                opt.value = ev.docId;
+                opt.textContent = `${ev.name} - ${ev.category}`;
                 select.appendChild(opt);
             });
 
-            if (selectedEventId && participantConfigsData.some(ev => ev.eventNo === selectedEventId)) {
+            if (selectedEventId && participantConfigsData.some(ev => ev.docId === selectedEventId)) {
                 select.value = selectedEventId;
             } else if (participantConfigsData.length > 0) {
-                selectedEventId = participantConfigsData[0].eventNo;
+                selectedEventId = participantConfigsData[0].docId;
                 select.value = selectedEventId;
             }
         }
@@ -2379,7 +2427,7 @@
             }
             
             selectedEventId = selectEl.value;
-            const currentConfig = participantConfigsData.find(ev => ev.eventNo === selectedEventId);
+            const currentConfig = participantConfigsData.find(ev => ev.docId === selectedEventId);
             
             if (!currentConfig) return;
 
@@ -2683,33 +2731,11 @@
         function createWinnerCardElement(config, winners) {
             const cardDiv = document.createElement("div");
             cardDiv.className = "winner-event-card border border-white/10 p-5 bg-navy-900/40 hover:border-white transition-all duration-300 flex flex-col justify-between";
-            cardDiv.setAttribute("data-event-no", config.eventNo);
+            cardDiv.setAttribute("data-event-id", config.docId);
             cardDiv.setAttribute("data-event-name", config.name.toUpperCase());
             cardDiv.setAttribute("data-category", config.category.toUpperCase());
 
             let winnersRowsHTML = "";
-
-            if (!winners || winners.length === 0) {
-                if (config.eventNo === "101") {
-                    winners = [
-                        { rank: 1, name: "Ali", team: "Harimau Selatan", bib: "1042", score: "11.20s" },
-                        { rank: 2, name: "Abu", team: "Helang Utara", bib: "5021", score: "11.45s" },
-                        { rank: 3, name: "Amar", team: "Kenyalang", bib: "1109", score: "11.58s" }
-                    ];
-                } else if (config.eventNo === "102") {
-                    winners = [
-                        { rank: 1, name: "Ahmad Syah", team: "Harimau Selatan", bib: "3049", score: "10.21s" },
-                        { rank: 2, name: "Khairul", team: "Garuda Tengah", bib: "4012", score: "10.35s" },
-                        { rank: 3, name: "Marcus", team: "Kenyalang", bib: "1104", score: "10.42s" }
-                    ];
-                } else if (config.eventNo === "103") {
-                    winners = [
-                        { rank: 1, name: "Zulfikar Rahman", team: "Helang Utara", bib: "5049", score: "320 Mata" },
-                        { rank: 2, name: "Syamer", team: "Penyu Pantai Timur", bib: "2011", score: "312 Mata" },
-                        { rank: 3, name: "Iskandar", team: "Harimau Selatan", bib: "3015", score: "308 Mata" }
-                    ];
-                }
-            }
 
             if (!winners || winners.length === 0) {
                 winnersRowsHTML = `<p class="text-xs text-platinum-400 py-6 text-center italic uppercase">Keputusan belum dimuatkan / pautan belum ditetapkan</p>`;
@@ -2759,7 +2785,7 @@
                         <span class="text-[9px] uppercase tracking-widest font-extrabold px-2.5 py-1 bg-green-500/10 text-green-400">
                             SELESAI
                         </span>
-                        <span class="text-[10px] text-platinum-400 font-mono">#${config.eventNo} - ${config.category}</span>
+                        <span class="text-[10px] text-platinum-400 font-mono">${config.category}</span>
                     </div>
                     <h3 class="winner-event-name font-display font-extrabold text-base text-white uppercase mb-4">${config.name}</h3>
                     
@@ -2782,15 +2808,15 @@
             if (winnerConfigsData && winnerConfigsData.length > 0) {
                 winnerConfigsData.forEach(config => {
                     const opt = document.createElement("option");
-                    opt.value = config.eventNo;
-                    opt.textContent = `[${config.eventNo}] ${config.name}`;
+                    opt.value = config.docId;
+                    opt.textContent = `${config.name} - ${config.category}`;
                     select.appendChild(opt);
                 });
 
-                if (previousVal && winnerConfigsData.some(config => config.eventNo === previousVal)) {
+                if (previousVal && winnerConfigsData.some(config => config.docId === previousVal)) {
                     select.value = previousVal;
                 } else {
-                    select.value = winnerConfigsData[0].eventNo;
+                    select.value = winnerConfigsData[0].docId;
                 }
             }
         }
@@ -2799,18 +2825,18 @@
             const eventSelect = document.getElementById("winnerEventSelect");
             const categorySelect = document.getElementById("winnerCategorySelect");
             
-            const selectedEventNo = eventSelect ? eventSelect.value.toUpperCase() : "";
+            const selectedEventId = eventSelect ? eventSelect.value.toUpperCase() : "";
             const selectedCat = categorySelect ? categorySelect.value.toUpperCase() : "ALL";
 
             const cards = document.querySelectorAll(".winner-event-card");
             let visibleCount = 0;
 
             cards.forEach(card => {
-                const cardEventNo = (card.getAttribute("data-event-no") || "").toUpperCase();
+                const cardEventId = (card.getAttribute("data-event-id") || "").toUpperCase();
                 const cardEventName = (card.getAttribute("data-event-name") || "").toUpperCase();
                 const cardCat = (card.getAttribute("data-category") || "").toUpperCase();
 
-                const matchesEvent = (cardEventNo === selectedEventNo) || (cardEventName === selectedEventNo);
+                const matchesEvent = (cardEventId === selectedEventId) || (cardEventName === selectedEventId);
                 const matchesCat = (selectedCat === "ALL") || (cardCat === selectedCat);
 
                 if (matchesEvent && matchesCat) {
@@ -2833,7 +2859,7 @@
                 msgDiv.className = "col-span-full border border-white/10 bg-navy-900/40 p-12 text-center";
                 msgDiv.innerHTML = `
                     <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-platinum-400">
-                        ( Acara atau Kategori yang dipilih belum disahkan oleh Pengurus teknikal Kejohanan, sekian terima kasih )
+                        Tiada acara Keputusan Rasmi ditemui. 
                     </p>
                 `;
                 grid.appendChild(msgDiv);
@@ -2982,13 +3008,17 @@
             const urlAnugerah = document.getElementById("sheetUrlAnugerah").value.trim();
             const urlMedia = document.getElementById("sheetUrlMedia").value.trim();
 
-            await db.collection("settings").doc("config").set({
-                sheetUrlPeserta: urlPeserta,
-                sheetUrlPingat: urlPingat,
-                sheetUrlPemenang: urlPemenang,
-                sheetUrlAnugerah: urlAnugerah,
-                sheetUrlMedia: urlMedia
-            }, { merge: true });
+            try {
+                await getCol("settings").doc("config").set({
+                    sheetUrlPeserta: urlPeserta,
+                    sheetUrlPingat: urlPingat,
+                    sheetUrlPemenang: urlPemenang,
+                    sheetUrlAnugerah: urlAnugerah,
+                    sheetUrlMedia: urlMedia
+                }, { merge: true });
+            } catch (e) {
+                console.error("Gagal menyimpan tetapan Google Sheets:", e);
+            }
 
             const logBox = document.getElementById("adminSyncLog");
             if(logBox) logBox.innerHTML = "";
@@ -3021,6 +3051,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            initAuthAndFirestore();
+
             renderHeroCards();
             renderAdminDashCardsEditor();
             renderAdminScheduleTable();
@@ -3035,7 +3067,6 @@
             onEventChanged();
             updateWinnersList();
             loadAnugerahData();
-            loadMedalTally(); 
 
             // Pemasa Auto Refresh setiap 45 saat
             setInterval(autoRefreshData, 45000);
