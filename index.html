@@ -65,13 +65,6 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        .glow-button {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-        .glow-button:hover {
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
-        }
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -86,7 +79,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #334155;
         }
-        /* Hide scrollbar for admin nav */
         .hide-scroll::-webkit-scrollbar {
             display: none;
         }
@@ -125,11 +117,11 @@
                     <a href="#media" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Info & Media</a>
                 </nav>
 
-                <!-- Panel Pentadbir CTA Button (Desktop) -->
+                <!-- Panel Pentadbir CTA Button -->
                 <div class="hidden xl:flex items-center">
-                    <a href="#pentadbir" class="px-4 py-2.5 border border-white/20 text-white hover:bg-white hover:text-navy-950 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 rounded-none">
-                        Panel Pentadbir <i class="fa-solid fa-user-shield ml-1.5"></i>
-                    </a>
+                    <button onclick="showAdminLogin()" class="px-4 py-2.5 border border-white/20 text-white hover:bg-white hover:text-navy-950 font-display font-extrabold text-[10px] uppercase tracking-widest transition-all duration-300 rounded-none cursor-pointer">
+                        Panel Admin <i class="fa-solid fa-user-shield ml-1.5"></i>
+                    </button>
                 </div>
 
                 <!-- Butang Menu Mobil -->
@@ -152,9 +144,9 @@
                 <a href="#anugerah" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Anugerah</a>
                 <a href="#media" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Info & Media</a>
                 <div class="pt-4">
-                    <a href="#pentadbir" onclick="toggleMobileMenu()" class="block text-center w-full px-4 py-3.5 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-widest">
-                        Panel Pentadbir <i class="fa-solid fa-user-shield ml-2"></i>
-                    </a>
+                    <button onclick="toggleMobileMenu(); showAdminLogin();" class="block text-center w-full px-4 py-3.5 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-widest cursor-pointer">
+                        Panel Admin <i class="fa-solid fa-user-shield ml-2"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -198,7 +190,6 @@
             </div>
 
             <div id="heroDashboardCardsContainer" class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mt-8 sm:mt-12 px-4 w-full">
-                <!-- Dijana secara dinamik oleh JS -->
             </div>
         </div>
     </section>
@@ -213,12 +204,10 @@
                 </div>
                 
                 <div id="dayFilters" class="flex flex-wrap gap-2 mt-6 md:mt-0 overflow-x-auto pb-2 scrollbar-none">
-                    <!-- Dijana secara dinamik oleh JS -->
                 </div>
             </div>
 
             <div id="publicScheduleContainer" class="border border-white/10 glass-card overflow-hidden">
-                <!-- Dijana secara dinamik oleh JS -->
             </div>
 
             <div id="noScheduleMessage" class="hidden border border-white/10 bg-navy-950/40 p-12 text-center mt-6">
@@ -240,12 +229,10 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Panel Kontrol (4 Lajur) -->
                 <div class="lg:col-span-4 space-y-6">
                     <div class="border border-white/10 bg-navy-900/60 p-5 rounded-none space-y-2">
                         <label class="text-[10px] uppercase tracking-wider text-platinum-400 font-bold block"><i class="fa-solid fa-list-check mr-1.5"></i> Pilihan Acara</label>
                         <select id="eventSelect" onchange="onEventChanged()" class="w-full bg-navy-950 border border-white/10 py-3 px-4 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
-                            <!-- Populated dynamically via JS -->
                         </select>
                     </div>
 
@@ -259,7 +246,6 @@
                     </div>
                 </div>
 
-                <!-- Papan Senarai Peserta (8 Lajur) -->
                 <div class="lg:col-span-8 space-y-4">
                     <h3 id="currentRoundLabel" class="text-xs font-bold uppercase tracking-widest text-white"></h3>
                     <div class="border border-white/10 glass-card overflow-hidden">
@@ -274,7 +260,6 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-white/5 text-xs uppercase tracking-wider" id="startListTableBody">
-                                    <!-- Populated dynamically via JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -307,10 +292,6 @@
                 </div>
             </div>
 
-            <div class="block md:hidden text-right mb-2 text-[9px] uppercase tracking-wider text-platinum-400">
-                <i class="fa-solid fa-arrows-left-right mr-1 animate-pulse"></i> Seret mendatar untuk melihat data
-            </div>
-
             <div class="border border-white/10 glass-card overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -340,7 +321,6 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-white/5 text-xs uppercase tracking-wider" id="medalTable">
-                            <!-- Populated dynamically via JS -->
                         </tbody>
                     </table>
                 </div>
@@ -357,33 +337,22 @@
                     <p class="text-xs sm:text-sm text-platinum-300 mt-2">Senarai pemenang rasmi bagi setiap kategori yang telah dipertandingkan.</p>
                 </div>
                 
-                <!-- 3 Controls: Dropdown Acara, Dropdown Kategori, Butang Cari -->
                 <div class="mt-6 lg:mt-0 w-full lg:w-auto flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center">
-                    <!-- Butang 1: Acara Dropdown -->
-                    <div class="w-full sm:w-52">
-                        <select id="winnerEventSelect" class="w-full bg-navy-900 border border-white/10 py-3 px-3 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
-                        </select>
+                    <div class="relative w-full sm:w-64">
+                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-platinum-400">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                        </div>
+                        <input type="text" id="winnerSearchInput" onkeyup="filterWinnersBySearch()" placeholder="Cari acara, atlet, pasukan..." class="w-full bg-navy-900 border border-white/10 py-3 pl-10 pr-4 text-xs font-medium uppercase tracking-wider text-white placeholder-platinum-500 focus:outline-none focus:border-white transition-colors min-h-[48px]">
                     </div>
 
-                    <!-- Butang 2: Kategori Dropdown -->
-                    <div class="w-full sm:w-44">
-                        <select id="winnerCategorySelect" class="w-full bg-navy-900 border border-white/10 py-3 px-3 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
-                            <option value="ALL">-- SEMUA KATEGORI --</option>
-                            <option value="LELAKI">LELAKI</option>
-                            <option value="PEREMPUAN">PEREMPUAN</option>
+                    <div class="w-full sm:w-64">
+                        <select id="winnerEventSelect" onchange="filterWinnersBySearch()" class="w-full bg-navy-900 border border-white/10 py-3 px-3 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
                         </select>
                     </div>
-
-                    <!-- Butang 3: Cari -->
-                    <button onclick="filterWinnersBySearch()" id="btnSearchWinners" class="w-full sm:w-auto px-6 py-3 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-widest hover:bg-platinum-100 transition-all duration-300 flex items-center justify-center min-h-[48px]">
-                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Cari
-                    </button>
                 </div>
             </div>
 
-            <!-- Dynamic Winners Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="winnersGrid">
-                <!-- Dijana secara dinamik oleh JS -->
+            <div class="grid grid-cols-1 gap-8" id="winnersGrid">
             </div>
         </div>
     </section>
@@ -485,7 +454,6 @@
                     </div>
                     
                     <div id="publicAnnouncementContainer" class="border border-white/10 bg-navy-950 p-5 rounded-none space-y-2.5 relative overflow-hidden">
-                        <!-- Dijana secara dinamik oleh JS -->
                     </div>
 
                     <div class="space-y-3 pt-4 border-t border-white/10">
@@ -506,7 +474,7 @@
                                 <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white transform group-hover:rotate-6 transition-all">
                                     <i class="fa-regular fa-images text-lg"></i>
                                 </div>
-                                <span class="text-[9px] font-mono text-platinum-400 uppercase tracking-widest">GALERI MULTIMEDIA</span>
+                                <span class="text-[9px] font-sans text-platinum-400 uppercase tracking-widest">GALERI MULTIMEDIA</span>
                             </div>
                             <h3 class="font-display font-extrabold text-sm text-white uppercase tracking-wider mb-2">Pautan Galeri Foto</h3>
                             <p class="text-[11px] text-platinum-300 leading-relaxed">
@@ -524,7 +492,7 @@
                                 <div class="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-white transform group-hover:-rotate-6 transition-all">
                                     <i class="fa-regular fa-comment-dots text-lg"></i>
                                 </div>
-                                <span class="text-[9px] font-mono text-platinum-400 uppercase tracking-widest">HUBUNGI URUS SETIA</span>
+                                <span class="text-[9px] font-sans text-platinum-400 uppercase tracking-widest">HUBUNGI URUS SETIA</span>
                             </div>
                             <h3 class="font-display font-extrabold text-sm text-white uppercase tracking-wider mb-2">Borang Maklum Balas</h3>
                             <p class="text-[11px] text-platinum-300 leading-relaxed">
@@ -540,47 +508,39 @@
         </div>
     </section>
 
-    <section id="pentadbir" class="py-16 sm:py-24 bg-navy-950 border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-platinum-400 font-bold uppercase tracking-[0.25em] text-[10px] sm:text-xs">Sistem Kawalan Urus Setia</span>
-                <h2 class="font-display font-extrabold text-3xl text-white mt-1 uppercase">Panel Pentadbir</h2>
-                <p class="text-platinum-300 text-xs sm:text-sm mt-2">Pusat kawalan rasmi urus setia. Log masuk untuk mengurus dan menyunting maklumat kejohanan.</p>
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden bg-navy-950/95 backdrop-blur-md overflow-y-auto flex items-center justify-center p-4">
+        <div class="border border-white/10 glass-card p-6 flex flex-col justify-between max-w-md w-full relative">
+            <button onclick="closeAdminLoginModal()" class="absolute top-4 right-4 text-platinum-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div>
+                <h3 class="font-display font-bold text-xs uppercase tracking-wider text-white mb-2 border-b border-white/10 pb-3 flex items-center">
+                    <i class="fa-solid fa-shield-halved mr-2 text-yellow-500"></i> Log Masuk Admin
+                </h3>
+                <p class="text-[11px] text-platinum-300 leading-relaxed mb-4">
+                    Sila masukkan ID Urus Setia dan Kata Laluan untuk mengakses Panel Kawalan Pentadbir.
+                </p>
             </div>
-
-            <div class="flex justify-center">
-                <div class="border border-white/10 glass-card p-6 flex flex-col justify-between max-w-md w-full">
-                    <div>
-                        <h3 class="font-display font-bold text-xs uppercase tracking-wider text-white mb-4 border-b border-white/5 pb-2">
-                            <i class="fa-solid fa-shield-halved mr-2 text-platinum-400"></i> Log Masuk Urus Setia
-                        </h3>
-                        <p class="text-[11px] text-platinum-300 leading-relaxed mb-4">
-                            Akses panel kawalan terpusat untuk menguruskan semua data kejohanan. Sila pastikan sambungan anda selamat.
-                        </p>
-                    </div>
-                    
-                    <div id="loginFormContainer" class="space-y-3">
-                        <div class="bg-navy-900 border border-white/10 p-3 space-y-2">
-                            <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block">ID Pengguna</label>
-                            <input type="text" id="adminUsername" placeholder="ID Urus Setia" class="w-full bg-navy-950 border border-white/10 py-2 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                        </div>
-                        <div class="bg-navy-900 border border-white/10 p-3 space-y-2">
-                            <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block">Kata Laluan</label>
-                            <input type="password" id="adminPasswordInput" placeholder="Masukkan kata laluan..." class="w-full bg-navy-950 border border-white/10 py-2 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white" onkeydown="if(event.key==='Enter') verifyAdminPassword()">
-                        </div>
-                        <p id="passwordFeedback" class="hidden text-[9px] font-bold uppercase tracking-widest"></p>
-                        
-                        <button onclick="verifyAdminPassword()" class="w-full py-3 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest flex items-center justify-center transition-all duration-300 min-h-[44px]">
-                            Log Masuk <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
-                        </button>
-                    </div>
+            
+            <div id="loginFormContainer" class="space-y-3">
+                <div class="bg-navy-900 border border-white/10 p-3 space-y-1">
+                    <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block">ID Urus Setia</label>
+                    <input type="text" id="adminUsername" placeholder="ID Urus Setia" class="w-full bg-navy-950 border border-white/10 py-2 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                 </div>
+                <div class="bg-navy-900 border border-white/10 p-3 space-y-1">
+                    <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block">Kata Laluan</label>
+                    <input type="password" id="adminPasswordInput" placeholder="Masukkan kata laluan..." class="w-full bg-navy-950 border border-white/10 py-2 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white" onkeydown="if(event.key==='Enter') verifyAdminPassword()">
+                </div>
+                <p id="passwordFeedback" class="hidden text-[9px] font-bold uppercase tracking-widest"></p>
+                
+                <button onclick="verifyAdminPassword()" class="w-full py-3 bg-white text-navy-950 hover:bg-platinum-100 font-display font-extrabold text-[10px] uppercase tracking-widest flex items-center justify-center transition-all duration-300 min-h-[44px]">
+                    Log Masuk <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 
     <div id="adminPanelModal" class="fixed inset-0 z-50 hidden bg-navy-950/95 backdrop-blur-md overflow-hidden flex flex-col">
-        <!-- Header Modal Panel Pentadbir -->
         <div class="flex items-center justify-between border-b border-white/10 p-4 sm:p-6 bg-navy-900 shadow-md z-10 shrink-0">
             <div class="flex items-center space-x-4">
                 <div class="p-2.5 bg-white/10 border border-white/20 text-white rounded">
@@ -588,7 +548,7 @@
                 </div>
                 <div>
                     <h3 class="font-display font-extrabold text-sm sm:text-lg text-white uppercase tracking-wider">PANEL KAWALAN URUS SETIA</h3>
-                    <p class="text-[9px] sm:text-[10px] text-green-400 font-mono tracking-widest uppercase flex items-center mt-1">
+                    <p class="text-[9px] sm:text-[10px] text-green-400 font-sans tabular-nums tracking-widest uppercase flex items-center mt-1">
                         <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse mr-1.5"></span> Sesi Aktif
                     </p>
                 </div>
@@ -598,7 +558,6 @@
             </button>
         </div>
 
-        <!-- Layout Utama Panel: Sidebar Navigasi + Konten -->
         <div class="flex flex-1 overflow-hidden flex-col md:flex-row">
             <!-- Sidebar Navigasi -->
             <div class="w-full md:w-64 border-r border-white/10 bg-navy-950/50 flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto shrink-0 hide-scroll border-b md:border-b-0 p-2 sm:p-4 gap-2">
@@ -637,9 +596,7 @@
                 </button>
             </div>
 
-            <!-- Kawasan Konten Utama Panel -->
             <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-navy-950/30">
-                
                 <!-- Tab 1: Utama -->
                 <div id="tab-utama" class="admin-tab-content block space-y-6">
                     <div class="bg-navy-900 border border-white/10 p-6 space-y-4">
@@ -654,7 +611,6 @@
                         </div>
 
                         <div id="adminDashCardsList" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                            <!-- Populated dynamically via JS -->
                         </div>
                     </div>
                 </div>
@@ -680,7 +636,7 @@
                             </div>
                             <div>
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">3. Kategori</label>
-                                <input type="text" id="adminScheduleCategory" placeholder="Contoh: LELAKI / PEREMPUAN" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                                <input type="text" id="adminScheduleCategory" placeholder="Contoh: LELAKI / PEREMPUAN / L12" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                             <div>
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">4. Pusingan</label>
@@ -717,7 +673,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="adminScheduleTableBody" class="divide-y divide-white/5 font-medium">
-                                    <!-- Populated dynamically via JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -782,7 +737,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="adminParticipantConfigTableBody" class="divide-y divide-white/5 font-medium">
-                                    <!-- Populated dynamically via JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -797,7 +751,7 @@
 
                     <div class="bg-navy-900 border border-white/10 p-6 space-y-4">
                         <h3 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-1 flex items-center">
-                            <i class="fa-solid fa-file-csv text-yellow-500 mr-2"></i> Pautan Synchronisasi Kedudukan Pingat (CSV / Edit)
+                            <i class="fa-solid fa-file-csv text-yellow-500 mr-2"></i> Pautan Synchronisasi Kedudukan Pingat (CSV)
                         </h3>
                         <p class="text-[11px] text-platinum-400">Sokongan automatik pautan URL Edit Google Sheet atau pautan CSV terbitan (Publish to Web).</p>
                         
@@ -835,7 +789,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="adminPingatConfigTableBody" class="divide-y divide-white/5 font-medium">
-                                    <!-- Populated dynamically via JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -852,29 +805,22 @@
                         <h3 class="font-display text-xs font-bold text-white uppercase tracking-wider mb-2">
                             <i class="fa-solid fa-trophy text-yellow-500 mr-2"></i> Borang Tetapan Keputusan Rasmi Pemenang
                         </h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="grid grid-cols-1 gap-3">
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. Acara</label>
-                                <input type="text" id="adminWinnerName" placeholder="Contoh: 80M TAHUN 1 LELAKI" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">1. Nama Acara Utama (Tanpa Jantina)</label>
+                                <input type="text" id="adminWinnerName" placeholder="Contoh: LOMPAT TINGGI / 100M" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                             <div>
-                                <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">2. Kategori</label>
-                                <select id="adminWinnerCategory" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white focus:outline-none focus:border-white cursor-pointer">
-                                    <option value="Lelaki">Lelaki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="sm:col-span-2">
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
-                                    3. Pautan Google Sheet Individu <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B & C: Nama | Lajur D: Pasukan | Lajur E: No Bib | Lajur F: Catatan Masa)</span>
+                                    2. Pautan Google Sheet Lelaki <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B & C: Nama/Pasukan | Lajur D: Pasukan | Lajur E: No Bib | Lajur F: Catatan Masa)</span>
                                 </label>
-                                <input type="text" id="adminWinnerGsIndividu" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                                <input type="text" id="adminWinnerGsLelaki" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
-                            <div class="sm:col-span-2">
+                            <div>
                                 <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">
-                                    4. Pautan Google Sheet Kumpulan <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B, C, D & E: Pasukan | Lajur F: Catatan Masa)</span>
+                                    3. Pautan Google Sheet Perempuan <span class="text-platinum-500 font-normal lowercase">(Lajur A: Ranking | Lajur B & C: Nama/Pasukan | Lajur D: Pasukan | Lajur E: No Bib | Lajur F: Catatan Masa)</span>
                                 </label>
-                                <input type="text" id="adminWinnerGsKumpulan" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
+                                <input type="text" id="adminWinnerGsPerempuan" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv atau /edit#gid=0" class="w-full bg-navy-950 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
                             </div>
                         </div>
                         <div class="pt-2 flex justify-end">
@@ -893,14 +839,12 @@
                                 <thead>
                                     <tr class="bg-navy-950 border-b border-white/10 text-platinum-300 uppercase tracking-wider text-[10px] font-bold">
                                         <th class="p-3">Acara</th>
-                                        <th class="p-3">Kategori</th>
-                                        <th class="p-3">Sheet Ind</th>
-                                        <th class="p-3">Sheet Kum</th>
+                                        <th class="p-3">Sheet Lelaki</th>
+                                        <th class="p-3">Sheet Perempuan</th>
                                         <th class="p-3 text-right">Tindakan</th>
                                     </tr>
                                 </thead>
                                 <tbody id="adminWinnerConfigTableBody" class="divide-y divide-white/5 font-medium">
-                                    <!-- Populated dynamically via JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -973,7 +917,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="adminAnugerahConfigTableBody" class="divide-y divide-white/5 font-medium">
-                                    <!-- Populated dynamically via JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -1016,7 +959,6 @@
                             </div>
 
                             <div class="space-y-3" id="adminActiveAnnouncementCards">
-                                <!-- Populated dynamically via JS -->
                             </div>
                         </div>
 
@@ -1058,7 +1000,6 @@
                                             </tr>
                                         </thead>
                                         <tbody id="adminRealtimeConfigTableBody" class="divide-y divide-white/5 font-medium">
-                                            <!-- Populated dynamically via JS -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -1072,87 +1013,11 @@
                     <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-6">
                         <h2 class="font-display font-extrabold text-xl text-white uppercase tracking-wider">Tetapan Sistem</h2>
                     </div>
+                    <div class="bg-navy-900 border border-white/10 p-6">
+                        <p class="text-xs text-platinum-300">Sistem beroperasi mengikut konfigurasi teras Firestore secara berpusat.</p>
+                    </div>
                 </div> 
 
-            </div>
-        </div>
-    </div>
-
-    <div id="adminGoogleSheetModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-navy-950/90 backdrop-blur-md p-4 overflow-y-auto">
-        <div class="relative w-full max-w-4xl bg-navy-900 border border-white/20 p-6 sm:p-8 shadow-2xl space-y-6 my-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-green-500/10 border border-green-500/20 text-green-400">
-                        <i class="fa-solid fa-file-csv text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-display font-extrabold text-base sm:text-lg text-white uppercase tracking-wider">PANEL URUS SETIA: INTEGRASI GOOGLE SHEETS</h3>
-                        <p class="text-[10px] text-platinum-400 uppercase tracking-widest">Pautan Data Live Google Sheets Kejohanan</p>
-                    </div>
-                </div>
-                <button onclick="closeGoogleSheetsSyncModal()" class="text-platinum-400 hover:text-white p-2 text-xl focus:outline-none">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <div class="bg-navy-950 border border-white/10 p-4 text-xs text-platinum-300 space-y-1">
-                <p class="font-bold text-white uppercase tracking-wider mb-1"><i class="fa-solid fa-circle-info text-blue-400 mr-1.5"></i> Arahan Urus Setia:</p>
-                <p class="text-[11px] leading-relaxed">1. Anda boleh terus menyalin <strong>pautan URL dari bar alamat pelayar Google Sheets</strong> (format <code class="text-white">/edit#gid=0</code>) ATAU pautan <strong>Publish to Web (CSV)</strong>.</p>
-                <p class="text-[11px] leading-relaxed">2. Sistem akan menukar dan mengekstrak data CSV secara automatik daripada kedua-dua format pautan tersebut.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
-                        <span><i class="fa-solid fa-users text-blue-400 mr-1.5"></i> 1. Senarai Peserta</span>
-                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
-                    </label>
-                    <input type="text" id="sheetUrlPeserta" placeholder="https://docs.google.com/spreadsheets/d/.../edit#gid=0" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                </div>
-
-                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
-                        <span><i class="fa-solid fa-trophy text-yellow-500 mr-1.5"></i> 2. Kedudukan Rasmi (Pingat)</span>
-                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
-                    </label>
-                    <input type="text" id="sheetUrlPingat" placeholder="https://docs.google.com/spreadsheets/d/.../edit#gid=0" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                </div>
-
-                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
-                        <span><i class="fa-solid fa-medal text-amber-500 mr-1.5"></i> 3. Keputusan Rasmi Pemenang</span>
-                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
-                    </label>
-                    <input type="text" id="sheetUrlPemenang" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                </div>
-
-                <div class="border border-white/10 p-4 bg-navy-950/60 space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
-                        <span><i class="fa-solid fa-star text-yellow-400 mr-1.5"></i> 4. Anugerah Kejohanan</span>
-                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
-                    </label>
-                    <input type="text" id="sheetUrlAnugerah" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                </div>
-
-                <div class="border border-white/10 p-4 bg-navy-950/60 md:col-span-2 space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-white flex items-center justify-between">
-                        <span><i class="fa-solid fa-bullhorn text-red-400 mr-1.5"></i> 5. Info & Media</span>
-                        <span class="text-[9px] text-platinum-400 font-normal">URL Link Google Sheet</span>
-                    </label>
-                    <input type="text" id="sheetUrlMedia" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" class="w-full bg-navy-900 border border-white/10 py-2.5 px-3 text-xs text-white placeholder-platinum-500 focus:outline-none focus:border-white">
-                </div>
-            </div>
-
-            <div id="adminSyncLog" class="hidden p-3 bg-navy-950 border border-white/10 text-[10px] font-mono text-green-400 space-y-1 max-h-32 overflow-y-auto">
-            </div>
-
-            <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-white/10">
-                <button onclick="closeGoogleSheetsSyncModal()" class="w-full sm:w-auto px-6 py-3 border border-white/20 text-white font-display font-extrabold text-xs uppercase tracking-wider hover:bg-white/10 transition-colors">
-                    Batal / Tutup
-                </button>
-                <button onclick="syncAllGoogleSheets()" class="w-full sm:w-auto px-6 py-3 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-wider hover:bg-platinum-100 transition-colors flex items-center justify-center">
-                    <i class="fa-solid fa-rotate mr-2"></i> Kemaskini &amp; Sinkroni Data
-                </button>
             </div>
         </div>
     </div>
@@ -1168,11 +1033,11 @@
                         <span class="font-display font-black text-lg tracking-widest text-white">ARENA ATHLETIX</span>
                     </div>
                     <p class="text-platinum-400 text-xs leading-relaxed max-w-sm">
-                        Smart Hub Digital - Sistematik - Efisien - Interaktif.
+                        Smart Hub digital yang mentransformasikan penyampaian maklumat Kejohanan Olahraga melalui platform yang sistematik, efisien dan interaktif.
                     </p>
                     <div class="flex space-x-3 pt-2">
                         <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Tiktok"><i class="fa-brands fa-tiktok"></i></a>
                         <a href="#" class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center text-platinum-300 hover:text-white hover:border-white transition-all text-xs" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
@@ -1195,7 +1060,7 @@
                     <ul class="space-y-3 text-xs text-platinum-400">
                         <li class="flex items-start space-x-3">
                             <i class="fa-solid fa-location-dot text-white text-sm mt-0.5"></i>
-                            <span>eL_mioZ Organiser</span>
+                            <span>SK Bukit Kalam W.Persekutuan Labuan</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <i class="fa-solid fa-envelope text-white text-sm"></i>
@@ -1219,14 +1084,14 @@
         const firebaseConfig = typeof __firebase_config !== 'undefined'
             ? JSON.parse(__firebase_config)
             : {
-                apiKey: "AIzaSyBIqqk2dQrCdAX63Vkfk9UTng1d-c2vJ4M",
-                authDomain: "arena-athletix-championship.firebaseapp.com",
-                databaseURL: "https://arena-athletix-championship-default-rtdb.asia-southeast1.firebasedatabase.app",
-                projectId: "arena-athletix-championship",
-                storageBucket: "arena-athletix-championship.firebasestorage.app",
-                messagingSenderId: "523568864694",
-                appId: "1:523568864694:web:0ab856fa25288ca65a7517",
-                measurementId: "G-N7PJ62E3H9"
+                apiKey: "AIzaSyBIqqk2dQrCdAX63Vkfk9UTng1d-c2vJ4M ",
+                authDomain: "arena-athletix-championship.firebaseapp.com ",
+                databaseURL: "https://arena-athletix-championship-default-rtdb.asia-southeast1.firebasedatabase.app ",
+                projectId: "arena-athletix-championship ",
+                storageBucket: "arena-athletix-championship.firebasestorage.app ",
+                messagingSenderId: "523568864694 ",
+                appId: "1:523568864694:web:0ab856fa25288ca65a7517 ",
+                measurementId: "G-N7PJ62E3H9 "
             };
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'athletix-championship';
@@ -1235,25 +1100,21 @@
             firebase.initializeApp(firebaseConfig);
         }
 
+        if (firebase.firestore && typeof firebase.firestore.setLogLevel === 'function') {
+            firebase.firestore.setLogLevel('silent');
+        }
+
         const db = firebase.firestore();
         const auth = firebase.auth();
 
-        // Helper untuk Firestore Public Collection Path
         function getCol(collectionName) {
             return db.collection(`artifacts/${appId}/public/data/${collectionName}`);
         }
 
-        // Pembolehubah Global
         let heroCardsData = [];
         let scheduleData = [];
         let participantConfigsData = [];
         let winnerConfigsData = [];
-        let defaultMedalTally = [
-            { team: "HELANG UTARA", emas: 5, perak: 3, gangsa: 2 },
-            { team: "GARUDA TENGAH", emas: 4, perak: 2, gangsa: 4 },
-            { team: "RAJAWALI", emas: 2, perak: 5, gangsa: 1 },
-            { team: "KENYALANG", emas: 1, perak: 2, gangsa: 3 }
-        ];
         let medalTallyData = [];
         let announcementsData = [];
         let realtimeLinksData = {
@@ -1281,21 +1142,20 @@
                     await auth.signInAnonymously();
                 }
             } catch (err) {
-                console.error("Gagal log masuk Firebase:", err);
+                console.warn("Firebase Auth status:", err);
             }
 
             setupFirestoreListeners();
         }
 
         function setupFirestoreListeners() {
-            // 1. Hero Cards Firestore Sync
             getCol("heroCards").onSnapshot(snapshot => {
-                if (snapshot.empty) {
+                if (!snapshot || snapshot.empty) {
                     const defaultCards = [
                         { id: "1", label: "Tarikh Kejohanan", value: "27 September 2026", subtext: "Disahkan", icon: "fa-calendar-days" },
                         { id: "2", label: "Lokasi Utama", value: "Kompleks Sukan Labuan", subtext: "WP Labuan", icon: "fa-location-dot" },
-                        { id: "3", label: "Bilangan Atlet", value: "578 Orang", subtext: "Atlet Berdaftar", icon: "fa-users" },
-                        { id: "4", label: "Status Kemas Kini", value: "Data Semasa (Live)", subtext: "Jaminan Sinkronisasi", icon: "fa-tower-broadcast" }
+                        { id: "3", label: "Bilangan Atlet", value: "100 Orang", subtext: "Atlet Berdaftar", icon: "fa-users" },
+                        { id: "4", label: "Status Kemas Kini", value: "Secara Langsung", subtext: "Live SYNC", icon: "fa-tower-broadcast" }
                     ];
                     defaultCards.forEach(card => getCol("heroCards").doc(card.id).set(card).catch(() => {}));
                     return;
@@ -1303,40 +1163,43 @@
                 heroCardsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 renderHeroCards();
                 renderAdminDashCardsEditor();
-            }, err => console.error("Firestore heroCards error:", err));
+            }, err => console.warn("Firestore heroCards listener status:", err));
 
-            // 2. Schedule Firestore Sync
             getCol("schedule").onSnapshot(snapshot => {
-                scheduleData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-                renderAdminScheduleTable();
-                renderScheduleFilters();
-                renderPublicScheduleCards();
-            }, err => console.error("Firestore schedule error:", err));
+                if (snapshot) {
+                    scheduleData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                    renderAdminScheduleTable();
+                    renderScheduleFilters();
+                    renderPublicScheduleCards();
+                }
+            }, err => console.warn("Firestore schedule listener status:", err));
 
-            // 3. Participant Configs Firestore Sync
             getCol("participantConfigs").onSnapshot(snapshot => {
-                participantConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-                renderParticipantConfigTable();
-                populateEventDropdown();
-                onEventChanged();
-            }, err => console.error("Firestore participantConfigs error:", err));
+                if (snapshot) {
+                    participantConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                    renderParticipantConfigTable();
+                    populateEventDropdown();
+                    onEventChanged();
+                }
+            }, err => console.warn("Firestore participantConfigs listener status:", err));
 
-            // 4. Winner Configs Firestore Sync
             getCol("winnerConfigs").onSnapshot(snapshot => {
-                winnerConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-                renderWinnerConfigTable();
-                updateWinnersList();
-            }, err => console.error("Firestore winnerConfigs error:", err));
+                if (snapshot) {
+                    winnerConfigsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                    renderWinnerConfigTable();
+                    updateWinnersList();
+                }
+            }, err => console.warn("Firestore winnerConfigs listener status:", err));
 
-            // 5. Announcements Firestore Sync
             getCol("announcements").onSnapshot(snapshot => {
-                announcementsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-                renderAnnouncements();
-            }, err => console.error("Firestore announcements error:", err));
+                if (snapshot) {
+                    announcementsData = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+                    renderAnnouncements();
+                }
+            }, err => console.warn("Firestore announcements listener status:", err));
 
-            // 6. Settings / Config Firestore Sync
             getCol("settings").doc("config").onSnapshot(doc => {
-                if (doc.exists) {
+                if (doc && doc.exists) {
                     appSettings = doc.data() || {};
                     
                     if (appSettings.realtimeLinksData) {
@@ -1366,7 +1229,7 @@
                     loadMedalTally();
                     loadAnugerahData();
                 }
-            }, err => console.error("Firestore settings error:", err));
+            }, err => console.warn("Firestore settings listener status:", err));
         }
 
         function normalizeGoogleSheetUrl(url) {
@@ -1459,10 +1322,10 @@
 
                 tableRowsHTML += `
                     <tr class="hover:bg-white/5 transition-colors border-b border-white/5">
-                        <td class="py-4 px-6 font-display font-bold text-white uppercase">${item.name}</td>
+                        <td class="py-4 px-6 font-display font-bold text-white uppercase">${item.name || ''}</td>
                         <td class="py-4 px-6 text-center font-bold ${catColorClass}">${item.category || '-'}</td>
                         <td class="py-4 px-6 text-center">
-                            <span class="px-2.5 py-1 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round}</span>
+                            <span class="px-2.5 py-1 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round || ''}</span>
                         </td>
                     </tr>
                 `;
@@ -1473,7 +1336,7 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-platinum-300 flex items-center">
                         <i class="fa-regular fa-calendar-days text-yellow-500 mr-2"></i> Acara Dijadualkan
                     </span>
-                    <span class="text-xs font-mono font-bold text-white bg-white/10 px-3 py-1.5 border border-white/10 uppercase tracking-widest">
+                    <span class="text-xs font-sans tabular-nums font-bold text-white bg-white/10 px-3 py-1.5 border border-white/10 uppercase tracking-widest">
                         ${dateMalay}
                     </span>
                 </div>
@@ -1515,10 +1378,10 @@
                     : "bg-white/10 border-white/20 text-platinum-200";
 
                 tr.innerHTML = `
-                    <td class="p-3 font-mono text-platinum-300">${item.date}</td>
-                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
+                    <td class="p-3 font-sans tabular-nums text-platinum-300">${item.date || ''}</td>
+                    <td class="p-3 font-bold text-white uppercase">${item.name || ''}</td>
                     <td class="p-3 ${catClass} font-bold">${item.category || '-'}</td>
-                    <td class="p-3"><span class="px-2 py-0.5 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round}</span></td>
+                    <td class="p-3"><span class="px-2 py-0.5 border text-[9px] font-bold uppercase rounded ${roundBadgeClass}">${item.round || ''}</span></td>
                     <td class="p-3 text-right space-x-2">
                         <button onclick="editScheduleEntry(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Sunting"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button onclick="deleteScheduleEntry(${index})" class="text-red-400 hover:text-red-300 p-1" title="Hapus"><i class="fa-solid fa-trash"></i></button>
@@ -1534,10 +1397,10 @@
 
             editingScheduleIndex = index;
 
-            document.getElementById("adminScheduleDate").value = item.date;
-            document.getElementById("adminScheduleName").value = item.name;
+            document.getElementById("adminScheduleDate").value = item.date || "2026-09-20";
+            document.getElementById("adminScheduleName").value = item.name || "";
             document.getElementById("adminScheduleCategory").value = item.category || "";
-            document.getElementById("adminScheduleRound").value = item.round;
+            document.getElementById("adminScheduleRound").value = item.round || "Saringan 1";
 
             const btnText = document.getElementById("btnScheduleText");
             const cancelBtn = document.getElementById("btnCancelScheduleEdit");
@@ -1621,11 +1484,11 @@
                 cardEl.className = "border border-white/10 bg-navy-900/60 backdrop-blur-md p-4 text-left hover:border-white transition-all duration-300 flex flex-col justify-between min-h-[90px]";
                 cardEl.innerHTML = `
                     <div>
-                        <span class="text-platinum-400 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest block mb-1">${card.label}</span>
-                        <h4 class="font-display font-extrabold text-xs sm:text-sm text-white uppercase leading-tight">${card.value}</h4>
+                        <span class="text-platinum-400 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest block mb-1">${card.label || ''}</span>
+                        <h4 class="font-display font-extrabold text-xs sm:text-sm text-white uppercase leading-tight">${card.value || ''}</h4>
                     </div>
-                    <span class="text-[9px] text-green-400 uppercase tracking-widest font-mono font-bold mt-2 flex items-center">
-                        <i class="fa-solid ${card.icon || 'fa-circle-info'} mr-1.5"></i> ${card.subtext}
+                    <span class="text-[9px] text-green-400 uppercase tracking-widest font-sans font-bold mt-2 flex items-center">
+                        <i class="fa-solid ${card.icon || 'fa-circle-info'} mr-1.5"></i> ${card.subtext || ''}
                     </span>
                 `;
                 container.appendChild(cardEl);
@@ -1649,15 +1512,15 @@
                     </div>
                     <div>
                         <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Tajuk / Label Kad</label>
-                        <input type="text" id="dashLabel_${index}" value="${card.label}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
+                        <input type="text" id="dashLabel_${index}" value="${card.label || ''}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
                     </div>
                     <div>
                         <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Nilai Utama</label>
-                        <input type="text" id="dashVal_${index}" value="${card.value}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
+                        <input type="text" id="dashVal_${index}" value="${card.value || ''}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
                     </div>
                     <div>
                         <label class="text-[9px] uppercase tracking-wider text-platinum-400 font-bold block mb-1">Teks Status / Sub-Teks</label>
-                        <input type="text" id="dashSub_${index}" value="${card.subtext}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
+                        <input type="text" id="dashSub_${index}" value="${card.subtext || ''}" class="w-full bg-navy-900 border border-white/10 py-2 px-3 text-xs text-white focus:outline-none focus:border-white">
                     </div>
                     <div class="pt-2 flex justify-end">
                         <button onclick="saveDashCard(${index})" class="w-full sm:w-auto px-4 py-2 bg-white text-navy-950 hover:bg-platinum-100 font-bold text-[10px] uppercase tracking-widest transition-colors flex items-center justify-center">
@@ -1670,9 +1533,15 @@
         }
 
         async function saveDashCard(index) {
-            const label = document.getElementById(`dashLabel_${index}`).value.trim();
-            const value = document.getElementById(`dashVal_${index}`).value.trim();
-            const subtext = document.getElementById(`dashSub_${index}`).value.trim();
+            const labelEl = document.getElementById(`dashLabel_${index}`);
+            const valEl = document.getElementById(`dashVal_${index}`);
+            const subEl = document.getElementById(`dashSub_${index}`);
+
+            if (!labelEl || !valEl || !subEl) return;
+
+            const label = labelEl.value.trim();
+            const value = valEl.value.trim();
+            const subtext = subEl.value.trim();
 
             if (heroCardsData[index]) {
                 const card = heroCardsData[index];
@@ -1727,8 +1596,8 @@
                 const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
                 
                 tr.innerHTML = `
-                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-3 ${catClass} font-bold">${item.category}</td>
+                    <td class="p-3 font-bold text-white uppercase">${item.name || ''}</td>
+                    <td class="p-3 ${catClass} font-bold">${item.category || ''}</td>
                     <td class="p-3 truncate max-w-[120px]">${item.gsIndividu || "-"}</td>
                     <td class="p-3 truncate max-w-[120px]">${item.gsKumpulan || "-"}</td>
                     <td class="p-3 text-right space-x-2">
@@ -1799,16 +1668,16 @@
             tbody.innerHTML = "";
 
             winnerConfigsData.forEach((item, index) => {
+                const gsLelaki = item.gsLelaki || item.gsIndividu || "";
+                const gsPerempuan = item.gsPerempuan || item.gsKumpulan || "";
+
                 const tr = document.createElement("tr");
                 tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
                 
-                const catClass = item.category === "Lelaki" ? "text-blue-400" : "text-pink-400";
-                
                 tr.innerHTML = `
-                    <td class="p-3 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-3 ${catClass} font-bold">${item.category}</td>
-                    <td class="p-3 truncate max-w-[120px]">${item.gsIndividu || "-"}</td>
-                    <td class="p-3 truncate max-w-[120px]">${item.gsKumpulan || "-"}</td>
+                    <td class="p-3 font-bold text-white uppercase">${item.name || ''}</td>
+                    <td class="p-3 truncate max-w-[120px] text-blue-400 font-sans text-[11px]">${gsLelaki || "-"}</td>
+                    <td class="p-3 truncate max-w-[120px] text-pink-400 font-sans text-[11px]">${gsPerempuan || "-"}</td>
                     <td class="p-3 text-right space-x-2">
                         <button onclick="editWinnerConfig(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button onclick="deleteWinnerConfig(${index})" class="text-red-400 hover:text-red-300 p-1" title="Hapus"><i class="fa-solid fa-trash"></i></button>
@@ -1822,25 +1691,26 @@
             const config = winnerConfigsData[index];
             if (!config) return;
             editingWinnerDocId = config.docId;
+
+            const gsLelaki = config.gsLelaki || config.gsIndividu || "";
+            const gsPerempuan = config.gsPerempuan || config.gsKumpulan || "";
+
             document.getElementById("adminWinnerName").value = config.name || "";
-            document.getElementById("adminWinnerCategory").value = config.category || "Lelaki";
-            document.getElementById("adminWinnerGsIndividu").value = config.gsIndividu || "";
-            document.getElementById("adminWinnerGsKumpulan").value = config.gsKumpulan || "";
+            document.getElementById("adminWinnerGsLelaki").value = gsLelaki;
+            document.getElementById("adminWinnerGsPerempuan").value = gsPerempuan;
         }
 
         async function saveWinnerEventConfig() {
             const nameVal = document.getElementById("adminWinnerName").value.trim();
-            const catVal = document.getElementById("adminWinnerCategory").value;
-            const indVal = document.getElementById("adminWinnerGsIndividu").value.trim();
-            const kumVal = document.getElementById("adminWinnerGsKumpulan").value.trim();
+            const lelakiVal = document.getElementById("adminWinnerGsLelaki").value.trim();
+            const perempuanVal = document.getElementById("adminWinnerGsPerempuan").value.trim();
 
             if (!nameVal) return;
 
             const payload = {
                 name: nameVal.toUpperCase(),
-                category: catVal,
-                gsIndividu: indVal,
-                gsKumpulan: kumVal
+                gsLelaki: lelakiVal,
+                gsPerempuan: perempuanVal
             };
 
             try {
@@ -1855,8 +1725,8 @@
 
             editingWinnerDocId = null;
             document.getElementById("adminWinnerName").value = "";
-            document.getElementById("adminWinnerGsIndividu").value = "";
-            document.getElementById("adminWinnerGsKumpulan").value = "";
+            document.getElementById("adminWinnerGsLelaki").value = "";
+            document.getElementById("adminWinnerGsPerempuan").value = "";
         }
 
         async function deleteWinnerConfig(index) {
@@ -1920,7 +1790,7 @@
                 if ((b.emas || 0) !== (a.emas || 0)) return (b.emas || 0) - (a.emas || 0);
                 if ((b.perak || 0) !== (a.perak || 0)) return (b.perak || 0) - (a.perak || 0);
                 if ((b.gangsa || 0) !== (a.gangsa || 0)) return (b.gangsa || 0) - (a.gangsa || 0);
-                return a.team.localeCompare(b.team);
+                return (a.team || '').localeCompare(b.team || '');
             });
 
             if (sortedData.length > 0) {
@@ -1932,16 +1802,24 @@
             if (sortedData.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="py-8 text-center text-platinum-400">
-                            <i class="fa-solid fa-trophy text-2xl mb-2 block"></i>
-                            <span class="text-xs font-bold uppercase tracking-wider">Tiada Rekod Pingat Ditemui</span>
+                        <td colspan="6" class="py-12 text-center">
+                            <div class="flex flex-col items-center justify-center p-6">
+                                <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-platinum-400 mb-4">
+                                    <i class="fa-solid fa-ranking-star text-2xl"></i>
+                                </div>
+                                <p class="text-sm font-display font-extrabold text-white uppercase tracking-wider mb-1">Tiada Rekod Pingat Rasmi</p>
+                                <p class="text-xs text-platinum-400 max-w-sm">Keputusan pungutan pingat belum dimuatkan atau belum dikemaskini bagi kejohanan ini.</p>
+                            </div>
                         </td>
                     </tr>
                 `;
                 return;
             }
 
-            sortedData.forEach((item, index) => {
+            // Tetapkan hanya 4 pasukan terbaik sahaja
+            const top4Data = sortedData.slice(0, 4);
+
+            top4Data.forEach((item, index) => {
                 const total = (item.emas || 0) + (item.perak || 0) + (item.gangsa || 0);
                 const tr = document.createElement("tr");
                 tr.className = "table-row-item hover:bg-white/5 transition-colors";
@@ -1951,13 +1829,13 @@
                     <td class="py-4 px-6 text-center font-display font-black text-sm text-white">${index + 1}</td>
                     <td class="py-4 px-6 font-display font-bold text-white">
                         <span class="inline-block px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest rounded ${badgeStyle}">
-                            ${item.team}
+                            ${item.team || ''}
                         </span>
                     </td>
-                    <td class="py-4 px-6 text-center font-mono font-bold text-sm text-white">${item.emas || 0}</td>
-                    <td class="py-4 px-6 text-center font-mono font-bold text-sm text-platinum-300">${item.perak || 0}</td>
-                    <td class="py-4 px-6 text-center font-mono font-bold text-sm text-platinum-300">${item.gangsa || 0}</td>
-                    <td class="py-4 px-6 text-center font-mono font-black text-sm bg-white/5 text-white">${total}</td>
+                    <td class="py-4 px-6 text-center font-sans tabular-nums font-bold text-sm text-white">${item.emas || 0}</td>
+                    <td class="py-4 px-6 text-center font-sans tabular-nums font-bold text-sm text-platinum-300">${item.perak || 0}</td>
+                    <td class="py-4 px-6 text-center font-sans tabular-nums font-bold text-sm text-platinum-300">${item.gangsa || 0}</td>
+                    <td class="py-4 px-6 text-center font-sans tabular-nums font-black text-sm bg-white/5 text-white">${total}</td>
                 `;
                 tableBody.appendChild(tr);
             });
@@ -1970,7 +1848,7 @@
             const perakEl = document.getElementById("juaraPerak");
             const gangsaEl = document.getElementById("juaraGangsa");
 
-            if (teamNameEl) teamNameEl.textContent = topTeam.team;
+            if (teamNameEl) teamNameEl.textContent = topTeam.team || "Dalam Proses";
             if (emasEl) emasEl.textContent = topTeam.emas || 0;
             if (perakEl) perakEl.textContent = topTeam.perak || 0;
             if (gangsaEl) gangsaEl.textContent = topTeam.gangsa || 0;
@@ -1987,7 +1865,7 @@
 
             tr.innerHTML = `
                 <td class="p-3 font-bold text-white uppercase">Kedudukan Pingat Rasmi</td>
-                <td class="p-3 truncate max-w-[280px] font-mono text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
+                <td class="p-3 truncate max-w-[280px] font-sans text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
                 <td class="p-3 text-right space-x-1.5">
                     <button onclick="editPingatConfig()" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
                         <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
@@ -2021,7 +1899,6 @@
                 console.error("Gagal menyimpan tetapan pingat ke Firestore:", e);
             }
 
-            logAdminMsg("Pautan Kedudukan Pingat telah disimpan.");
             await loadMedalTally();
         }
 
@@ -2035,14 +1912,12 @@
                 console.error("Gagal memadam pautan pingat dari Firestore:", e);
             }
 
-            logAdminMsg("Pautan Kedudukan Pingat telah dihapus.");
             await loadMedalTally();
         }
 
         async function syncPingatFromGoogleSheet() {
             await savePingatConfig();
             await loadMedalTally();
-            logAdminMsg("Kedudukan Pingat berjaya dikemaskini dari Google Sheet CSV.");
         }
 
         function searchTally() {
@@ -2092,14 +1967,14 @@
                     card.className = "bg-navy-950 border border-white/20 p-3.5 relative rounded-none space-y-1";
                     card.innerHTML = `
                         <div class="flex justify-between items-start">
-                            <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-[9px] rounded uppercase font-bold inline-block">${item.category}</span>
+                            <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-[9px] rounded uppercase font-bold inline-block">${item.category || ''}</span>
                             <div class="flex space-x-2">
                                 <button onclick="editAnnouncement(${index})" class="text-blue-400 hover:text-white p-1" title="Sunting"><i class="fa-solid fa-pen-to-square text-xs"></i></button>
                                 <button onclick="deleteAnnouncement(${index})" class="text-red-400 hover:text-white p-1" title="Hapus"><i class="fa-solid fa-trash text-xs"></i></button>
                             </div>
                         </div>
-                        <p class="text-xs font-bold text-white uppercase">${item.title}</p>
-                        <p class="text-[10px] text-platinum-400 leading-relaxed">${item.message}</p>
+                        <p class="text-xs font-bold text-white uppercase">${item.title || ''}</p>
+                        <p class="text-[10px] text-platinum-400 leading-relaxed">${item.message || ''}</p>
                     `;
                     activeCardsContainer.appendChild(card);
                 }
@@ -2114,10 +1989,10 @@
                         <span class="text-[10px] font-bold text-platinum-400 uppercase tracking-widest">Hebahan & Pengumuman Terkini</span>
                     </div>
                     <h4 class="font-display font-black text-xs text-white uppercase tracking-wider flex items-center">
-                        <i class="fa-solid fa-circle-exclamation text-yellow-500 mr-1.5"></i> ${activeAnnouncement.category}
+                        <i class="fa-solid fa-circle-exclamation text-yellow-500 mr-1.5"></i> ${activeAnnouncement.category || ''}
                     </h4>
-                    <p class="text-xs font-bold text-white uppercase mt-1">${activeAnnouncement.title}</p>
-                    <p class="text-xs text-platinum-300 leading-relaxed mt-0.5">${activeAnnouncement.message}</p>
+                    <p class="text-xs font-bold text-white uppercase mt-1">${activeAnnouncement.title || ''}</p>
+                    <p class="text-xs text-platinum-300 leading-relaxed mt-0.5">${activeAnnouncement.message || ''}</p>
                 `;
             }
         }
@@ -2168,6 +2043,29 @@
             }
         }
 
+        function cancelAnnouncementEdit() {
+            editingAnnouncementIndex = -1;
+            document.getElementById("adminAnnouncementTitle").value = "";
+            document.getElementById("adminAnnouncementMessage").value = "";
+            const btnText = document.getElementById("btnAnnouncementText");
+            const cancelBtn = document.getElementById("btnCancelAnnouncementEdit");
+            if (btnText) btnText.textContent = "Simpan Hebahan";
+            if (cancelBtn) cancelBtn.classList.add("hidden");
+        }
+
+        function editAnnouncement(index) {
+            const item = announcementsData[index];
+            if (!item) return;
+            editingAnnouncementIndex = index;
+            document.getElementById("adminAnnouncementCategory").value = item.category || "";
+            document.getElementById("adminAnnouncementTitle").value = item.title || "";
+            document.getElementById("adminAnnouncementMessage").value = item.message || "";
+            const btnText = document.getElementById("btnAnnouncementText");
+            const cancelBtn = document.getElementById("btnCancelAnnouncementEdit");
+            if (btnText) btnText.textContent = "Kemaskini Hebahan";
+            if (cancelBtn) cancelBtn.classList.remove("hidden");
+        }
+
         function renderRealtimeLinks() {
             const pdfInput = document.getElementById("adminRealtimePdfUrl");
             const galleryInput = document.getElementById("adminRealtimeGalleryUrl");
@@ -2200,7 +2098,7 @@
                 tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
                 tr.innerHTML = `
                     <td class="p-2.5 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-2.5 font-mono text-[11px] text-platinum-300 truncate max-w-[180px]">${item.url || '<span class="text-platinum-500 italic">Kosong</span>'}</td>
+                    <td class="p-2.5 font-sans text-[11px] text-platinum-300 truncate max-w-[180px]">${item.url || '<span class="text-platinum-500 italic">Kosong</span>'}</td>
                     <td class="p-2.5 text-right space-x-1">
                         <button onclick="editRealtimeLink('${item.inputId}')" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
                             <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
@@ -2215,6 +2113,14 @@
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        function editRealtimeLink(inputId) {
+            const el = document.getElementById(inputId);
+            if (el) {
+                el.focus();
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
         async function saveRealtimeLinks() {
@@ -2234,8 +2140,6 @@
             } catch (e) {
                 console.error("Gagal menyimpan pautan ke Firestore:", e);
             }
-
-            logAdminMsg("Pautan Info & Media Real-Time telah dikemaskini.");
         }
 
         async function clearRealtimeLink(key, inputId) {
@@ -2249,8 +2153,6 @@
             } catch (e) {
                 console.error("Gagal memadam pautan dari Firestore:", e);
             }
-
-            logAdminMsg("Pautan telah dihapus.");
         }
 
         async function saveAnugerahConfig() {
@@ -2268,8 +2170,6 @@
             } catch (e) {
                 console.error("Gagal menyimpan anugerah ke Firestore:", e);
             }
-
-            logAdminMsg("Tetapan Pautan Anugerah telah disimpan.");
         }
 
         function renderAnugerahConfigTable() {
@@ -2289,7 +2189,7 @@
 
                 tr.innerHTML = `
                     <td class="p-3 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-3 truncate max-w-[280px] font-mono text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
+                    <td class="p-3 truncate max-w-[280px] font-sans text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
                     <td class="p-3 text-right space-x-1.5">
                         <button onclick="editAnugerahConfig('${item.inputId}')" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
                             <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
@@ -2322,7 +2222,6 @@
             } catch (e) {
                 console.error("Gagal memadam anugerah dari Firestore:", e);
             }
-            logAdminMsg("Pautan Anugerah telah dihapus.");
         }
 
         async function loadAnugerahData() {
@@ -2407,7 +2306,7 @@
             participantConfigsData.forEach(ev => {
                 const opt = document.createElement("option");
                 opt.value = ev.docId;
-                opt.textContent = `${ev.name} - ${ev.category}`;
+                opt.textContent = `${ev.name || ''} - ${ev.category || ''}`;
                 select.appendChild(opt);
             });
 
@@ -2495,7 +2394,7 @@
         }
 
         async function updateStartList() {
-            const currentConfig = participantConfigsData.find(ev => ev.eventNo === selectedEventId);
+            const currentConfig = participantConfigsData.find(ev => ev.docId === selectedEventId);
             if (!currentConfig) {
                 renderStartList([]);
                 return;
@@ -2522,39 +2421,44 @@
                 const rows = parseCSVText(csvText);
 
                 const parsedAthletes = [];
-                if (rows.length > 1) {
-                    for (let i = 1; i < rows.length; i++) {
+                if (rows.length > 0) {
+                    let startIndex = 0;
+                    if (isNaN(parseInt(rows[0][0]))) {
+                        startIndex = 1;
+                    }
+
+                    for (let i = startIndex; i < rows.length; i++) {
                         const row = rows[i];
-                        if (row.length < 2) continue;
+                        if (!row || row.length < 2) continue;
 
                         if (isKumpulanSheet) {
-                            const lane = parseInt(row[0]) || (i);
-                            const team = (row[1] || "") + " " + (row[2] || "") + " " + (row[3] || "") + " " + (row[4] || "");
+                            const lane = parseInt(row[0]) || (i - startIndex + 1);
+                            const team = [row[1], row[2], row[3], row[4]].filter(Boolean).join(" ").trim();
                             const roundVal = parseRoundIndicator(row[5] || row[row.length - 1]);
-                            if (team.trim()) {
+                            if (team) {
                                 parsedAthletes.push({
                                     eventId: selectedEventId,
                                     round: roundVal || "akhir",
                                     lane: lane,
                                     name: "",
-                                    team: team.trim().toUpperCase(),
+                                    team: team.toUpperCase(),
                                     bib: ""
                                 });
                             }
                         } else {
-                            const lane = parseInt(row[0]) || (i);
-                            const name = (row[1] || "") + " " + (row[2] || "");
+                            const lane = parseInt(row[0]) || (i - startIndex + 1);
+                            const name = [row[1], row[2]].filter(Boolean).join(" ").trim();
                             const team = row[3] || "";
                             const bib = row[4] || "";
                             const roundVal = parseRoundIndicator(row[5] || row[row.length - 1]);
 
-                            if (name.trim() || team.trim()) {
+                            if (name || team) {
                                 parsedAthletes.push({
                                     eventId: selectedEventId,
                                     round: roundVal || "saringan_1",
                                     lane: lane,
-                                    name: name.trim().toUpperCase(),
-                                    team: team.trim().toUpperCase(),
+                                    name: name.toUpperCase(),
+                                    team: team.toUpperCase(),
                                     bib: bib
                                 });
                             }
@@ -2579,67 +2483,115 @@
             
             tbody.innerHTML = "";
 
-            const currentConfig = participantConfigsData.find(ev => ev.eventNo === selectedEventId);
-            const isRelay = isRelaySheet || (currentConfig && Boolean(currentConfig.gsKumpulan && !currentConfig.gsIndividu));
-
             if (!athletes || athletes.length === 0) {
+                if (tbody.parentElement && tbody.parentElement.parentElement) {
+                    tbody.parentElement.parentElement.classList.add("hidden");
+                }
                 emptyMsg.classList.remove("hidden");
-            } else {
-                emptyMsg.classList.add("hidden");
+                return;
+            }
+
+            if (tbody.parentElement && tbody.parentElement.parentElement) {
+                tbody.parentElement.parentElement.classList.remove("hidden");
+            }
+            emptyMsg.classList.add("hidden");
+
+            athletes.forEach(ath => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
                 
-                athletes.forEach(ath => {
-                    const tr = document.createElement("tr");
-                    tr.className = "hover:bg-white/5 transition-colors border-b border-white/5";
-
-                    const tdLane = document.createElement("td");
-                    tdLane.className = "py-4 px-6 text-center font-mono font-bold text-sm text-white";
-                    tdLane.textContent = ath.lane;
-                    tr.appendChild(tdLane);
-
-                    if (!isRelay) {
-                        const tdName = document.createElement("td");
-                        tdName.className = "py-4 px-6 font-display font-bold text-white uppercase";
-                        tdName.textContent = ath.name;
-                        tr.appendChild(tdName);
-                    }
-
-                    const tdTeam = document.createElement("td");
-                    tdTeam.className = "py-4 px-6";
-                    
-                    let teamColorClass = "text-white";
-                    let iconColorClass = "text-white";
-
-                    if (ath.team.includes("HELANG")) {
-                        teamColorClass = "text-green-500";
-                        iconColorClass = "text-green-500";
-                    } else if (ath.team.includes("RAJAWALI")) {
-                        teamColorClass = "text-blue-500";
-                        iconColorClass = "text-blue-500";
-                    } else if (ath.team.includes("GARUDA")) {
-                        teamColorClass = "text-red-500";
-                        iconColorClass = "text-red-500";
-                    } else if (ath.team.includes("KENYALANG")) {
-                        teamColorClass = "text-yellow-500";
-                        iconColorClass = "text-yellow-500";
-                    }
-
-                    tdTeam.innerHTML = `
-                        <span class="${teamColorClass} font-bold flex items-center space-x-2">
-                            <i class="fa-solid fa-shield-halved ${iconColorClass}"></i>
-                            <span>${ath.team}</span>
-                        </span>
+                if (isRelaySheet) {
+                    const badgeStyle = getTeamBadgeStyle(ath.team);
+                    tr.innerHTML = `
+                        <td class="py-4 px-6 text-center font-sans tabular-nums font-bold text-white">${ath.lane}</td>
+                        <td colspan="3" class="py-4 px-6 font-bold text-white">
+                            <span class="inline-block px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest rounded ${badgeStyle}">
+                                ${ath.team || ''}
+                            </span>
+                        </td>
                     `;
-                    tr.appendChild(tdTeam);
+                } else {
+                    const badgeStyle = getTeamBadgeStyle(ath.team);
+                    tr.innerHTML = `
+                        <td class="py-4 px-6 text-center font-sans tabular-nums font-bold text-white">${ath.lane}</td>
+                        <td class="py-4 px-6 font-bold text-white uppercase">${ath.name || '-'}</td>
+                        <td class="py-4 px-6">
+                            <span class="inline-block px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest rounded ${badgeStyle}">
+                                ${ath.team || '-'}
+                            </span>
+                        </td>
+                        <td class="py-4 px-6 text-center font-sans tabular-nums font-bold text-platinum-300">${ath.bib || '-'}</td>
+                    `;
+                }
+                tbody.appendChild(tr);
+            });
+        }
 
-                    if (!isRelay) {
-                        const tdBib = document.createElement("td");
-                        tdBib.className = "py-4 px-6 text-center font-mono text-platinum-300";
-                        tdBib.textContent = ath.bib;
-                        tr.appendChild(tdBib);
+        async function fetchSheetWinnersData(url, configDocId, genderLabel) {
+            if (!url) return [];
+            const targetUrl = normalizeGoogleSheetUrl(url);
+            if (!targetUrl) return [];
+
+            const cacheKey = `${configDocId}_${genderLabel}_${targetUrl}`;
+            if (fetchedWinnersCache[cacheKey]) {
+                return fetchedWinnersCache[cacheKey];
+            }
+
+            try {
+                const res = await fetch(targetUrl);
+                if (!res.ok) throw new Error("Gagal memuat turun CSV");
+                const csvText = await res.text();
+                const rows = parseCSVText(csvText);
+
+                const winnersList = [];
+                if (rows && rows.length > 0) {
+                    let startIndex = 0;
+                    if (isNaN(parseInt(rows[0][0])) || (rows[0][0] && rows[0][0].toLowerCase().includes("ked"))) {
+                        startIndex = 1;
                     }
 
-                    tbody.appendChild(tr);
-                });
+                    for (let i = startIndex; i < rows.length; i++) {
+                        const row = rows[i];
+                        if (!row || row.length < 2) continue;
+
+                        const rank = parseInt(row[0]) || (i - startIndex + 1);
+                        const col1 = (row[1] || "").trim();
+                        const col2 = (row[2] || "").trim();
+                        const col3 = (row[3] || "").trim();
+                        const col4 = (row[4] || "").trim();
+                        const col5 = (row[5] || row[row.length - 1] || "").trim();
+
+                        let name = [col1, col2].filter(Boolean).join(" ").trim().toUpperCase();
+                        let team = col3.toUpperCase();
+                        let bib = col4;
+                        let score = col5;
+
+                        // Lenient Parsing
+                        if (!team && (name.includes("HELANG") || name.includes("GARUDA") || name.includes("KENYALANG") || name.includes("RAJAWALI"))) {
+                            team = name;
+                            name = "";
+                        }
+                        
+                        if (!name && !team && col1) {
+                            name = col1.toUpperCase();
+                        }
+
+                        if (name || team) {
+                            winnersList.push({
+                                rank: rank,
+                                name: name,
+                                team: team,
+                                bib: bib,
+                                score: score
+                            });
+                        }
+                    }
+                    fetchedWinnersCache[cacheKey] = winnersList;
+                }
+                return winnersList;
+            } catch (err) {
+                console.warn("Gagal muat data pemenang dari URL:", targetUrl, err);
+                return [];
             }
         }
 
@@ -2650,152 +2602,143 @@
             grid.innerHTML = "";
 
             if (!winnerConfigsData || winnerConfigsData.length === 0) {
-                grid.innerHTML = `<p class="col-span-full text-center py-12 text-xs font-bold uppercase tracking-wider text-platinum-400">Tiada Acara Keputusan Rasmi Pemenang Didaftarkan</p>`;
+                grid.innerHTML = `
+                    <div class="col-span-full border border-white/10 bg-navy-900/40 p-12 text-center">
+                        <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-platinum-400 mx-auto mb-4">
+                            <i class="fa-solid fa-medal text-2xl"></i>
+                        </div>
+                        <p class="text-sm font-display font-extrabold uppercase tracking-wider text-white mb-1">Tiada Keputusan Rasmi Pemenang</p>
+                        <p class="text-xs text-platinum-400">Belum ada tetapan acara atau data keputusan rasmi yang didaftarkan dalam sistem.</p>
+                    </div>
+                `;
                 populateWinnerEventDropdown();
                 return;
             }
 
             for (const config of winnerConfigsData) {
-                const isKumpulan = Boolean(!config.gsIndividu && config.gsKumpulan);
-                const rawUrl = config.gsIndividu || config.gsKumpulan;
-                const targetUrl = normalizeGoogleSheetUrl(rawUrl);
+                if (!config) continue;
 
-                let winnersList = [];
+                const urlLelaki = config.gsLelaki || config.gsIndividu || "";
+                const urlPerempuan = config.gsPerempuan || config.gsKumpulan || "";
 
-                if (targetUrl) {
-                    if (fetchedWinnersCache[targetUrl]) {
-                        winnersList = fetchedWinnersCache[targetUrl];
-                    } else {
-                        try {
-                            const res = await fetch(targetUrl);
-                            const csvText = await res.text();
-                            const rows = parseCSVText(csvText);
+                let winnersLelaki = [];
+                let winnersPerempuan = [];
 
-                            if (rows.length > 0) {
-                                let startIndex = 0;
-                                if (isNaN(parseInt(rows[0][0]))) {
-                                    startIndex = 1;
-                                }
-
-                                for (let i = startIndex; i < rows.length; i++) {
-                                    const row = rows[i];
-                                    if (!row || row.length < 2) continue;
-
-                                    const rank = parseInt(row[0]) || (i - startIndex + 1);
-
-                                    if (isKumpulan) {
-                                        const team = [row[1], row[2], row[3], row[4]].filter(Boolean).join(" ").trim().toUpperCase();
-                                        const score = row[5] || row[row.length - 1] || "";
-                                        if (team) {
-                                            winnersList.push({
-                                                rank: rank,
-                                                name: "",
-                                                team: team,
-                                                bib: "",
-                                                score: score
-                                            });
-                                        }
-                                    } else {
-                                        const name = [row[1], row[2]].filter(Boolean).join(" ").trim().toUpperCase();
-                                        const team = (row[3] || "").trim().toUpperCase();
-                                        const bib = (row[4] || "").trim();
-                                        const score = (row[5] || "").trim();
-
-                                        if (name || team) {
-                                            winnersList.push({
-                                                rank: rank,
-                                                name: name,
-                                                team: team,
-                                                bib: bib,
-                                                score: score
-                                            });
-                                        }
-                                    }
-                                }
-                                fetchedWinnersCache[targetUrl] = winnersList;
-                            }
-                        } catch (err) {
-                            console.error("Gagal muat data pemenang:", err);
-                        }
-                    }
+                if (urlLelaki) {
+                    winnersLelaki = await fetchSheetWinnersData(urlLelaki, config.docId, "LELAKI");
+                }
+                if (urlPerempuan) {
+                    winnersPerempuan = await fetchSheetWinnersData(urlPerempuan, config.docId, "PEREMPUAN");
                 }
 
-                const cardEl = createWinnerCardElement(config, winnersList);
-                grid.appendChild(cardEl);
+                // Buat kad kombinasi side-by-side
+                const combinedCard = createCombinedWinnerCard(config, winnersLelaki, winnersPerempuan);
+                if (combinedCard) grid.appendChild(combinedCard);
             }
 
             populateWinnerEventDropdown();
             filterWinnersBySearch();
         }
 
-        function createWinnerCardElement(config, winners) {
-            const cardDiv = document.createElement("div");
-            cardDiv.className = "winner-event-card border border-white/10 p-5 bg-navy-900/40 hover:border-white transition-all duration-300 flex flex-col justify-between";
-            cardDiv.setAttribute("data-event-id", config.docId);
-            cardDiv.setAttribute("data-event-name", config.name.toUpperCase());
-            cardDiv.setAttribute("data-category", config.category.toUpperCase());
+        function createCombinedWinnerCard(config, winnersLelaki, winnersPerempuan) {
+            if (!config) return null;
 
-            let winnersRowsHTML = "";
+            const cardWrapper = document.createElement("div");
+            cardWrapper.className = "winner-event-card col-span-full bg-navy-900/40 border border-white/10 hover:border-white transition-all duration-300 block";
+            cardWrapper.setAttribute("data-event-id", config.docId || "");
+            cardWrapper.setAttribute("data-event-name", (config.name || "").toUpperCase());
 
-            if (!winners || winners.length === 0) {
-                winnersRowsHTML = `<p class="text-xs text-platinum-400 py-6 text-center italic uppercase">Keputusan belum dimuatkan / pautan belum ditetapkan</p>`;
-            } else {
-                winners.sort((a, b) => a.rank - b.rank);
-
-                winners.forEach((w, idx) => {
-                    let badgeClass = "bg-white/10 border-white/20 text-white";
-                    let rankNum = w.rank || (idx + 1);
-
-                    if (rankNum === 1) {
-                        badgeClass = "bg-yellow-500/15 border-yellow-500/30 text-yellow-500";
-                    } else if (rankNum === 2) {
-                        badgeClass = "bg-slate-300/15 border-slate-300/30 text-slate-300";
-                    } else if (rankNum === 3) {
-                        badgeClass = "bg-amber-700/15 border-amber-700/30 text-amber-700";
-                    }
-
-                    const borderClass = idx < winners.length - 1 ? "border-b border-white/5 pb-2" : "";
-
-                    const displayName = w.name ? `<p class="text-xs font-bold text-white uppercase">${w.name}</p>` : "";
-                    const displayTeam = `<p class="text-[9px] text-platinum-400 uppercase">${w.team}</p>`;
-                    const displayBib = w.bib ? `<p class="text-[9px] text-platinum-400 font-mono">Bib: #${w.bib}</p>` : "";
-                    const displayScore = w.score ? `<p class="text-xs font-bold text-white font-mono">${w.score}</p>` : "";
-
-                    winnersRowsHTML += `
-                        <div class="flex items-center justify-between ${borderClass}">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-6 h-6 rounded-full ${badgeClass} border flex items-center justify-center text-[10px] font-black">${rankNum}</div>
-                                <div>
-                                    ${displayName}
-                                    ${displayTeam}
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                ${displayScore}
-                                ${displayBib}
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-
-            cardDiv.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-[9px] uppercase tracking-widest font-extrabold px-2.5 py-1 bg-green-500/10 text-green-400">
-                            SELESAI
-                        </span>
-                        <span class="text-[10px] text-platinum-400 font-mono">${config.category}</span>
-                    </div>
-                    <h3 class="winner-event-name font-display font-extrabold text-base text-white uppercase mb-4">${config.name}</h3>
-                    
-                    <div class="space-y-3">
-                        ${winnersRowsHTML}
-                    </div>
+            const headerHTML = `
+                <div class="p-4 sm:p-5 border-b border-white/10 bg-navy-950/50 flex justify-between items-center">
+                    <h3 class="font-display font-extrabold text-base sm:text-lg text-white uppercase">${config.name || ''}</h3>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-widest font-extrabold px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20">
+                        SELESAI
+                    </span>
                 </div>
             `;
 
-            return cardDiv;
+            const generateListHTML = (winners, gender) => {
+                let html = "";
+                if (!winners || winners.length === 0) {
+                    html = `
+                        <div class="py-8 px-4 text-center">
+                            <i class="fa-solid fa-hourglass-half text-xl text-platinum-500 mb-2 block"></i>
+                            <p class="text-xs font-bold text-platinum-300 uppercase tracking-wider">Keputusan Belum Dimuatkan</p>
+                            <p class="text-[10px] text-platinum-500 mt-1">Data bagi pusingan ini belum rasmi atau dalam proses kemas kini.</p>
+                        </div>
+                    `;
+                } else {
+                    winners.sort((a, b) => a.rank - b.rank);
+                    winners.forEach((w, idx) => {
+                        let badgeClass = "bg-white/10 border-white/20 text-white";
+                        let rankNum = w.rank || (idx + 1);
+
+                        if (rankNum === 1) {
+                            badgeClass = "bg-yellow-500/15 border-yellow-500/30 text-yellow-500";
+                        } else if (rankNum === 2) {
+                            badgeClass = "bg-slate-300/15 border-slate-300/30 text-slate-300";
+                        } else if (rankNum === 3) {
+                            badgeClass = "bg-amber-700/15 border-amber-700/30 text-amber-700";
+                        }
+
+                        const borderClass = idx < winners.length - 1 ? "border-b border-white/5 pb-3" : "";
+
+                        let teamColorClass = "text-platinum-400";
+                        const upperTeam = (w.team || "").toUpperCase();
+                        if (upperTeam.includes("HELANG")) teamColorClass = "text-green-400 font-bold";
+                        else if (upperTeam.includes("GARUDA")) teamColorClass = "text-red-400 font-bold";
+                        else if (upperTeam.includes("KENYALANG")) teamColorClass = "text-yellow-400 font-bold";
+                        else if (upperTeam.includes("RAJAWALI")) teamColorClass = "text-blue-400 font-bold";
+
+                        const displayName = w.name ? `<p class="text-xs font-bold text-white uppercase">${w.name}</p>` : "";
+                        const displayTeam = `<p class="text-[9px] sm:text-[10px] ${teamColorClass} uppercase mt-0.5">${w.team || ''}</p>`;
+                        const displayBib = w.bib ? `<p class="text-[9px] text-platinum-400 font-sans tabular-nums mt-1">Bib: #${w.bib}</p>` : "";
+                        const displayScore = w.score ? `<p class="text-xs font-bold text-white font-sans tabular-nums">${w.score}</p>` : "";
+
+                        html += `
+                            <div class="flex items-center justify-between ${borderClass} mb-3 last:mb-0">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-8 h-8 rounded-full ${badgeClass} border flex items-center justify-center text-xs font-black shrink-0 mt-0.5">${rankNum}</div>
+                                    <div>
+                                        ${displayName}
+                                        ${displayTeam}
+                                    </div>
+                                </div>
+                                <div class="text-right pl-2">
+                                    ${displayScore}
+                                    ${displayBib}
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                const badgeColor = gender === "LELAKI" ? "text-blue-400 bg-blue-500/10 border-blue-500/20" : "text-pink-400 bg-pink-500/10 border-pink-500/20";
+                
+                return `
+                    <div class="p-4 sm:p-5">
+                        <div class="mb-5 inline-block px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest border ${badgeColor}">
+                            KATEGORI ${gender}
+                        </div>
+                        <div class="space-y-1">
+                            ${html}
+                        </div>
+                    </div>
+                `;
+            };
+
+            const lelakiHTML = generateListHTML(winnersLelaki, "LELAKI");
+            const perempuanHTML = generateListHTML(winnersPerempuan, "PEREMPUAN");
+
+            cardWrapper.innerHTML = `
+                ${headerHTML}
+                <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+                    ${lelakiHTML}
+                    ${perempuanHTML}
+                </div>
+            `;
+
+            return cardWrapper;
         }
 
         function populateWinnerEventDropdown() {
@@ -2805,46 +2748,69 @@
             const previousVal = select.value;
             select.innerHTML = "";
 
+            const allOpt = document.createElement("option");
+            allOpt.value = "ALL";
+            allOpt.textContent = "-- SEMUA ACARA --";
+            select.appendChild(allOpt);
+
             if (winnerConfigsData && winnerConfigsData.length > 0) {
                 winnerConfigsData.forEach(config => {
+                    if (!config) return;
+
                     const opt = document.createElement("option");
                     opt.value = config.docId;
-                    opt.textContent = `${config.name} - ${config.category}`;
+                    opt.textContent = config.name || "Acara Tanpa Nama";
                     select.appendChild(opt);
                 });
 
-                if (previousVal && winnerConfigsData.some(config => config.docId === previousVal)) {
+                if (previousVal && select.querySelector(`option[value="${previousVal}"]`)) {
                     select.value = previousVal;
                 } else {
-                    select.value = winnerConfigsData[0].docId;
+                    select.value = "ALL";
                 }
             }
         }
 
         function filterWinnersBySearch() {
+            const searchInput = document.getElementById("winnerSearchInput");
             const eventSelect = document.getElementById("winnerEventSelect");
-            const categorySelect = document.getElementById("winnerCategorySelect");
-            
-            const selectedEventId = eventSelect ? eventSelect.value.toUpperCase() : "";
-            const selectedCat = categorySelect ? categorySelect.value.toUpperCase() : "ALL";
+
+            const queryText = searchInput ? searchInput.value.trim().toUpperCase() : "";
+            const selectedDropdownVal = eventSelect ? eventSelect.value : "ALL";
 
             const cards = document.querySelectorAll(".winner-event-card");
             let visibleCount = 0;
+            let displayLimitCount = 0;
 
             cards.forEach(card => {
-                const cardEventId = (card.getAttribute("data-event-id") || "").toUpperCase();
-                const cardEventName = (card.getAttribute("data-event-name") || "").toUpperCase();
-                const cardCat = (card.getAttribute("data-category") || "").toUpperCase();
+                const cardEventId = card.getAttribute("data-event-id") || "";
+                const cardFullText = card.textContent.toUpperCase();
 
-                const matchesEvent = (cardEventId === selectedEventId) || (cardEventName === selectedEventId);
-                const matchesCat = (selectedCat === "ALL") || (cardCat === selectedCat);
-
-                if (matchesEvent && matchesCat) {
-                    card.classList.remove("hidden");
-                    card.classList.add("flex");
-                    visibleCount++;
+                let matchesSelect = false;
+                if (selectedDropdownVal === "ALL") {
+                    matchesSelect = true;
                 } else {
-                    card.classList.remove("flex");
+                    matchesSelect = (cardEventId === selectedDropdownVal);
+                }
+
+                let matchesQuery = true;
+                if (queryText !== "") {
+                    matchesQuery = cardFullText.includes(queryText);
+                }
+
+                if (matchesSelect && matchesQuery) {
+                    // Hadkan kepada 2 paparan sahaja jika "ALL" dipilih
+                    if (selectedDropdownVal === "ALL" && displayLimitCount >= 2) {
+                        card.classList.remove("block");
+                        card.classList.add("hidden");
+                    } else {
+                        card.classList.remove("hidden");
+                        card.classList.add("block");
+                        visibleCount++;
+                        displayLimitCount++;
+                    }
+                } else {
+                    card.classList.remove("block");
                     card.classList.add("hidden");
                 }
             });
@@ -2853,14 +2819,16 @@
             const existingMsg = document.getElementById("no-winner-msg");
             if (existingMsg) existingMsg.remove();
 
-            if (visibleCount === 0 && cards.length > 0) {
+            if (visibleCount === 0 && cards.length > 0 && grid) {
                 const msgDiv = document.createElement("div");
                 msgDiv.id = "no-winner-msg";
                 msgDiv.className = "col-span-full border border-white/10 bg-navy-900/40 p-12 text-center";
                 msgDiv.innerHTML = `
-                    <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-platinum-400">
-                        Tiada acara Keputusan Rasmi ditemui. 
-                    </p>
+                    <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-platinum-400 mx-auto mb-3">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-white mb-1">Tiada Padanan Keputusan</p>
+                    <p class="text-xs text-platinum-400">Tiada keputusan rasmi ditemui mengikut kriteria carian atau tapisan yang anda masukkan.</p>
                 `;
                 grid.appendChild(msgDiv);
             }
@@ -2899,12 +2867,13 @@
                 feedback.textContent = "Sila masukkan ID Pengguna dan Kata Laluan!";
                 feedback.className = "text-[9px] font-bold uppercase tracking-widest text-red-400 block mt-1";
                 feedback.classList.remove("hidden");
-            } else if (username === "wba1003" && password === "adminskbk") {
+            } else if (username === "881030" && password === "admin@1234") {
                 feedback.textContent = "Akses disahkan. Memuatkan panel kawalan...";
                 feedback.className = "text-[9px] font-bold uppercase tracking-widest text-green-400 block mt-1";
                 feedback.classList.remove("hidden");
                 
                 setTimeout(() => {
+                    closeAdminLoginModal();
                     openAdminPanel();
                     pwdInput.value = "";
                     usrInput.value = "";
@@ -2914,6 +2883,24 @@
                 feedback.textContent = "ID Pengguna atau Kata Laluan tidak sah!";
                 feedback.className = "text-[9px] font-bold uppercase tracking-widest text-red-400 block mt-1";
                 feedback.classList.remove("hidden");
+            }
+        }
+
+        function showAdminLogin() {
+            const loginModal = document.getElementById("adminLoginModal");
+            if (loginModal) {
+                loginModal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+                const usrInput = document.getElementById("adminUsername");
+                if (usrInput) usrInput.focus();
+            }
+        }
+
+        function closeAdminLoginModal() {
+            const loginModal = document.getElementById("adminLoginModal");
+            if (loginModal) {
+                loginModal.classList.add("hidden");
+                document.body.style.overflow = "auto";
             }
         }
 
@@ -2959,84 +2946,33 @@
             }
         }
 
-        function openGoogleSheetsSyncModal() {
-            const modal = document.getElementById("adminGoogleSheetModal");
-            if (!modal) return;
-            
-            document.getElementById("sheetUrlPeserta").value = appSettings.sheetUrlPeserta || "";
-            document.getElementById("sheetUrlPingat").value = appSettings.sheetUrlPingat || "";
-            document.getElementById("sheetUrlPemenang").value = appSettings.sheetUrlPemenang || "";
-            document.getElementById("sheetUrlAnugerah").value = appSettings.sheetUrlAnugerah || "";
-            document.getElementById("sheetUrlMedia").value = appSettings.sheetUrlMedia || "";
-
-            modal.classList.remove("hidden");
-        }
-
-        function closeGoogleSheetsSyncModal() {
-            const modal = document.getElementById("adminGoogleSheetModal");
-            if (modal) modal.classList.add("hidden");
-        }
-
         function parseCSVText(csvText) {
-            const lines = csvText.split(/\r\n|\n/);
+            if (!csvText) return [];
             const result = [];
-            lines.forEach((line, index) => {
-                if (index === 0 && isNaN(parseInt(line.split(',')[1]))) return;
-                if (line.trim() !== "") {
-                    const row = line.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim());
-                    if (row.length >= 2) result.push(row);
+            const lines = csvText.split(/\r\n|\n/);
+            
+            lines.forEach(line => {
+                if (line.trim() === '') return;
+                
+                const row = [];
+                let currentCell = '';
+                let insideQuotes = false;
+                
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        insideQuotes = !insideQuotes;
+                    } else if (char === ',' && !insideQuotes) {
+                        row.push(currentCell.trim());
+                        currentCell = '';
+                    } else {
+                        currentCell += char;
+                    }
                 }
+                row.push(currentCell.trim());
+                if (row.length >= 2) result.push(row);
             });
             return result;
-        }
-
-        function logAdminMsg(msg, isError = false) {
-            const logBox = document.getElementById("adminSyncLog");
-            if(!logBox) return;
-            logBox.classList.remove("hidden");
-            const p = document.createElement("p");
-            p.className = isError ? "text-red-400" : "text-green-400";
-            p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-            logBox.appendChild(p);
-            logBox.scrollTop = logBox.scrollHeight;
-        }
-
-        async function syncAllGoogleSheets() {
-            const urlPeserta = document.getElementById("sheetUrlPeserta").value.trim();
-            const urlPingat = document.getElementById("sheetUrlPingat").value.trim();
-            const urlPemenang = document.getElementById("sheetUrlPemenang").value.trim();
-            const urlAnugerah = document.getElementById("sheetUrlAnugerah").value.trim();
-            const urlMedia = document.getElementById("sheetUrlMedia").value.trim();
-
-            try {
-                await getCol("settings").doc("config").set({
-                    sheetUrlPeserta: urlPeserta,
-                    sheetUrlPingat: urlPingat,
-                    sheetUrlPemenang: urlPemenang,
-                    sheetUrlAnugerah: urlAnugerah,
-                    sheetUrlMedia: urlMedia
-                }, { merge: true });
-            } catch (e) {
-                console.error("Gagal menyimpan tetapan Google Sheets:", e);
-            }
-
-            const logBox = document.getElementById("adminSyncLog");
-            if(logBox) logBox.innerHTML = "";
-            logAdminMsg("Memulakan proses sinkronisasi pangkalan data...");
-
-            let successCount = 0;
-
-            if (urlPeserta || urlPingat || urlPemenang || urlAnugerah || urlMedia) {
-                logAdminMsg("Tetapan pautan telah disimpan.");
-                successCount = 1;
-            }
-
-            if (urlPingat) {
-                await loadMedalTally();
-                logAdminMsg("Kedudukan Pingat berjaya dikemaskini.");
-            }
-
-            logAdminMsg(`Proses selesai. ${successCount} sumber berjaya dilampirkan.`);
         }
 
         function autoRefreshData() {
@@ -3068,8 +3004,7 @@
             updateWinnersList();
             loadAnugerahData();
 
-            // Pemasa Auto Refresh setiap 45 saat
-            setInterval(autoRefreshData, 45000);
+            setInterval(autoRefreshData, 120000);
         });
     </script>
 </body>
