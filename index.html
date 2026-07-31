@@ -1084,14 +1084,14 @@
         const firebaseConfig = typeof __firebase_config !== 'undefined'
             ? JSON.parse(__firebase_config)
             : {
-                apiKey: "AIzaSyBIqqk2dQrCdAX63Vkfk9UTng1d-c2vJ4M ",
-                authDomain: "arena-athletix-championship.firebaseapp.com ",
-                databaseURL: "https://arena-athletix-championship-default-rtdb.asia-southeast1.firebasedatabase.app ",
-                projectId: "arena-athletix-championship ",
-                storageBucket: "arena-athletix-championship.firebasestorage.app ",
-                messagingSenderId: "523568864694 ",
-                appId: "1:523568864694:web:0ab856fa25288ca65a7517 ",
-                measurementId: "G-N7PJ62E3H9 "
+                apiKey: "AIzaSyCLB2gKH5MYYO2LLUQEvWM_wEgJd_xmlIA",
+                authDomain: "arena-athletix.firebaseapp.com",
+                databaseURL: "https://arena-athletix-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "arena-athletix",
+                storageBucket: "arena-athletix.firebasestorage.app",
+                messagingSenderId: "585479923676",
+                appId: "1:585479923676:web:8f69ceb5f79e2efdeb9119",
+                measurementId: "G-QYWYJR6VHS"
             };
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'athletix-championship';
@@ -1676,8 +1676,8 @@
                 
                 tr.innerHTML = `
                     <td class="p-3 font-bold text-white uppercase">${item.name || ''}</td>
-                    <td class="p-3 truncate max-w-[120px] text-blue-400 font-sans text-[11px]">${gsLelaki || "-"}</td>
-                    <td class="p-3 truncate max-w-[120px] text-pink-400 font-sans text-[11px]">${gsPerempuan || "-"}</td>
+                    <td class="p-3 truncate max-w-[120px] text-blue-400 font-sans tabular-nums text-[11px]">${gsLelaki || "-"}</td>
+                    <td class="p-3 truncate max-w-[120px] text-pink-400 font-sans tabular-nums text-[11px]">${gsPerempuan || "-"}</td>
                     <td class="p-3 text-right space-x-2">
                         <button onclick="editWinnerConfig(${index})" class="text-blue-400 hover:text-blue-300 p-1" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button onclick="deleteWinnerConfig(${index})" class="text-red-400 hover:text-red-300 p-1" title="Hapus"><i class="fa-solid fa-trash"></i></button>
@@ -1865,7 +1865,7 @@
 
             tr.innerHTML = `
                 <td class="p-3 font-bold text-white uppercase">Kedudukan Pingat Rasmi</td>
-                <td class="p-3 truncate max-w-[280px] font-sans text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
+                <td class="p-3 truncate max-w-[280px] font-sans tabular-nums text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
                 <td class="p-3 text-right space-x-1.5">
                     <button onclick="editPingatConfig()" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
                         <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
@@ -2098,7 +2098,7 @@
                 tr.className = "hover:bg-white/5 transition-colors border-b border-white/5 text-xs";
                 tr.innerHTML = `
                     <td class="p-2.5 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-2.5 font-sans text-[11px] text-platinum-300 truncate max-w-[180px]">${item.url || '<span class="text-platinum-500 italic">Kosong</span>'}</td>
+                    <td class="p-2.5 font-sans tabular-nums text-[11px] text-platinum-300 truncate max-w-[180px]">${item.url || '<span class="text-platinum-500 italic">Kosong</span>'}</td>
                     <td class="p-2.5 text-right space-x-1">
                         <button onclick="editRealtimeLink('${item.inputId}')" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
                             <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
@@ -2189,7 +2189,7 @@
 
                 tr.innerHTML = `
                     <td class="p-3 font-bold text-white uppercase">${item.name}</td>
-                    <td class="p-3 truncate max-w-[280px] font-sans text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
+                    <td class="p-3 truncate max-w-[280px] font-sans tabular-nums text-[11px] text-platinum-300">${url || '<span class="text-platinum-500 italic">Belum Ditetapkan</span>'}</td>
                     <td class="p-3 text-right space-x-1.5">
                         <button onclick="editAnugerahConfig('${item.inputId}')" class="px-2 py-1 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/20 text-[10px] font-bold uppercase rounded transition-colors" title="Edit / Fokus">
                             <i class="fa-solid fa-pen-to-square mr-1"></i> Edit
@@ -2566,7 +2566,6 @@
                         let bib = col4;
                         let score = col5;
 
-                        // Lenient Parsing
                         if (!team && (name.includes("HELANG") || name.includes("GARUDA") || name.includes("KENYALANG") || name.includes("RAJAWALI"))) {
                             team = name;
                             name = "";
@@ -2631,7 +2630,6 @@
                     winnersPerempuan = await fetchSheetWinnersData(urlPerempuan, config.docId, "PEREMPUAN");
                 }
 
-                // Buat kad kombinasi side-by-side
                 const combinedCard = createCombinedWinnerCard(config, winnersLelaki, winnersPerempuan);
                 if (combinedCard) grid.appendChild(combinedCard);
             }
@@ -2799,7 +2797,6 @@
                 }
 
                 if (matchesSelect && matchesQuery) {
-                    // Hadkan kepada 2 paparan sahaja jika "ALL" dipilih
                     if (selectedDropdownVal === "ALL" && displayLimitCount >= 2) {
                         card.classList.remove("block");
                         card.classList.add("hidden");
