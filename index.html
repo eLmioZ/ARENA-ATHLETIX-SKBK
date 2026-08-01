@@ -109,11 +109,11 @@
                 <!-- Navigasi Desktop -->
                 <nav class="hidden xl:flex items-center space-x-3 lg:space-x-4">
                     <a href="#utama" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-white hover:text-platinum-300 transition-colors duration-200 py-2">Utama</a>
-                    <a href="#jadual" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Jadual</a>
+                    <a href="#jadual" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Jadual & Acara</a>
                     <a href="#peserta" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Senarai Peserta</a>
                     <a href="#keputusan" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Kedudukan Pingat</a>
                     <a href="#pemenang" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Keputusan Rasmi</a>
-                    <a href="#anugerah" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Anugerah</a>
+                    <a href="#anugerah" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Anugerah Kejohanan</a>
                     <a href="#media" class="text-[10px] lg:text-xs font-bold uppercase tracking-wider text-platinum-400 hover:text-white transition-colors duration-200 py-2">Info & Media</a>
                 </nav>
 
@@ -137,11 +137,11 @@
         <div class="hidden xl:hidden bg-navy-900/98 backdrop-blur-lg border-t border-white/5 transition-all duration-300" id="mobileMenu">
             <div class="px-4 pt-3 pb-6 space-y-2">
                 <a href="#utama" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-white hover:bg-white/5 border-b border-white/5">Utama</a>
-                <a href="#jadual" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Jadual</a>
+                <a href="#jadual" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Jadual & Acara</a>
                 <a href="#peserta" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Senarai Peserta</a>
                 <a href="#keputusan" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Kedudukan Pingat</a>
                 <a href="#pemenang" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Keputusan Rasmi</a>
-                <a href="#anugerah" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Anugerah</a>
+                <a href="#anugerah" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Anugerah Kejohanan</a>
                 <a href="#media" onclick="toggleMobileMenu()" class="block px-4 py-3 text-xs font-bold uppercase tracking-widest text-platinum-300 hover:bg-white/5 border-b border-white/5">Info & Media</a>
                 <div class="pt-4">
                     <button onclick="toggleMobileMenu(); showAdminLogin();" class="block text-center w-full px-4 py-3.5 bg-white text-navy-950 font-display font-extrabold text-xs uppercase tracking-widest cursor-pointer">
@@ -229,23 +229,23 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Sidebar Control Order: 1. Pilihan Acara -> 2. Pilihan Kategori -> 3. Pilihan Pusingan -->
+                <!-- Sidebar Control Order: 1. Pilihan Kategori -> 2. Pilihan Acara -> 3. Pilihan Pusingan -->
                 <div class="lg:col-span-4 space-y-6">
                     
-                    <!-- 1. Dropdown Pilihan Acara -->
-                    <div class="border border-white/10 bg-navy-900/60 p-5 rounded-none space-y-2">
-                        <label class="text-[10px] uppercase tracking-wider text-platinum-400 font-bold block"><i class="fa-solid fa-list-check mr-1.5"></i> Pilihan Acara</label>
-                        <select id="eventSelect" onchange="onEventChanged()" class="w-full bg-navy-950 border border-white/10 py-3 px-4 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
-                        </select>
-                    </div>
-
-                    <!-- 2. Dropdown Kategori (Lelaki & Perempuan) -->
+                    <!-- 1. Dropdown Kategori (Lelaki & Perempuan) -->
                     <div class="border border-white/10 bg-navy-900/60 p-5 rounded-none space-y-2">
                         <label class="text-[10px] uppercase tracking-wider text-platinum-400 font-bold block"><i class="fa-solid fa-venus-mars mr-1.5"></i> Pilihan Kategori</label>
                         <select id="categorySelect" onchange="onCategoryChanged()" class="w-full bg-navy-950 border border-white/10 py-3 px-4 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
                             <option value="ALL">-- SEMUA KATEGORI --</option>
                             <option value="Lelaki">Lelaki</option>
                             <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <!-- 2. Dropdown Pilihan Acara -->
+                    <div class="border border-white/10 bg-navy-900/60 p-5 rounded-none space-y-2">
+                        <label class="text-[10px] uppercase tracking-wider text-platinum-400 font-bold block"><i class="fa-solid fa-list-check mr-1.5"></i> Pilihan Acara</label>
+                        <select id="eventSelect" onchange="onEventChanged()" class="w-full bg-navy-950 border border-white/10 py-3 px-4 text-xs font-medium uppercase tracking-wider text-white focus:outline-none focus:border-white transition-colors min-h-[48px] cursor-pointer">
                         </select>
                     </div>
 
@@ -3089,7 +3089,7 @@
             updateWinnersList();
             loadAnugerahData();
 
-            setInterval(autoRefreshData, 120000);
+            setInterval(autoRefreshData, 300000);
         });
     </script>
 </body>
